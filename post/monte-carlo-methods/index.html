@@ -1,147 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://xiangyu-fu.github.io</id>
-    <title>Xiangyu Fu</title>
-    <updated>2020-08-22T10:41:20.302Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://xiangyu-fu.github.io"/>
-    <link rel="self" href="https://xiangyu-fu.github.io/atom.xml"/>
-    <subtitle>如无必要,勿增实体.</subtitle>
-    <logo>https://xiangyu-fu.github.io/images/avatar.png</logo>
-    <icon>https://xiangyu-fu.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Xiangyu Fu</rights>
-    <entry>
-        <title type="html"><![CDATA[【从零开始的ROS四轴机械臂控制】（一）- 实际模型制作、Solidworks文件转urdf与rviz仿真]]></title>
-        <id>https://xiangyu-fu.github.io/post/RArm1-1-modelbuilding/</id>
-        <link href="https://xiangyu-fu.github.io/post/RArm1-1-modelbuilding/">
-        </link>
-        <updated>2020-08-21T16:05:43.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="前记">前记：</h3>
-<p>之前学习了很多关于ROS的知识，现在想自己制作一个四轴器械臂来练练手。所以就定为arm0.1版本，使用MG90s舵机来搭建一个四轴机械臂。arm0.1版本的目标是对不同颜色的方块进行分类并在Gazebo中模拟出来。<br>
-<img src="https://img-blog.csdnimg.cn/20200308063322252.gif" alt="在这里插入图片描述" loading="lazy"><br>
-在未来计划的arm1.0版本中，计划使用步进电机来搭建六轴机械臂，使用上RL，实现人机交互，希望能在下个学期完成它。</p>
-<h2 id="一-模型制作">一、模型制作</h2>
-<h3 id="1实际模型制作">1.实际模型制作</h3>
-<p>首先是实际模型的制作，就使用3d打印机制作了。我使用的是ANYCUBIC的一款打印机，主要是因为价格便宜，性价比比较高，而且安装也不用太花时间，使用下来稳定性还不错。</p>
-<p>四轴机械手网上的模型挺多的，我这里采用<a href="https://www.thingiverse.com/thing:34829">https://www.thingiverse.com/thing:34829</a>提供的模型，这个模型设计中有考虑误差，所以打印基本一次成型。</p>
-<p>以下是网站中提供的图片。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200306080733269.png" alt="在这里插入图片描述" width="400" height="300" loading="lazy"><br>
-实际模型打印出如下图。比较需要注意的夹爪部分的齿轮，打印出来的尺寸和模型给出来的尺寸还是有区别的。因为是齿轮结构，对精准度要求比较高，需要打印几次才能成功。<br>
-<img src="https://img-blog.csdnimg.cn/20200306080712929.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" width="400" height="250" loading="lazy"><br>
-舵机我采用MG90s，毕竟我手头只有这个版本的舵机。舵机控制使用16路舵机驱动控制模块PCA9685：<br>
-<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvMTQ4MTIxOC8yMDE5MDQvMTQ4MTIxOC0yMDE5MDQwMzE2MzUyODUxOS0xNDE5ODQwNDQ4LnBuZw?x-oss-process=image/format,png" alt="" width="200" height="200" loading="lazy"></p>
-<p>用arduino UNO控制,接线如图所示：</p>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20190818091513734.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTA4NDE3NzU=,size_16,color_FFFFFF,t_70#pic_center" alt="" loading="lazy"></figure>
-<p>图片来源见水印，关于PCA9685模块的使用可以参考相关博客：<a href="https://blog.csdn.net/u010841775/article/details/99701182">Arduino uno使用PCA9685模块实现16路舵机控制</a>。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200306091119771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-以上是这个项目目前的框图，有很多细节没有标清楚，只标出了硬件部分，其它的在未来会慢慢补全。</p>
-<p>全程使用VM虚拟机，在未来arm1.0版本中可能使用Raspberry pi来控制，只把图像处理和模拟部分放在PC上。</p>
-<p>然后测试了我所使用的这个USB摄像头，发现其好像无法接到虚拟机中。然后考虑到价格问题，还是觉得没有必要买个新的摄像头，要实现对不同颜色的方块进行分类，完全可以在gazebo中模拟出来。arduino和虚拟机的连接是没有问题的，可以正常使用虚拟机进行下载程序。关于arduino如何与ros进行连接，将在以后的博文中进行说明。</p>
-<h3 id="2solidworks模型制作">2.Solidworks模型制作</h3>
-<p>Solidworks使用的是2017版本。因为之前提供模型的网站只提供stl文件，stl导入solidworks中的文件基本无法使用，所以就决定自己画了。因为是模拟，所以精度不是太高。只是简单的制作了其结构，夹爪部分感觉比较麻烦，也没有制作。最后使用了Solidworks自带的渲染工具，其效果如下图。<br>
-<img src="https://img-blog.csdnimg.cn/20200306081014461.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" width="400" height="300" loading="lazy"><br>
-模型建好了就可以使用相关插件导出到urdf了。</p>
-<h2 id="二-solidworks文件转urdf">二、Solidworks文件转urdf</h2>
-<p>URDF（Universal Robot Description Format）——通用机器人描述格式，它是ROS里边使用的一种机器人的描述文件，包含的内容有：连杆、关节，运动学和动力学参数、可视化模型、碰撞检测模型等。</p>
-<h3 id="1sw_urdf_exporter插件">1.sw_urdf_exporter插件</h3>
-<p>要将arm.SLDASM文件导出为urdf文件，<a href="http://wiki.ros.org/sw_urdf_exporter">sw_urdf_exporter插件</a>是必不可少的。<br>
-<img src="https://img-blog.csdnimg.cn/20200306093059209.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-1.5.1版本中提供了exe文件，下载完成后直接安装就可以了。之后就可以在插件栏找到它。<br>
-<img src="https://img-blog.csdnimg.cn/202003060932447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-我的2017版本的solidworks的导出urdf选项在：<mark>工具--&gt;File --&gt;Export as urdf</mark>。</p>
-<p>我当时一度以为该选项在文件选项栏，试了各种方法找不到导出选项，最后发现它在工具选项栏.....真的是白白浪费了我几个小时的时间</p>
-<h3 id="2-添加坐标系和转轴">2. 添加坐标系和转轴</h3>
-<p>导出urdf文件的插件没有问题后，接下来就要为导出urdf文件做准备了，首先是为我们的模型添加坐标系和转轴。</p>
-<p>转轴添加比较简单，有很多添加方法。我使用的是选择某一个圆柱面添加。</p>
-<p>坐标系是需要确定坐标系原点，在选择x,y,z的方向。</p>
-<p>所以一个建议是首先确定axis0-3，再确定coordinate0-4。<br>
-<img src="https://img-blog.csdnimg.cn/20200306093750863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<h3 id="3导出urdf文件">3.导出urdf文件</h3>
-<p>在主界面打开，工具--&gt;File --&gt;Export as urdf，按照我图片中给出的顺序进行操作。注意不要选到别的地方，在点击Export之前，所有操作都不会保存。我尝试了几次才正确的导出的。<br>
-<img src="https://img-blog.csdnimg.cn/20200306094434972.png" alt="在这里插入图片描述" loading="lazy"></p>
-<p>点击Rreview and Export之后，出现以下窗口，<mark>记得填写limit部分</mark>。<br>
-<img src="https://img-blog.csdnimg.cn/20200306093951237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200306094657304.png" alt="在这里插入图片描述" loading="lazy"><br>
-导出后，生成文件如下：<br>
-<img src="https://img-blog.csdnimg.cn/20200306094739721.png" alt="在这里插入图片描述" loading="lazy"><br>
-其中文件作用如下：<br>
-•	scripts (python 可执行文件)<br>
-•	src (C++ source files)<br>
-•	msg (for custom message definitions)<br>
-•	srv (for service message definitions)<br>
-•	include -&gt; 需要作为依赖项的头/库<br>
-•	config -&gt; 配置文件<br>
-•	launch -&gt; 提供更自动化的启动节点方式<br>
-•	urdf (通用机器人描述文件)<br>
-•	meshes (CAD文件.dae (Collada)或.stl (STereoLithography)格式)<br>
-•	worlds (用于Gazebo模拟环境的类似XML的文件)</p>
-<h3 id="4参考博客">4.参考博客</h3>
-<p>导出urdf文件我参考了以下博客，<br>
-<a href="https://blog.csdn.net/gpeng832/article/details/73917487">1.【ROS学习】Solidworks模型转化为URDF文件格式+三连杆机械臂示例+逆运动学</a><br>
-<a href="http://wiki.ros.org/sw_urdf_exporter">2. ROS Wiki sw_urdf_exporter</a></p>
-<h2 id="三-rivz仿真">三、rivz仿真</h2>
-<h3 id="1rivz仿真">1.rivz仿真</h3>
-<p>将导出的文件复制到<code>~/catkin_ws/src</code>目录下.</p>
-<p>修改display.launch文件，其在launch文件夹下。</p>
-<p>将default的值从False改为True，否则无法打开Joint State Publish工具。</p>
-<pre><code>  &lt;arg
-    name=&quot;gui&quot;
-    default=&quot;False&quot; /&gt;//将False改为True
-...
-</code></pre>
-<p>运行命令打开文件</p>
-<pre><code>cd ~/catkin_ws
-source devel/setup.bash
-catkin_make
-roslaunch arm0 display.launch
-</code></pre>
-<p>之后我们就可以打开RViz了，但是现在没有任何模型加载。</p>
-<p>解决方法是，首先在Fixed Frame栏中选中自己定义的链接名称。<br>
-<img src="https://img-blog.csdnimg.cn/20200306212130927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>之后点击左下角的“Add”来添加我们的模型。</p>
-<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20200306212223566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></figure>
-<p>选择RobotModel，然后点击‘OK’。<br>
-<img src="https://img-blog.csdnimg.cn/20200306212447464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-之后模型就可以加载出来了，然后移动鼠标经行缩放移动，或者可以使用Joint State Publish来调整关节角度。<br>
-<img src="https://img-blog.csdnimg.cn/20200306212536128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-注意Joint State Publish的调整范围是根据之前设定的limit。<br>
-<img src="https://img-blog.csdnimg.cn/20200306212900559.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<h3 id="2借助moveit在rviz中进行逆运动学测试">2.借助MoveIt!在rviz中进行逆运动学测试</h3>
-<p>使用Ｍoveit!提供的setup_assistant来配置机械臂的package文件，需要使用到上一部分生成的URDF文件。<br>
-使用命令</p>
-<pre><code>roslaunch moveit_setup_assistant setup_assistant.launch
-</code></pre>
-<p>打开assistant后点击Create New Moveit Configuration Package 导入URDF文件，我的urdf文件路径如图片所示<br>
-<img src="https://img-blog.csdnimg.cn/20200306213411113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>设置Self-Collision，点击Generate Collsion Matrix :<br>
-<img src="https://img-blog.csdnimg.cn/20200306213417468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-设置Virtual Joints，Parent Frame Name设为world_frame，save完成后如下图所示。相关名称可以参考图片中的名称。<br>
-<img src="https://img-blog.csdnimg.cn/20200306213428115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-设置Planning Groups名称<br>
-<img src="https://img-blog.csdnimg.cn/20200306213436453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-选择运动学求解器，然后点击Add Kin. Chain。然后把base_link设置为Base Link，把link4设置为Tip Link：<br>
-<img src="https://img-blog.csdnimg.cn/20200306213444466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-设置Robot Pose,和作者邮箱。</p>
-<p>然后设置保存路径，如下图所示。点击Generate Package。<br>
-<img src="https://img-blog.csdnimg.cn/20200306213450448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-<p>文件如下图所示：<br>
-<img src="https://img-blog.csdnimg.cn/20200306214355575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-运行命令</p>
-<pre><code>cd ~/catkin_ws/src/config/launch/
-roslaunch demo.launch
-</code></pre>
-<p>运行如下图所示。</p>
-<p>例如，我们可以通过调整红框中的部分来进行逆运动学模拟。<br>
-<img src="https://img-blog.csdnimg.cn/20200306214640120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例]]></title>
-        <id>https://xiangyu-fu.github.io/post/monte-carlo-methods/</id>
-        <link href="https://xiangyu-fu.github.io/post/monte-carlo-methods/">
-        </link>
-        <updated>2020-08-19T21:39:15.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例 | Xiangyu Fu</title>
+<link rel="shortcut icon" href="https://xiangyu-fu.github.io/favicon.ico?v=1598092866370">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xiangyu-fu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例 | Xiangyu Fu - Atom Feed" href="https://xiangyu-fu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+
+
+4. 蒙特卡洛方法
+
+4.1 蒙特卡洛预测
+
+例4.1:Blackjack(21点)
+
+
+4.2 行动值的蒙特卡洛估计
+4.3 Monte Carlo 控制
+
+例4.2: 21点的解法
+
+
+4.4 蒙特卡洛控制的无探索启动
+4.5 通..." />
+    <meta name="keywords" content="强化学习" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xiangyu-fu.github.io">
+  <img class="avatar" src="https://xiangyu-fu.github.io/images/avatar.png?v=1598092866370" alt="">
+  </a>
+  <h1 class="site-title">
+    Xiangyu Fu
+  </h1>
+  <p class="site-description">
+    如无必要,勿增实体.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-19
+              </span>
+              <span>
+                55 min read
+              </span>
+              
+                <a href="https://xiangyu-fu.github.io/tag/RL/" class="post-tag">
+                  # 强化学习
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#4-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95">4. 蒙特卡洛方法</a>
@@ -607,6 +575,102 @@ def monte_carlo_importance_resample(env, episode_num=500000):
     plot(policy.argmax(-1))
     plot(v)
 </code></pre>
-]]></content>
-    </entry>
-</feed>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#4-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95">4. 蒙特卡洛方法</a>
+<ul>
+<li><a href="#41-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E9%A2%84%E6%B5%8B">4.1 蒙特卡洛预测</a>
+<ul>
+<li><a href="#%E4%BE%8B41blackjack21%E7%82%B9">例4.1:Blackjack(21点)</a></li>
+</ul>
+</li>
+<li><a href="#42-%E8%A1%8C%E5%8A%A8%E5%80%BC%E7%9A%84%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BC%B0%E8%AE%A1">4.2 行动值的蒙特卡洛估计</a></li>
+<li><a href="#43-monte-carlo-%E6%8E%A7%E5%88%B6">4.3 Monte Carlo 控制</a>
+<ul>
+<li><a href="#%E4%BE%8B42-21%E7%82%B9%E7%9A%84%E8%A7%A3%E6%B3%95">例4.2: 21点的解法</a></li>
+</ul>
+</li>
+<li><a href="#44-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%8E%A7%E5%88%B6%E7%9A%84%E6%97%A0%E6%8E%A2%E7%B4%A2%E5%90%AF%E5%8A%A8">4.4 蒙特卡洛控制的无探索启动</a></li>
+<li><a href="#45-%E9%80%9A%E8%BF%87%E9%87%8D%E8%A6%81%E6%80%A7%E6%8A%BD%E6%A0%B7%E8%BF%9B%E8%A1%8Coff-policy%E9%A2%84%E6%B5%8B">4.5 通过重要性抽样进行Off-policy预测</a></li>
+<li><a href="#46-%E5%A2%9E%E9%87%8F%E5%AE%9E%E7%8E%B0">4.6 增量实现</a></li>
+<li><a href="#47-off-policy%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%8E%A7%E5%88%B6">4.7 Off-policy蒙特卡洛控制</a></li>
+<li><a href="#48-%E6%A1%88%E4%BE%8B-21%E7%82%B9%E6%B8%B8%E6%88%8F">4.8 案例: 21点游戏</a>
+<ul>
+<li><a href="#481-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BD%BF%E7%94%A8">4.8.1 实验环境的使用</a></li>
+<li><a href="#482-%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0">4.8.2 策略评估</a></li>
+<li><a href="#483-on-policy%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5%E6%B1%82%E8%A7%A3">4.8.3 on-policy最优策略求解</a></li>
+<li><a href="#484-%E5%BC%82%E7%AD%96%E7%AD%96%E7%95%A5%E8%AF%84%E4%BC%B0">4.8.4 异策策略评估</a></li>
+<li><a href="#485-off-policy%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5%E6%B1%82%E8%A7%A3">4.8.5 off-policy最优策略求解</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xiangyu-fu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
