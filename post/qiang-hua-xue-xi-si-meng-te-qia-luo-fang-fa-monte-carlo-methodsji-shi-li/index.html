@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例 | Xiangyu Fu</title>
-<link rel="shortcut icon" href="https://xiangyu-fu.github.io/favicon.ico?v=1598090473783">
+<link rel="shortcut icon" href="https://xiangyu-fu.github.io/favicon.ico?v=1598092756271">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xiangyu-fu.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例 | Xiangyu Fu - Atom Feed" href="https://xiangyu-fu.github.io/atom.xml">
@@ -38,7 +38,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xiangyu-fu.github.io">
-  <img class="avatar" src="https://xiangyu-fu.github.io/images/avatar.png?v=1598090473783" alt="">
+  <img class="avatar" src="https://xiangyu-fu.github.io/images/avatar.png?v=1598092756271" alt="">
   </a>
   <h1 class="site-title">
     Xiangyu Fu
@@ -172,12 +172,14 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>玩21点自然而然地被表述为一个偶发的有限MDP。每一局21点游戏都是一个事件。赢、输和平局的奖励分别为+1、1和0。一个游戏内的所有奖励都是零，没有折扣率（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>γ</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gamma =1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>），因此这些终端奖励也是回报。玩家的行动是要牌或者停止。这些状态取决于玩家的牌和庄家的牌。我们假设牌是从一副无限的牌中发出的（即，有替换），因此，跟踪已经发出的牌没有好处。如果玩家持有一张A，他可以在不破产的情况下算作11，那么这张A被认为是可用的。在这种情况下，它总是被算作11，因为将它算作1会使总和为11或更少，在这种情况下，没有任何决定可做，因为，显然，玩家应该总是打。因此，玩家根据三个变量做出决定：他的当前和值（12 21），庄家的一张牌（A 10），以及他是否持有可用的A。这使得总共有200种状态。</p>
 <p>如果玩家的和值是20或21，则考虑该策略，否则继续要牌。为了通过蒙特卡洛方法找到这个策略的状态值函数，我们使用该策略模拟许多21点游戏，并对每个状态后的收益进行平均。通过这种方式，我们得到了图4.1所示的状态值函数的估计值。对于牌A的状态的估计值不太确定，也不太规则，因为这些状态不太常见。无论如何，在500,000次游戏之后，价值函数是非常好的近似值。<br>
 <img src="https://img-blog.csdnimg.cn/2020080522385352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjY2OTE3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" loading="lazy"></p>
-<center><font face="楷体">图4.1:仅停留在20或21的blackjack策略的近似状态值函数，由蒙特卡洛策略评估计算。</font><center>
-<p>虽然我们对21点任务中的环境有完整的了解，但要应用DP方法来计算值函数并不容易。DP方法特别需要下一个事件的分布，它们需要由四参数函数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span>给出的环境动态，而对于21点来说，确定这个并不容易。例如，假设玩家s的和是14，他选择要牌。作为庄家出示牌的函数，他以奖励+1结束的概率是多少？在应用DP之前，所有的概率都必须计算出来，而且这种计算通常很复杂，容易出错。相比之下，产生蒙特卡洛方法所需的样本游戏是很容易的。蒙特卡洛方法能够单独处理样本事件，即使在人们完全了解环境动态的情况下，这也是一个显著的优势。</p>
+<center><font face="楷体">图4.1:仅停留在20或21的blackjack策略的近似状态值函数，由蒙特卡洛策略评估计算。</font></center>
+<left>
+虽然我们对21点任务中的环境有完整的了解，但要应用DP方法来计算值函数并不容易。DP方法特别需要下一个事件的分布，它们需要由四参数函数$p$给出的环境动态，而对于21点来说，确定这个并不容易。例如，假设玩家s的和是14，他选择要牌。作为庄家出示牌的函数，他以奖励+1结束的概率是多少？在应用DP之前，所有的概率都必须计算出来，而且这种计算通常很复杂，容易出错。相比之下，产生蒙特卡洛方法所需的样本游戏是很容易的。蒙特卡洛方法能够单独处理样本事件，即使在人们完全了解环境动态的情况下，这也是一个显著的优势。
 <p>我们能把备份图的思想推广到蒙特卡洛算法吗?备份图的一般思想是在顶部显示要更新的根节点，在下面显示所有的转换和叶节点，它们的回报和估计值对更新有贡献。对于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mi>π</mi></msub></mrow><annotation encoding="application/x-tex">v_\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的蒙特卡罗估计，起始是一个状态节点，起始节点的下面是沿某一特定单事件的整个过渡轨迹，结束于终端状态，DP图显示了所有可能的转换，而蒙特卡洛图只显示了在一个场景中采样的那些转换。DP图只包含一步转换，而蒙特卡洛图展示了整个事件。这些差异准确地反映了两种算法之间的基本差异。</p>
 <figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200818055406617.png#pic_center" alt="在这里插入图片描述" loading="lazy"></figure>
-<center><font face="楷体">图4.2:蒙特卡洛图</font><center>
-<p>关于蒙特卡洛方法的一个重要事实是，每个状态的估计是独立的。对一个状态的估计并不像在DP中那样建立在任何其他状态的估计之上。换句话说，蒙特卡洛方法并不像我们在之前所定义的那样进行推导。</p>
+<center><font face="楷体">图4.2:蒙特卡洛图</font></center>
+<left>
+关于蒙特卡洛方法的一个重要事实是，每个状态的估计是独立的。对一个状态的估计并不像在DP中那样建立在任何其他状态的估计之上。换句话说，蒙特卡洛方法并不像我们在之前所定义的那样进行推导。
 <p>特别要注意的是，估计一个状态值的计算与状态的数量无关。当人们只需要一个或一个子集的状态值时，这可以使蒙特卡洛方法特别有吸引力。人们可以从感兴趣的状态开始生成许多样本事件，只对这些状态的收益进行平均，而忽略所有其他状态。</p>
 <p>这是蒙特卡洛方法相对于DP方法的第三个优势（继从实际经验和模拟经验中学习的能力之后）。</p>
 <h3 id="42-行动值的蒙特卡洛估计">4.2 行动值的蒙特卡洛估计</h3>
@@ -355,14 +357,14 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 </table>
 <h4 id="481-实验环境的使用">4.8.1 实验环境的使用</h4>
 <p>Gym库的环境'Blackjack-v0'实现了上述21点游戏。21点游戏环境和Gym库中其他环境的用法大致相同，我们可以用以下语句取得环境对象：</p>
-<pre><code class="language-python">import gym
+<pre><code>import gym
 env = gym.make(&quot;Blackjack-v0&quot;)
 </code></pre>
 <p>用以下语句初始化环境。</p>
-<pre><code class="language-python">env.reset()
+<pre><code>env.reset()
 </code></pre>
 <p>用以下语句进入下一步。</p>
-<pre><code class="language-python">env.step(action)
+<pre><code>env.step(action)
 </code></pre>
 <p>env.step()函数的参数是动作，它可以是int型数值0或1，其中0表示玩家不再要更多的牌，1表示玩家再要一张牌。env.step()的第0个返回值是观测，它是一个有3个元素的tuple值，其3个元素依次为：</p>
 <ul>
@@ -372,7 +374,7 @@ env = gym.make(&quot;Blackjack-v0&quot;)
 </ul>
 <p>在计算玩家点数时，如果玩家手上有A牌，那么会用以下规则确定A牌的点数：首先要保证玩家手上牌的总点数小于21（所以至多有一张A牌会算作11），在此基础上让总点数尽量大。在计算庄家点数时，总是将A计算为1点（当然总是计算为11点也是完全等价的）。</p>
 <p>在以下代码中，用Numpy库的<code>np.random.choice()</code>函数选择动作。这个函数的第0个参数表示要从哪些数据里选择。它还可能有一个关键字参数p，表示选择各数据的概率。以下代码没有指定关键字参数p，则表示等概率选择数据。</p>
-<pre><code class="language-python">if __name__ == '__main__':
+<pre><code>if __name__ == '__main__':
     env = gym.make(&quot;Blackjack-v0&quot;)
     observation = env.reset()
     print('观测 = {}'.format(env.player, env.dealer))
@@ -388,7 +390,7 @@ env = gym.make(&quot;Blackjack-v0&quot;)
 </code></pre>
 <h4 id="482-策略评估">4.8.2 策略评估</h4>
 <p>21点游戏的交互可以看作一个Markov决策过程。我们将观测略做修改，将观测tuple的最后一个元素改为int值，就可以得到用3个int值表示的状态，见以下代码。</p>
-<pre><code class="language-python"># 从观测到状态
+<pre><code># 从观测到状态
 def ob2state(observation):
     return(observation[0], observation[1], int(observation[2]))
 </code></pre>
@@ -403,7 +405,7 @@ def ob2state(observation):
 <li>在折扣因子<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>γ</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">γ=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的情况下，只要将回合最后一个奖励值作为回报值，on-policy更新不需要逆序求回报值。利</li>
 </ul>
 <p>用以上两个简化，下给出了on-policy回合更新策略评估的算法。函数<code>evaluate_action_monte_carlo()</code>根据环境env和策略policy，求得动作价值函数q并返回。在这个函数中，不区分首次访问和每次访问，限定γ=1并直接用最后的奖励值作为回报值g，而且在更新状态时是顺序更新的。</p>
-<pre><code class="language-python"># 回合更新策略评估
+<pre><code># 回合更新策略评估
 def evaluate_action_monte_carlo(env, policy, episode_num=50000):
     q = np.zeros_like(policy)
     c = np.zeros_like(policy)
@@ -425,14 +427,14 @@ def evaluate_action_monte_carlo(env, policy, episode_num=50000):
     return q
 </code></pre>
 <p>下面来看一个<code>evaluate_action_monte_carlo()</code>函数的用法。下面这段代码评估了一个确定性算法policy。算法policy在总点数≥20时不再要牌，在总点数&lt;20时要牌。通过调用<code>evaluate_action_monte_carlo()</code>函数，求得其动作价值函数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>。接着，利用动作价值函数求出了状态价值函数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>。</p>
-<pre><code class="language-python">policy = np.zeros((22, 11, 2, 2))
+<pre><code>policy = np.zeros((22, 11, 2, 2))
 policy[20:, :, :, 0] = 1  # &gt;20时不再要牌
 policy[:20, :, :, 1] = 1  # &lt;20时不再要牌
 q = evaluate_action_monte_carlo(env, policy)  # 动作价值
 v = (q * policy).sum(axis=-1)
 </code></pre>
 <p>接下来考虑价值函数的可视化。考虑到q是一个4维的数组，而v是一个3维的数组，所以可视化v比可视化q容易。这里仅可视化v。下面代码给出了可视化最后一维指标为0或1的3维数组的函数plot()。函数plot()绘制了含有两个子图的图像，两个子图分别绘制最后一维指标为0和最后一维指标为1的数组值。每个子图的X轴表示玩家点数和，Y轴表示庄家显示的牌面。值得一提的是，这里显示的玩家点数和范围只有12～21，比实际可能出现的范围3～21小。实际上，12～21这个范围是我们最为关心的范围。这是因为，如果玩家的点数和小于等于11，那么再抽一张牌肯定不会超过21点，并且总是能得到更大的点数。所以，玩家在点数和小于等于11的情况下一定会选择继续抽牌，直到玩家总点数和大于等于12。所以，我们更关心玩家的点数和范围是12～21的情况。</p>
-<pre><code class="language-python"># 绘制最后一维的指标为0或1的3维数组
+<pre><code># 绘制最后一维的指标为0或1的3维数组
 def plot(data):
     fig, axes = plt.subplots(1, 2, figsize=(9, 4))
     titles = ['without ace', 'with ace']
@@ -446,13 +448,13 @@ def plot(data):
         axis.set_title(title)
 </code></pre>
 <p>利用代码</p>
-<pre><code class="language-python">plot(v)
+<pre><code>plot(v)
 </code></pre>
 <p>可以绘制得到状态价值函数的图像</p>
 <h4 id="483-on-policy最优策略求解">4.8.3 on-policy最优策略求解</h4>
 <p>本节考虑利用on-policy回合更新求解最优策略和最优价值函数。</p>
 <p>以下给出了带起始探索的on-policy回合更新算法。正如4.8.2节介绍的，我们最为关心玩家的点数和在12～21这个范围内的状态，所以以下代码中的起始探索也只覆盖这个范围内的状态。在函数内部，每个游戏回合前都随机产生一个状态动作对。利用产生的状态，可以反推出一种玩家的持牌可能性和庄家持有的明牌。考虑所有对应到相同状态的玩家持牌都是等价的，所以这里只需任意指定一种玩家的持牌即可。计算得到玩家的持牌和庄家持有的明牌后，可以直接将牌面赋值给<code>env.player</code>和<code>env.dealer[0]</code>，告知环境当前状态。这样，该回合游戏就可以从给定的起始状态开始了。</p>
-<pre><code class="language-python"># 带起始探索的回合更新
+<pre><code># 带起始探索的回合更新
 def monte_carlo_with_exploring_start(env, episode_num=500000):
     policy = np. zeros((22, 11, 2, 2))
     policy[:, :, :, 1] = 1.
@@ -492,14 +494,14 @@ def monte_carlo_with_exploring_start(env, episode_num=500000):
     return policy, q
 </code></pre>
 <p>利用<code>monte_carlo_with_exploring_start()</code>函数，我们可以计算最优价值函数和最优策略，并绘制最优策略和最优价值函数。</p>
-<pre><code class="language-python">    policy, q = monte_carlo_with_exploring_start(env)
+<pre><code>    policy, q = monte_carlo_with_exploring_start(env)
     v = q.max(axis=-1)
     plot(policy.argmax(-1))
     plot(v)
 </code></pre>
 <h4 id="484-异策策略评估">4.8.4 异策策略评估</h4>
 <p>接下来考虑异策算法。代码清单4-7给出了基于重要性采样的策略评估求解动作价值函数。函数<code>evaluate_action_monte_carlo_importance_resample()</code>不仅有表示目标策略的参数policy，还有表示行为策略的参数<code>behavior_policy</code>。在回合更新的过程中，为了有效地更新重要性采样比率，所以需要采用逆序更新。</p>
-<pre><code class="language-python"># 重要性采样策略评估
+<pre><code># 重要性采样策略评估
 def evaluate_monte_carlo_importance_resample(env, policy, behavior_policy, episode_num=500000):
     q = np.zeros_like(policy)
     c = np.zeros_like(policy)
@@ -525,7 +527,7 @@ def evaluate_monte_carlo_importance_resample(env, policy, behavior_policy, episo
     return q
 </code></pre>
 <p><code>evaluate_action_monte_carlo_importance_resample()</code>函数的用法如下列代码所示。其中的行为策略是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi><mo>(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo>)</mo><mo>=</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">π(a|s)=0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord">∣</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="script">S</mi><mo separator="true">,</mo><mi>a</mi><mo>∈</mo><mi mathvariant="script">A</mi></mrow><annotation encoding="application/x-tex">s∈\mathcal{S},a∈\mathcal{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.075em;">S</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">A</span></span></span></span></span>）。该代码可以生成与同策回合更新一致的结果。</p>
-<pre><code class="language-python">policy = np.zeros((22, 11, 2, 2))
+<pre><code>policy = np.zeros((22, 11, 2, 2))
     policy[20:, :, :, 0] = 1  # &gt;= 20时收手
     policy[:20, :, :, 1] = 1  # &lt;20时继续
     behavior_policy = np.ones_like(policy) * 0.5
@@ -535,7 +537,7 @@ def evaluate_monte_carlo_importance_resample(env, policy, behavior_policy, episo
 </code></pre>
 <h4 id="485-off-policy最优策略求解">4.8.5 off-policy最优策略求解</h4>
 <p>最后来看异策回合更新的最优策略求解。代码清单4-8给出了基于重要性采样的最优策略求解。在函数的初始化阶段确定了行为策略为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi><mo>(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo>)</mo><mo>=</mo><mn>0.5</mn><mi mathvariant="normal">（</mi><mi>s</mi><mo>∈</mo><mi mathvariant="script">S</mi><mo separator="true">,</mo><mi>a</mi><mo>∈</mo><mi mathvariant="script">A</mi><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">π(a|s)=0.5（s∈\mathcal{S},a∈\mathcal{A}）</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord">∣</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.075em;">S</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">A</span></span><span class="mord cjk_fallback">）</span></span></span></span>，这是一个柔性策略。在后续的回合更新中，无论目标策略如何更新，都使用这个策略作为行为策略。在更新阶段，同样使用逆序来有效更新重要性采样比率。</p>
-<pre><code class="language-python"># 柔性策略重要性采样最优策略求解
+<pre><code># 柔性策略重要性采样最优策略求解
 def monte_carlo_importance_resample(env, episode_num=500000):
     policy = np.zeros((22, 11, 2, 2))
     policy[:, :, :, 0] = 1.
@@ -568,7 +570,7 @@ def monte_carlo_importance_resample(env, episode_num=500000):
     return policy, q
 </code></pre>
 <p>利用<code>monte_carlo_importance_resample()</code>函数求解最优策略和最优价值函数的用法如下所示。该代码可以生成和同策回合更新一致的结果。</p>
-<pre><code class="language-python">    policy, q = monte_carlo_importance_resample(env)
+<pre><code>    policy, q = monte_carlo_importance_resample(env)
     v = q.max(axis=-1)
     plot(policy.argmax(-1))
     plot(v)
