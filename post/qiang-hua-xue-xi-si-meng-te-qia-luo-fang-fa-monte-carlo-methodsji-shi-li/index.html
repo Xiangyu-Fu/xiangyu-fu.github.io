@@ -1,22 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://xiangyu-fu.github.io</id>
-    <title>Xiangyu Fu</title>
-    <updated>2020-08-22T09:40:36.707Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://xiangyu-fu.github.io"/>
-    <link rel="self" href="https://xiangyu-fu.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://xiangyu-fu.github.io/images/avatar.png</logo>
-    <icon>https://xiangyu-fu.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Xiangyu Fu</rights>
-    <entry>
-        <title type="html"><![CDATA[强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例]]></title>
-        <id>https://xiangyu-fu.github.io/post/qiang-hua-xue-xi-si-meng-te-qia-luo-fang-fa-monte-carlo-methodsji-shi-li/</id>
-        <link href="https://xiangyu-fu.github.io/post/qiang-hua-xue-xi-si-meng-te-qia-luo-fang-fa-monte-carlo-methodsji-shi-li/">
-        </link>
-        <updated>2020-08-22T03:39:15.000Z</updated>
-        <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例 | Xiangyu Fu</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://xiangyu-fu.github.io/favicon.ico?v=1598089228959">
+<link rel="stylesheet" href="https://xiangyu-fu.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+
+
+4. 蒙特卡洛方法
+
+4.1 蒙特卡洛预测
+
+例4.1:Blackjack(21点)
+
+
+4.2 行动值的蒙特卡洛估计
+4.3 Monte Carlo 控制
+
+例4.2: 21点的解法
+
+
+4.4 蒙特卡洛控制的无探索启动
+4.5 通..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://xiangyu-fu.github.io">
+        <img src="https://xiangyu-fu.github.io/images/avatar.png?v=1598089228959" class="site-logo">
+        <h1 class="site-title">Xiangyu Fu</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://xiangyu-fu.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例</h2>
+            <div class="post-date">2020-08-22</div>
+            
+            <div class="post-content" v-pre>
+              <p><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#4-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95">4. 蒙特卡洛方法</a>
@@ -480,6 +575,37 @@ def monte_carlo_importance_resample(env, episode_num=500000):
     plot(policy.argmax(-1))
     plot(v)
 </code></pre>
-]]></content>
-    </entry>
-</feed>
+
+            </div>
+            
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
