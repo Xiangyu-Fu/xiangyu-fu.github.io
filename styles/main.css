@@ -2062,6 +2062,10 @@ body {
         width: 960px;
         margin: 0 auto;
       }
+    
+    .post-body {
+      font-size: 16px !important
+    }
     body {
       color: #555;
     }
@@ -2113,11 +2117,15 @@ body {
     }
     .nav-toggle .line {
       background-color:  !important;
-    }
-      .nav-item a {
-        color:  #555;
+    }.nav-item a {
+        color: #555;
+      }
+      .nav-item-active a {
+        color: #555;
+        border-bottom: 1px solid #555 !important;
       }.nav-item a:hover {
         color: #222;
+        border-bottom: 1px solid #222 !important;
       }.nav-item-active {
       background: #f9f9f9fe;
     }
@@ -2175,8 +2183,6 @@ body {
     }
     .mist .site-title i {
       background: #FFFFFFfe;
-    }.box-shadow-wrapper {
-      box-shadow: none !important;
     }body {
       cursor: default;
     }a {
