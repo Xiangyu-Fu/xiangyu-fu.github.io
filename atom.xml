@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xiangyu-fu.github.io/</id>
+    <title>Xiangyu Fu&apos;s Website</title>
+    <updated>2022-09-11T11:43:08.090Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://xiangyu-fu.github.io/"/>
+    <link rel="self" href="https://xiangyu-fu.github.io/atom.xml"/>
+    <subtitle>share my projects and ideas</subtitle>
+    <logo>https://xiangyu-fu.github.io/images/avatar.png</logo>
+    <icon>https://xiangyu-fu.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Xiangyu Fu&apos;s Website</rights>
+    <entry>
+        <title type="html"><![CDATA[Simple Introduction to FOC control]]></title>
+        <id>https://xiangyu-fu.github.io/OQ1uUNFE4/</id>
+        <link href="https://xiangyu-fu.github.io/OQ1uUNFE4/">
+        </link>
+        <updated>2022-09-10T23:38:02.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cap 27 FSMC(Flexible Static Memory Controller)]]></title>
+        <id>https://xiangyu-fu.github.io/cap-27-fsmc/</id>
+        <link href="https://xiangyu-fu.github.io/cap-27-fsmc/">
+        </link>
+        <updated>2021-09-13T10:32:09.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（九）- 策略梯度方法 - 梯度上升，黑箱优化，REINFORCE算法及CartPole实例]]></title>
+        <id>https://xiangyu-fu.github.io/rl-reinforce&amp;cartpole/</id>
+        <link href="https://xiangyu-fu.github.io/rl-reinforce&amp;cartpole/">
+        </link>
+        <updated>2021-07-26T03:41:08.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（八） - 深度Q学习(Deep Q-learning, DQL,DQN)原理及相关实例]]></title>
+        <id>https://xiangyu-fu.github.io/rl-deepqlearning/</id>
+        <link href="https://xiangyu-fu.github.io/rl-deepqlearning/">
+        </link>
+        <updated>2021-07-26T03:40:03.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（七） - 函数近似方法 - 随机梯度下降, 半梯度下降,及瓦片编码(Tile Coding)实例]]></title>
+        <id>https://xiangyu-fu.github.io/rl-tilecoding/</id>
+        <link href="https://xiangyu-fu.github.io/rl-tilecoding/">
+        </link>
+        <updated>2021-07-26T03:37:43.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（六） - 连续空间中的强化学习(RL in Continuous Spaces)及相关实例]]></title>
+        <id>https://xiangyu-fu.github.io/qiang-hua-xue-xi-liu-lian-xu-kong-jian-zhong-de-qiang-hua-xue-xi-rl-in-continuous-spacesji-xiang-guan-shi-li/</id>
+        <link href="https://xiangyu-fu.github.io/qiang-hua-xue-xi-liu-lian-xu-kong-jian-zhong-de-qiang-hua-xue-xi-rl-in-continuous-spacesji-xiang-guan-shi-li/">
+        </link>
+        <updated>2020-10-14T20:38:41.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（五） - 时序差分学习(Temporal-Difference Learning)及其实例----Sarsa算法, Q学习, 期望Sarsa算法]]></title>
+        <id>https://xiangyu-fu.github.io/qiang-hua-xue-xi-wu-shi-xu-chai-fen-xue-xi-temporal-difference-learningji-qi-shi-li-sarsa-suan-fa-q-xue-xi-qi-wang-sarsa-suan-fa/</id>
+        <link href="https://xiangyu-fu.github.io/qiang-hua-xue-xi-wu-shi-xu-chai-fen-xue-xi-temporal-difference-learningji-qi-shi-li-sarsa-suan-fa-q-xue-xi-qi-wang-sarsa-suan-fa/">
+        </link>
+        <updated>2020-10-14T20:37:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（七） - 函数近似方法 - 随机梯度下降, 半梯度下降,及瓦片编码(Tile Coding)实例]]></title>
+        <id>https://xiangyu-fu.github.io/qiang-hua-xue-xi-qi-han-shu-jin-si-fang-fa-sui-ji-ti-du-xia-jiang-ban-ti-du-xia-jiang-ji-wa-pian-bian-ma-tile-codingshi-li/</id>
+        <link href="https://xiangyu-fu.github.io/qiang-hua-xue-xi-qi-han-shu-jin-si-fang-fa-sui-ji-ti-du-xia-jiang-ban-ti-du-xia-jiang-ji-wa-pian-bian-ma-tile-codingshi-li/">
+        </link>
+        <updated>2020-10-14T14:39:01.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（四） - 蒙特卡洛方法（Monte Carlo Methods）及实例]]></title>
+        <id>https://xiangyu-fu.github.io/qiang-hua-xue-xi-si-meng-te-qia-luo-fang-fa-monte-carlo-methodsji-shi-li/</id>
+        <link href="https://xiangyu-fu.github.io/qiang-hua-xue-xi-si-meng-te-qia-luo-fang-fa-monte-carlo-methodsji-shi-li/">
+        </link>
+        <updated>2020-10-14T14:36:41.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习（三） - Gym库介绍和使用，Markov决策程序实例，动态规划决策实例]]></title>
+        <id>https://xiangyu-fu.github.io/qiang-hua-xue-xi-san-gym-ku-jie-shao-he-shi-yong-markov-jue-ce-cheng-xu-shi-li-dong-tai-gui-hua-jue-ce-shi-li/</id>
+        <link href="https://xiangyu-fu.github.io/qiang-hua-xue-xi-san-gym-ku-jie-shao-he-shi-yong-markov-jue-ce-cheng-xu-shi-li-dong-tai-gui-hua-jue-ce-shi-li/">
+        </link>
+        <updated>2020-08-22T07:04:25.000Z</updated>
+    </entry>
+</feed>
