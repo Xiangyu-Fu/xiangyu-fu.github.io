@@ -18,18 +18,20 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="近来觉得有必要整理一下自己的技术栈，来看看有什么欠缺。也算是对过去几年的经历进行一个回顾和评论。主要涉及机械设计，硬件设计，软件设计，相关算法等方面。">
+        <meta name="description" content="Recently, I felt the need to organize robotics technology stack to identify any deficiencies. It also serves as a review and commentary on my experiences over the past few years.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器人方向技术栈">
+<meta property="og:title" content="Robotics Technology Stack">
 <meta property="og:url" content="https://xiangyu-fu.github.io/2024/06/08/Reviews/Robotic%20technology%20stack/index.html">
 <meta property="og:site_name" content="Xiangyu Fu&#39;s Blog">
-<meta property="og:description" content="近来觉得有必要整理一下自己的技术栈，来看看有什么欠缺。也算是对过去几年的经历进行一个回顾和评论。主要涉及机械设计，硬件设计，软件设计，相关算法等方面。">
+<meta property="og:description" content="Recently, I felt the need to organize robotics technology stack to identify any deficiencies. It also serves as a review and commentary on my experiences over the past few years.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiangyu-fu.github.io/2024/06/08/Reviews/Robotic%20technology%20stack/image.png">
 <meta property="article:published_time" content="2024-06-08T10:36:47.000Z">
-<meta property="article:modified_time" content="2024-06-08T16:20:15.461Z">
+<meta property="article:modified_time" content="2024-06-08T21:31:58.244Z">
 <meta property="article:author" content="Xiangyu Fu">
 <meta property="article:tag" content="Reviews, robotics">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiangyu-fu.github.io/2024/06/08/Reviews/Robotic%20technology%20stack/image.png">
     
     
     <!--- Icon Part-->
@@ -41,7 +43,7 @@
     
     <title>
         
-            机器人方向技术栈 -
+            Robotics Technology Stack -
         
         xiangyu fu&#39;s blog
     </title>
@@ -655,7 +657,7 @@ mjx-container[display="true"] + br {
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">机器人方向技术栈</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">Robotics Technology Stack</h1>
                 </div>
             
             </div>
@@ -683,8 +685,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-08 18:20:15</span>
-            <span class="mobile">2024-06-08 18:20:15</span>
+            <span class="desktop">2024-06-08 23:31:58</span>
+            <span class="mobile">2024-06-08 23:31:58</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -722,324 +724,659 @@ mjx-container[display="true"] + br {
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="机器人方向技术栈">机器人方向技术栈</h1>
-<p>近来觉得有必要整理一下自己的技术栈，来看看有什么欠缺。也算是对过去几年的经历进行一个回顾和评论。我一直觉得工科是一个实用性的学科，我们所有人都是站在前人的肩膀上，去创造一个更有趣的世界。如何找到好用的工具，如何利用好好用的工具，是我们工科需要考虑的东西，这样我们才可能自诩为“工程师”。我一直觉得，“工程师”是一个伟大的职业，我们是可以改变世界的人，我们将科学和现实生活紧紧的串联在一起，改变人类的生活。</p>
-<p>这篇文章是项目导向的，基于“第一性原理”，我们最终目的是做出一个成果，或者说是产品，亦或是达成一个目标。所以利用“反溯法”，从结果往回倒推我们需要做的事情（这些想法来自于《像火箭科学家一样思考》这本书，在未来有时间的话我想写篇文章讨论一下这本书）。这篇文章也是这样的，将从机器人的各个大类出发，逐渐的接近每一个技术细节。很多技术或许已经过时了，但是有些时候，暗含在每个技术下的“直觉”是永远无法过时的，由此，我们便可以触类旁通，想到很多不同的解决方法。我能想到的例子是，之前在搞一个关于机器人控制的项目，通信频率有些慢，这时候可供优化的方向有很多，比如说嵌入式内部系统调度，或者嵌入式通信协议，亦或者是上位机的接收方式。现在看来，更好的解决方法是优化嵌入式设备的系统调度和通信协议，这样能更好的压榨设备的性能，方便未来做更好的应用。上位机部分倒是也可以优化，不过为了未来更好的做进一步应用，例如实时控制，还是需要找到问题的根源并解决。</p>
+            <h1 id="robotics-technology-stack">Robotics Technology Stack</h1>
+<p>Recently, I felt the need to organize the robotics technology stack
+to identify any deficiencies. It also serves as a review and commentary
+on my experiences over the past few years. I've always believed that
+engineering is a practical discipline. All of us stand on the shoulders
+of those before us to create a more interesting world. How to find
+useful tools and how to make good use of them are considerations for us
+in engineering. This is how we can proudly call ourselves "engineers." I
+have always thought that "engineer" is a great profession. We are people
+who can change the world by tightly linking science with everyday life,
+transforming human living.</p>
+<p>This article is project-oriented, based on "<strong>first
+principles</strong>," and our ultimate goal is to produce a result, or a
+product, or achieve a goal. Therefore, using
+"<strong>backtracking</strong>," we start from the result and trace back
+the steps we need to take (these ideas are inspired by the book
+"Thinking Like a Rocket Scientist"). This article also does this,
+starting from the major categories of robotics and gradually approaching
+each technical detail. Many technologies may be outdated, but sometimes,
+the "intuition" inherent in each technology is timeless. From this, we
+can think laterally and come up with many different solutions. An
+example I can think of is a robotics control project I was involved in
+where the communication frequency was slow. There were many possible
+directions for optimization, such as embedded internal system scheduling
+or communication protocols, or the reception method of the upper
+computer. Looking back, a better solution would be to optimize the
+system scheduling and communication protocols of embedded devices, which
+would better squeeze the performance of the devices, facilitating future
+applications. The upper machine part could also be optimized, but to
+further applications in the future, such as real-time control, it is
+still necessary to find and solve the root cause of the problems.</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="image.png"></p>
 <h2 id="mechanical-design">1. Mechanical Design</h2>
-<p>一个完整的项目要从机械部分开始，然后是硬件，软件等，在我看来这是一个完整的机器人项目。一个好的机械设计为后面的各个环节铺平了道路，由于目前接触的都是些小型机器人，所以关于材料力学，流体力学方向的知识没有使用过，如果在未来有需要会补齐相关方向。</p>
+<p>A complete project starts with the mechanical part, followed by
+hardware, software, and so on. In my view, this is a complete robotics
+project. Good mechanical design paves the way for subsequent steps.
+Since I've mainly dealt with small robots, I haven't used knowledge from
+material mechanics or fluid dynamics, but I will catch up if needed in
+the future.</p>
 <h3 id="cad">1.1 CAD</h3>
-<p>关于CAD，主要使用过两款软件，Solidworks和Fusion 360。</p>
+<p>In robot design, CAD software is indispensable for designing and
+simulating mechanical structures. Recommended CAD software includes
+SolidWorks and Fusion 360.</p>
 <p><strong>SolidWorks</strong></p>
-<p>SolidWorks是一款三维CAD软件，广泛应用于工程设计领域。在机器人设计中，SolidWorks可以用于机械结构的设计，包括零部件的建模、装配、运动仿真等。Solidworks是我平时使用比较多的软件，整个的设计流程比较熟悉，总体感觉还是很好的。</p>
+<p>SolidWorks is a 3D CAD software widely used in the field of
+engineering design. In robot design, SolidWorks can be used for
+designing mechanical structures, including part modeling, assembly, and
+motion simulation. Solidworks is the software I use regularly, and I am
+quite familiar with the entire design process. Overall, I feel it's very
+good.</p>
 <p><strong>Fusion 360</strong></p>
-<p>Fusion
-360是一款云端三维CAD软件，功能强大，适用于机械设计、工业设计等领域。与SolidWorks相比，Fusion
-360更适合个人用户，价格更低，且支持更多的云端功能。之前尝试过从Solidworks转到Fusion
-360，因为Fusion
-360对于个体用户来说比较友好，但是后来发现很难适应设计流程的变化，所以还是放弃了过渡。</p>
-<h3 id="d打印">1.2 3D打印</h3>
-<p>目前实验室或者家用的主流的是两种3d打印方式,FDM（Fused Deposition
-Modeling）和SLA（Stereolithography）。FDM是一种熔融沉积成型技术，通过熔化塑料丝，将材料一层一层地堆积成3D模型。SLA是一种光固化成型技术，通过紫外线固化光敏树脂，将材料一层一层地固化成3D模型。目前FDM打印机比较常见，价格也比较便宜。SLA打印机价格较高，但打印精度更高，通常取决于液晶面板精度。但是SLA打印机的打印速度较慢，且需要特殊的光敏树脂，且打印后需要清洗和固化，因此使用较为麻烦。比较之下，FDM打印机更适合个人用户和小型企业。自从2017年以来，我主要使用过四种FDM打印机，分别是DIY，Ultimaker，Anycubic和Bamboo
-Lab。</p>
-<p>打印材料主要有PLA，ABS，PETG，TPU等，其中PLA是最常用的打印材料，价格便宜，易于打印，适合初学者使用。ABS是一种工程塑料，具有较高的强度和耐热性，适合打印机械结构等零部件。PETG是一种新型的打印材料，具有较高的透明度和耐热性，适合打印外壳等零部件。TPU是一种弹性材料，具有较高的柔韧性和耐磨性，适合打印轮胎等零部件。Ultimaker还提供了一种PVA水溶性支撑材料。</p>
+<p>Fusion 360 is a cloud-based 3D CAD software with powerful functions,
+suitable for mechanical design, industrial design, and other fields.
+Compared to SolidWorks, Fusion 360 is more suitable for individual
+users, with a lower price and more cloud-based features. I tried
+switching from SolidWorks to Fusion 360 because it is more user-friendly
+for individual users, but later I found it difficult to adapt to the
+change in design flow, so I gave up on the transition.</p>
+<h3 id="d-printing">1.2 3D Printing</h3>
+<p>The mainstream 3D printing methods currently used in laboratories or
+at home are FDM (Fused Deposition Modeling) and SLA (Stereolithography).
+FDM is a melt deposition modeling technology that builds 3D models by
+melting plastic filament and stacking the material layer by layer. SLA
+is a photopolymerization molding technology that solidifies
+photoreactive resin layer by layer using ultraviolet light. FDM printers
+are more common and cheaper. SLA printers are more expensive but offer
+higher printing precision, usually depending on the accuracy of the LCD
+panel. However, SLA printers are slower and require special
+photoreactive resin, and post-print cleaning and curing, making them
+more cumbersome to use. In contrast, FDM printers are more suitable for
+individual users and small businesses. Since 2017, I have mainly used
+four types of FDM printers: DIY, Ultimaker, Anycubic, and Bamboo
+Lab.</p>
+<p>Print materials mainly include PLA, ABS, PETG, TPU, etc., among which
+PLA is the most commonly used print material, cheap and easy to print,
+suitable for beginners. ABS is an engineering plastic with high strength
+and heat resistance, suitable for printing mechanical structures and
+other parts. PETG is a new type of print material with high transparency
+and heat resistance, suitable for printing shells and other parts. TPU
+is an elastic material with high flexibility and wear resistance,
+suitable for printing tires and other parts. Ultimaker also provides a
+PVA water-soluble support material.</p>
 <p><strong>Ultimaker</strong></p>
-<p>Ultimaker是一家知名的3D打印机厂商，其产品质量高，性能稳定。在机器人领域，Ultimaker的3D打印机可以用于打印机械结构、外壳等零部件。</p>
-<p>在实验室中，我们使用的是Ultimaker 2+， Ultimaker 3 extended,
-Ultimaker
-S5。其中三代以上使用双喷头，可以使用PVA水溶性支撑材料，但是该材料对温度比较敏感，所以会经常堵塞喷头，或者挤出不均匀，所以体验不是很好。此外，Ultimaker还采用了只有自己使用的2.85mm的材料，且Ultimaker的打印机价格较高，例如Ultimaker
-S5的价格在7000欧元左右。总体来说，不推荐Ultimaker的打印机，价格高，体验一般。</p>
+<p>Ultimaker is a well-known 3D printer manufacturer, known for the high
+quality and stable performance of its products. In the field ofrobotics,
+Ultimaker's 3D printers can be used to print mechanical structures,
+shells, and other parts.</p>
+<p>In the lab, we use Ultimaker 2+, Ultimaker 3 extended, and Ultimaker
+S5. Models three and above use dual nozzles, which can use PVA
+water-soluble support material, but this material is quite
+temperature-sensitive, so it often clogs the nozzle or extrudes
+unevenly, so the experience is not very good. Additionally, Ultimaker
+uses its own 2.85mm materials, and Ultimaker printers are expensive,
+such as the Ultimaker S5, which is priced around 7000 euros. Overall, I
+do not recommend Ultimaker printers; they are expensive and offer a
+mediocre experience.</p>
 <p><strong>DIY</strong></p>
-<p>在2017年的时候，我使用的是DIY的3D打印机，价格便宜，适合初学者使用。但是DIY的3D打印机需要自己组装，且打印精度和稳定性较差，不适合长时间使用。
-3d打印机更多是一个工具，所以打印精度和稳定性是很重要的。一个好的打印机可以有更好的配合精度，更好的打印效果。很显然，DIY的打印机不适合长时间使用，所以不推荐。</p>
+<p>In 2017, I used a DIY 3D printer, which is cheap and suitable for
+beginners. However, DIY 3D printers require self-assembly, and their
+printing accuracy and stability are not suitable for long-term use. A 3D
+printer is more of a tool, so printing accuracy and stability are very
+important. A good printer can have better matching accuracy and better
+printing results. Clearly, DIY printers are not suitable for long-term
+use, so I do not recommend them.</p>
 <p><strong>Anycubic</strong></p>
-<p>Anycubic mega S3
-算是我入门的第一个商用3d打印机，价格便宜，打印效果也不错，在之前几年是一个不错的选择。不过根据我的使用体验，打印精度和稳定性不如Ultimaker，不过也不容易坏，个人使用大概四五年了，也能一直稳定的工作。考虑到价格，在Bambu
-Lab出现之前Anycubic是一个不错的选择。</p>
+<p>Anycubic mega S3 was my first commercial 3D printer, cheap and with
+good printing results. In previous years, it was a good choice. However,
+based on my experience, its printing accuracy and stability are not as
+good as Ultimaker, but it is also not easy to break. I have been using
+it personally for about four or five years, and it has been able to work
+stably. Considering the price, Anycubic was a good choice before Bambu
+Lab appeared.</p>
 <p><strong>Bambu Lab</strong></p>
-<p>目前Bambu
-Lab的打印机算得上最热门的打印机，在国内外各个视频网站的热度都很高，例如B和Youtube，之前也在Embedded
-world和Productranica的展会上看到了它的身影，它的营销做得还是很不错的，不过终究还是得靠技术。我大概在两个月前购入了一台A1
-mini，到手测试的感觉确实感觉不错，打印速度很快，精度也很高，所以我想一个好的产品就是需要一个完整的生态环境，从机械设计到软件生态，我能从拓竹的产品上感觉出来，软件能最大的调动硬件，各个环节都能非常好的配合在一起，确实能称得上是一个好的产品。在目前看来，还是很看好Bambu
-Lab这家公司的发展的。</p>
-<h2 id="硬件设计">2. 硬件设计</h2>
-<p>在机器人项目的硬件设计阶段，我们需要考虑集成多种电子组件和系统，以实现机器人的功能和性能。这一部分主要涉及微控制器的选择、电路板设计（EDA工具的使用）、固件开发以及传感器和通信技术的应用。</p>
+<p>Bambu Lab printers are currently some of the hottest printers. They
+have been very popular on domestic and foreign video websites, such as B
+and YouTube, and I have also seen them at Embedded World and
+Productronica exhibitions. Their marketing is well done, but ultimately,
+they still rely on technology. I bought an A1 mini about two months ago,
+and the feel of it in my hands is really good, with fast printing speed
+and high precision. So I think a good product needs a complete
+ecosystem, from mechanical design to software ecology. I can feel from
+Bambu's products that software can maximize the use of hardware, and all
+parts can work very well together, truly deserving to be called a good
+product. At present, I am very optimistic about the development of Bambu
+Lab.</p>
+<h2 id="hardware-design">2. Hardware Design</h2>
+<p>In the hardware design phase of a robotics project, we need to
+consider integrating various electronic components and systems to
+achieve the robot's functions and performance. This part mainly involves
+the choice of microcontrollers, circuit board design (using EDA tools),
+firmware development, and the application of sensors and communication
+technology.</p>
 <h3 id="mcu">2.1 MCU</h3>
 <p><strong>Arduino</strong></p>
-<p>Arduino是一款面向初学者的开源硬件平台，特别适合简单的机器人项目。它具有丰富的社区资源和众多的库，可以快速实现传感器集成和执行器控制。但它的处理能力有限，不适合复杂或计算密集的应用。在我的项目中，Arudino是使用很少的，因为它的处理能力有限，主频低，拓展性差，不适合复杂的机器人项目。但是对于初学者来说，Arduino是一个很好的入门平台。而且Arduino的生态系统很完善，有很多的库和教程，可以帮助初学者快速入门。很多的开源项目也是基于Arduino架构的，所以对于初学者来说，Arduino是一个很好的选择。</p>
+<p>Arduino is an open-source hardware platform aimed at beginners,
+especially suitable for simple robot projects. It has a rich community
+resource and numerous libraries, allowing for quick integration of
+sensors and actuator control. However, its processing power is limited
+and not suitable for complex or computation-intensive applications. In
+my projects, Arduino is rarely used because of its limited processing
+power, low main frequency, and poor scalability, making it unsuitable
+for complex robot projects. However, for beginners, Arduino is a good
+entry platform. Moreover, Arduino's ecosystem is very complete, with
+many libraries and tutorials that can help beginners get started
+quickly. Many open-source projects are also based on the Arduino
+architecture, making it a good choice for beginners.</p>
 <p><strong>Raspberry Pi</strong></p>
-<p>Raspberry
-Pi作为一款微型计算机，具有强大的处理能力和丰富的接口，非常适合需要高级视频处理和数据处理的机器人项目。然而，它的功耗较高，且在实时控制方面不如专用微控制器稳定。</p>
-<p>我主要使用过三个版本的树莓派，分别是树莓派3B，树莓派4B和树莓派Zero。树莓派3B是我最早使用的一款树莓派，主要用于一些小型的项目，比如说家庭服务器，智能家居等。不过由于处理能力有限，所以后来就换成了树莓派4B。</p>
-<p>树莓派4B
-8Gb是我目前使用的一款树莓派，主要用于一些小型的机器人项目，比如说智能小车，智能家居等。考虑到性能，我尝试使用过Ubuntu
-的桌面版，但是发现还是不足以稳定运行，后来更换成Ubuntu
-server版，性能稳定很多, 可以稳定运行ROS noetic版本。该项目<a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/hsa-final-project">链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>树莓派Zero是之前考虑尺寸限制而使用的一款树莓派，由于当时是Hackathon比赛，所以开发时间有限，并且需要一些定制化需求，所以使用了树莓派Zero，
-该项目<a class="link" target="_blank" rel="noopener" href="https://github.com/TMS-TUMany">链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<p>As a mini-computer, Raspberry Pi has strong processing power and a
+rich interface, making it very suitable for robot projects requiring
+advanced video processing and data handling. However, it consumes more
+power and is not as stable in real-time control as dedicated
+microcontrollers.</p>
+<p>I have mainly used three versions of Raspberry Pi: Raspberry Pi 3B,
+Raspberry Pi 4B, and Raspberry Pi Zero. Raspberry Pi 3B was the first
+Raspberry Pi I used, mainly for small projects like home servers and
+smart homes. However, due to its limited processing power, I later
+switched to Raspberry Pi 4B.</p>
+<p>Raspberry Pi 4B 8Gb is the Raspberry Pi I am currently using, mainly
+for small robot projects such as smart cars and smart homes. Considering
+performance, I tried using Ubuntu's desktop version but found it was not
+stable enough to run, so I later switched to Ubuntu server version,
+which is much more stable and can run ROS noetic version stably. This
+project <a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/hsa-final-project">link <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Raspberry Pi Zero was used previously due to size limitations, and
+since it was a Hackathon competition with limited development time and
+some customization needs, I used Raspberry Pi Zero. This project <a class="link" target="_blank" rel="noopener" href="https://github.com/TMS-TUMany">link <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
 <p><strong>STM32</strong></p>
-<p>STM32系列微控制器以其高性能、低功耗而受到青睐。适合需要进行精密控制和实时处理的机器人项目。不过，其开发环境相对复杂，初学者可能需要较长的学习曲线。</p>
-<p>STM32f103c8t6和STM32f103zet6是我使用过的两款STM32微控制器，也算是我的入门微控制器。之前也有基于STM32的项目，比如说一个基于STM32的四轴飞行器，该项目<a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/Drone-Mercury">链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。
-但是在后来的项目中，我发现STM32的处理能力有限，没有很多外设支持，而且价格较贵，在一些小型项目中不是很适用。但是STM32的生态系统很完善，有很多的库和教程，可以帮助初学者快速入门。很多的开源项目也是基于STM32架构的，所以对于初学者来说，STM32是一个很好的选择。</p>
+<p>The STM32 series of microcontrollers are favored for their high
+performance and low power consumption, suitable for robot projects
+requiring precise control and real-time processing. However, their
+development environment is relatively complex, and beginners may need a
+longer learning curve.</p>
+<p>STM32f103c8t6 and STM32f103zet6 are two STM32 microcontrollers I have
+used, and they are also my entry-level microcontrollers. I have also had
+projects based on STM32, such as a quadcopter based on STM32. This
+project <a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/Drone-Mercury">link <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.
+However, in later projects, I found that STM32's processing power is
+limited, there is not much peripheral support, and it is relatively
+expensive, making it not very suitable for some small projects. But
+STM32's ecosystem is very complete, with many libraries and tutorials
+that can help beginners get started quickly. Many open-source projects
+are also based on the STM32 architecture, so STM32 is a good choice for
+beginners.</p>
 <p><strong>ESP32</strong></p>
-<p>ESP32提供了Wi-Fi和蓝牙功能，非常适合需要远程控制和数据传输的项目。它的能效比较高，但是在处理能力和资源上不如更专业的微控制器。不过ESP32总体来说还是一个很好的选择，也是我使用最多的一款控制器，基于PlatformIO的开发环境，可以很好的支持ESP32的开发。而且ESP32双核120Mhz的处理器，可以很好的完成嵌入式方向的任务。再加上WiFi和蓝牙的支持，可以很好的和ROS进行通信，所以在机器人项目中，ESP32是非常棒的选择。</p>
+<p>ESP32 provides Wi-Fi and Bluetooth functionality, making it very
+suitable for projects requiring remote control and data transmission.
+Its energy efficiency is relatively high, but its processing power and
+resources are not as professional as other microcontrollers. However,
+overall, ESP32 is still a good choice and is the controller I use the
+most. Based on the PlatformIO development environment, ESP32 development
+is well supported. Moreover, with its dual-core 120Mhz processor, ESP32
+can perform well in embedded tasks. Combined with Wi-Fi and Bluetooth
+support, it can communicate well with ROS, making ESP32 a great choice
+in robot projects.</p>
 <p><strong>rk3566</strong></p>
-<p>之前在立创发现 rk3566
-这款芯片，是一款高性能的芯片，支持Linux系统，可以很好的支持ROS的开发。所以在未来的项目中，我会尝试使用这款芯片，看看它的性能如何。而且由于价格极低，大概为66RMB（在2023年左右芯片荒时，STM32f103c8t6曾卖到过40+RMB），所以在未来的项目中，我会尝试使用这款芯片，看看它的性能如何。</p>
+<p>I discovered the rk3566 chip at LCSC, a high-performance chip that
+supports Linux systems and can support ROS development. So in future
+projects, I plan to try using this chip to see how it performs.
+Moreover, since the price is very low, about 66RMB (around 2023, during
+the chip shortage, STM32f103c8t6 was sold for 40+ RMB), I will try using
+this chip in future projects to see how it performs.</p>
 <h3 id="eda">2.2 EDA</h3>
 <p><strong>Altium Designer</strong></p>
-<p>Altium
-Designer是一款专业级的电路设计软件，提供强大的设计功能和仿真工具，非常适合复杂的电子项目。但是，由于其高昂的许可费用和复杂的操作界面，可能不适合初学者。</p>
-<p>Drone-Mercury项目中使用的是Altium
-Designer，在使用时发现由于器件库不完善，需要手动添加很多器件，导致设计时间较长。而且Altium
-Designer的操作界面较为复杂，需要一定的学习曲线。但是Altium
-Designer提供了强大的仿真工具，可以帮助设计者验证电路的性能和稳定性。总体来说，Altium
-Designer适合复杂的电子项目，但可能不适合初学者和一些DIY项目。</p>
-<p><strong>立创EDA</strong></p>
-<p>立创EDA是一款易于使用的在线EDA工具，特别适合快速原型开发和小规模生产。其在线特性使得协作变得容易，但可能在功能上不如专业级软件全面。在最近两年的项目中，我主要使用立创EDA，因为它的操作界面简单，易于上手，而且提供了丰富的器件库，可以快速设计电路。立创EDA还提供了在线PCB制造服务，可以帮助用户快速制作PCB板。而且立创EDA的价格较低，适合个人用户和小型企业。总体来说，立创EDA适合快速原型开发和小规模生产，但可能不适合复杂的电子项目。</p>
-<h3 id="frimware">2.3 Frimware</h3>
+<p>Altium Designer is a professional-level circuit design software that
+provides powerful design functions and simulation tools, very suitable
+for complex electronic projects. However, due to its high licensing
+costs and complex operating interface, it may not be suitable for
+beginners.</p>
+<p>In the Drone-Mercury project, Altium Designer was used. I found that
+due to the incomplete device library, I had to manually add many
+devices, which made the design time longer. Moreover, Altium Designer's
+operating interface is quite complex and requires a certain learning
+curve. However, Altium Designer provides powerful simulation tools that
+can help designers verify the performance and stability of circuits.
+Overall, Altium Designer is suitable for complex electronic projects but
+may not be suitable for beginners and some DIY projects.</p>
+<p><strong>LCSC EDA</strong></p>
+<p>LCSC EDA is an easy-to-use online EDA tool, especially suitable for
+rapid prototyping and small-scale production. Its online features make
+collaboration easy, but it may not be as comprehensive in functionality
+as professional software. In recent projects over the past two years, I
+have mainly used LCSC EDA because its operating interface is simple and
+easy to use, and it provides a rich device library, allowing for quick
+circuit design. LCSC EDA also provides an online PCB manufacturing
+service, which can help users quickly manufacture PCB boards. Moreover,
+LCSC EDA is relatively low-priced, suitable for individual users and
+small businesses. Overall, LCSC EDA is suitable for rapid prototyping
+and small-scale production but may not be suitable for complex
+electronic projects.</p>
+<h3 id="firmware">2.3 Firmware</h3>
 <p><strong>Arduino IDE</strong></p>
-<p>Arduino
-IDE是一款用于编写和上传Arduino代码的集成开发环境。在机器人设计中，Arduino
-IDE可以用于编写控制系统的固件，包括传感器数据的采集、执行器的控制等。但是Arduino
-IDE的功能较为有限，不适合复杂的项目。</p>
-<p><strong>STM HAL库</strong></p>
-<p>STM
-HAL库是ST官方提供的一款用于STM32的硬件抽象层库。在机器人设计中，STM
-HAL库可以用于编写STM32的固件，包括外设的初始化、中断的处理等。STM
-HAL库提供了丰富的API，可以帮助开发者快速编写STM32的固件。但是STM
-HAL库的学习曲线较陡，需要一定的学习成本。</p>
+<p>Arduino IDE is an integrated development environment for writing and
+uploading Arduino code. In robot design, Arduino IDE can be used to
+write firmware for control systems, including sensor data collection and
+actuator control. However, Arduino IDE's functionality is relatively
+limited and not suitable for complex projects.</p>
+<p><strong>STM HAL Library</strong></p>
+<p>The STM HAL library is a hardware abstraction layer library provided
+by ST for STM32. In robot design, the STM HAL library can be used to
+write STM32 firmware, including peripheral initialization, interrupt
+handling, etc. The STM HAL library provides a rich API that can help
+developers quickly write STM32 firmware. However, the STM HAL library
+has a steep learning curve and requires a certain learning cost.</p>
 <p><strong>STM32CubeIDE</strong></p>
-<p>STM32CubeIDE是一款用于编写和上传STM32代码的集成开发环境。在机器人设计中，STM32CubeIDE可以用于编写实时控制系统的固件，包括姿态控制、运动控制等。由于可视化和调试功能较为强大，STM32CubeIDE可以提高开发效率。而且可以结合CubeMX生成代码，减少开发时间。</p>
+<p>STM32CubeIDE is an integrated development environment for writing and
+uploading STM32 code. In robot design, STM32CubeIDE can be used to write
+firmware for real-time control systems, including attitude control,
+motion control, etc. Due to its powerful visualization and debugging
+features, STM32CubeIDE can improve development efficiency. Moreover, it
+can generate code in combination with CubeMX, reducing development
+time.</p>
 <p><strong>ESP-IDF</strong></p>
-<p>ESP-IDF是一款用于编写和上传ESP32代码的开发框架。在机器人设计中，ESP-IDF可以用于编写通信系统的固件，包括无线通信、数据传输等。在工作一个项目中，我使用了ESP-IDF，发现该库的Cpp代码写的很好，很好的封装了一些底层的硬件操作，所以在开发过程中，可以很好的调用这些API，减少了很多的开发时间。而且ESP-IDF提供了丰富的API，可以帮助开发者快速编写ESP32的固件。但是ESP-IDF确实入手难度较大，需要一定的c++基础，和一定的嵌入式开发经验。</p>
+<p>ESP-IDF is a development</p>
+<p>framework for writing and uploading ESP32 code. In robot design,
+ESP-IDF can be used to write firmware for communication systems,
+including wireless communication, data transmission, etc. In a project I
+worked on, I used ESP-IDF and found that its Cpp code is well written,
+encapsulating some low-level hardware operations well, which greatly
+reduced development time during the development process. Moreover,
+ESP-IDF provides a rich API that can help developers quickly write ESP32
+firmware. However, ESP-IDF indeed has a high entry barrier and requires
+a certain C++ foundation and some embedded development experience.</p>
 <p><strong>PlatformIO</strong></p>
-<p>PlatformIO是一款开源的物联网开发平台，支持多种开发板和开发环境。在机器人设计中，PlatformIO可以用于管理固件的开发、编译和上传，提高开发效率。由于都是小型或者中型的项目，所以我主要使用PlatformIO，它的集成度很高，可以很好的支持ESP32的开发。而且PlatformIO支持多种开发板和开发环境，不需要复杂的配置，可以快速上手。总体来说，PlatformIO适合小型和中型项目，可以提高开发效率。对于个人项目来说，PlatformIO是一个很好的选择。</p>
-<h3 id="传感器">2.4 传感器</h3>
-<p>传感器是机器人设计中的重要组成部分，用于感知机器人周围的环境和状态。常用的传感器有IMU、激光雷达、摄像头、超声波传感器、力传感器、弯曲传感器、温湿度传感器、拉伸传感器等。</p>
+<p>PlatformIO is an open-source IoT development platform that supports
+multiple development boards and environments. In robot design,
+PlatformIO can be used to manage firmware development, compilation, and
+uploading, improving development efficiency. Since they are small or
+medium-sized projects, I mainly use PlatformIO, which has high
+integration and supports ESP32 development well. Moreover, PlatformIO
+supports multiple development boards and environments, does not require
+complex configuration, and is easy to get started with. Overall,
+PlatformIO is suitable for small and medium-sized projects and can
+improve development efficiency. For personal projects, PlatformIO is a
+good choice.</p>
+<h3 id="sensors">2.4 Sensors</h3>
+<p>Sensors are an important part of robot design, used to perceive the
+robot's surrounding environment and state. Common sensors include IMU,
+LiDAR, cameras, ultrasonic sensors, force sensors, bend sensors,
+temperature and humidity sensors, stretch sensors, etc.</p>
 <p><strong>IMU</strong></p>
-<p>IMU（Inertial Measurement
-Unit）是一种惯性测量单元，用于测量机器人的姿态和运动。在机器人设计中，IMU可以用于姿态控制、运动控制等。常用的IMU有MPU6050，MPU9250，BNO055等。</p>
-<p><strong>激光雷达</strong></p>
-<p>激光雷达是一种传感器，用于测量机器人周围的环境。在机器人设计中，激光雷达可以用于环境感知、避障等。但是激光雷达价格较高，例如最便宜的激光雷达价格在200EUR左右，不适合小型项目。</p>
-<p><strong>摄像头&amp;RGBD</strong></p>
-<p>摄像头是一种传感器，用于获取机器人周围的图像信息。在机器人设计中，摄像头可以用于图像处理、目标识别等。Intel
-Realsense D435i是一款常用的摄像头，可以用于SLAM、目标识别等。</p>
-<p><strong>超声波传感器</strong></p>
-<p>超声波传感器是一种传感器，用于测量机器人与障碍物的距离。在机器人设计中，超声波传感器可以用于避障、定位等。但是精度和测距范围有限。</p>
-<p><strong>力传感器</strong></p>
-<p>力传感器是一种传感器，用于测量机器人施加的力。在机器人设计中，力传感器可以用于力控制、力反馈等。力传感器主要有压力传感器、应变传感器，更高级的有6轴力传感器，可以测量力和力矩。但是6轴力传感器价格较高，由于原理限制，很难做到小型化，也是一个未来的发展方向。</p>
-<p><strong>弯曲传感器</strong></p>
-<p>弯曲传感器是一种比较少见的传感器，用于测量机器人的弯曲程度。在机器人设计中，弯曲传感器可以用于姿态控制、运动控制等。弯曲传感器主要有弯曲电阻、弯曲电容等，可以测量弯曲程度。</p>
-<p><strong>温湿度传感器</strong></p>
-<p>温湿度传感器是一种传感器，用于测量机器人周围的温度和湿度。在机器人设计中，温湿度传感器可以用于环境感知、控制系统等。常用的温湿度传感器有DHT11，DHT22等。</p>
-<p><strong>拉伸传感器</strong></p>
-<p>拉伸传感器是一种传感器，用于测量机器人的拉伸程度。在机器人设计中，拉伸传感器可以用于力控制、力反馈等。拉伸传感器主要有拉伸电阻、拉伸电容等，可以测量拉伸程度。</p>
-<h3 id="通信">2.5 通信</h3>
-<p>在机器人设计中，通信技术是关键组成部分，它允许机器人与外部设备、其他机器人或网络进行数据交换。</p>
-<p><strong>蓝牙</strong>
-蓝牙技术适用于短距离通信，功耗低，成本相对较低。它非常适合用于手持设备与机器人之间的交互或低数据速率的传输。但蓝牙的通信距离和数据传输速率较低，可能不适合需要长距离或高速数据传输的应用。</p>
-<p><strong>WIFI</strong>
-WIFI提供较高的数据传输速度和较好的通信距离，适合需要传输大量数据或进行视频流传输的应用。在机器人控制中，WIFI多用于远程控制、数据传输等。其稳定性和速度都比较好，可以通过TCP/IP协议或者UDP协议进行通信，
-可以达到较好的通信效果。</p>
-<p><strong>LoRa</strong>
-LoRa是一种低功耗广域网技术，特别适合用于长距离、低功耗的通信需求。它可以支持数公里的通信距离，非常适合于大范围监控和控制应用。LoRa的数据传输速率较低，不适合高速数据传输需求，如视频传输。</p>
-<p><strong>Zigbee</strong>
-Zigbee是一种低功耗的短距离无线通信技术，它的网络配置灵活，支持大量设备连接，适合用于构建复杂的传感器网络和自动化系统。
-与其他通信技术相比，Zigbee的数据传输速率较低，并且通信距离也较短，可能不适合所有类型的机器人应用。</p>
+<p>IMU (Inertial Measurement Unit) is an inertial measurement unit used
+to measure the robot's attitude and motion. In robot design, IMU can be
+used for attitude control, motion control, etc. Common IMUs include
+MPU6050, MPU9250, BNO055, etc.</p>
+<p><strong>LiDAR</strong></p>
+<p>LiDAR is a sensor used to measure the robot's surrounding
+environment. In robot design, LiDAR can be used for environmental
+perception, obstacle avoidance, etc. However, LiDAR is expensive, for
+example, the cheapest LiDAR costs about 200 EUR, making it unsuitable
+for small projects.</p>
+<p><strong>Camera &amp; RGBD</strong></p>
+<p>Cameras are sensors used to capture image information around the
+robot. In robot design, cameras can be used for image processing, target
+recognition, etc. Intel Realsense D435i is a commonly used camera, which
+can be used for SLAM, target recognition, etc.</p>
+<p><strong>Ultrasonic Sensor</strong></p>
+<p>Ultrasonic sensors are sensors used to measure the distance between
+the robot and obstacles. In robot design, ultrasonic sensors can be used
+for obstacle avoidance, positioning, etc. However, their accuracy and
+ranging range are limited.</p>
+<p><strong>Force Sensor</strong></p>
+<p>Force sensors are sensors used to measure the force applied by the
+robot. In robot design, force sensors can be used for force control,
+force feedback, etc. Main force sensors include pressure sensors, strain
+sensors, and more advanced 6-axis force sensors, which can measure force
+and torque. However, 6-axis force sensors are expensive, and due to
+their principle, it is difficult to miniaturize them, making them a
+future development direction.</p>
+<p><strong>Bend Sensor</strong></p>
+<p>Bend sensors are relatively rare sensors used to measure the robot's
+bending degree. In robot design, bend sensors can be used for posture
+control, motion control, etc. Main bend sensors include bend resistance,
+bend capacitance, etc., which can measure bending degrees.</p>
+<p><strong>Temperature and Humidity Sensor</strong></p>
+<p>Temperature and humidity sensors are sensors used to measure the
+temperature and humidity around the robot. In robot design, temperature
+and humidity sensors can be used for environmental perception, control
+systems, etc. Common temperature and humidity sensors include DHT11,
+DHT22, etc.</p>
+<p><strong>Stretch Sensor</strong></p>
+<p>Stretch sensors are sensors used to measure the robot's stretch
+degree. In robot design, stretch sensors can be used for force control,
+force feedback, etc. Main stretch sensors include stretch resistance,
+stretch capacitance, etc., which can measure stretch degrees.</p>
+<h3 id="communication">2.5 Communication</h3>
+<p>In robot design, communication technology is a key component,
+allowing the robot to exchange data with external devices, other robots,
+or networks.</p>
+<p><strong>Bluetooth</strong> Bluetooth technology is suitable for
+short-distance communication, low power consumption, and relatively low
+cost. It is very suitable for interaction between handheld devices and
+robots or low data rate transmission. However, Bluetooth's communication
+distance and data transmission rate are low, which may not be suitable
+for applications requiring long-distance or high-speed data
+transmission.</p>
+<p><strong>WIFI</strong> WIFI provides higher data transmission speed
+and better communication distance, suitable for applications requiring
+large data transmission or video streaming. In robot control, WIFI is
+often used for remote control, data transmission, etc. Its stability and
+speed are relatively good, and communication can be achieved through
+TCP/IP or UDP protocols, achieving good communication effects.</p>
+<p><strong>LoRa</strong> LoRa is a low-power wide-area network
+technology, especially suitable for long-distance, low-power
+communication needs. It can support communication distances of several
+kilometers, making it</p>
+<p>very suitable for large-scale monitoring and control applications.
+LoRa's data transmission rate is low, making it unsuitable for
+high-speed data transmission needs, such as video transmission.</p>
+<p><strong>Zigbee</strong> Zigbee is a low-power short-distance wireless
+communication technology. Its network configuration is flexible,
+supporting connections with a large number of devices, making it
+suitable for building complex sensor networks and automation systems.
+Compared to other communication technologies, Zigbee's data transmission
+rate is low, and its communication distance is also short, which may not
+be suitable for all types of robot applications.</p>
 <h3 id="real-time-os">2.6 Real-time OS</h3>
-<p>在硬件设计中，实时操作系统（RTOS）是一种关键技术，用于多任务处理和实时控制。RTOS可以提供任务调度、中断处理、内存管理等功能，以确保机器人的稳定性和可靠性。</p>
-<p>常用的RTOS有FreeRTOS，Zephyr，RT-Thread等。在我的项目中，主要使用过FreeRTOS，它是一款开源的RTOS，提供了丰富的API和示例代码，可以帮助开发者快速构建实时控制系统。Arduino
-IDE和PlatformIO都支持FreeRTOS，可以很方便的集成到项目中。</p>
-<h2 id="软件">3. 软件</h2>
+<p>In hardware design, real-time operating systems (RTOS) are a key
+technology used for multitasking processing and real-time control. RTOS
+can provide task scheduling, interrupt handling, memory management,
+etc., to ensure the stability and reliability of the robot.</p>
+<p>Common RTOS include FreeRTOS, Zephyr, RT-Thread, etc. In my projects,
+I mainly use FreeRTOS, an open-source RTOS that provides a rich API and
+sample code, helping developers quickly build real-time control systems.
+Both Arduino IDE and PlatformIO support FreeRTOS, making it very
+convenient to integrate into projects.</p>
+<h2 id="software">3. Software</h2>
 <h3 id="rosros2">3.1 ROS/ROS2</h3>
-<p>ROS（Robot Operating
-System）是一款机器人操作系统，提供了一系列的库和工具，用于简化机器人软件的开发。在机器人设计中，ROS可以用于构建机器人的软件系统，包括传感器数据的处理、运动控制等。</p>
-<p>我的大部分项目都是基于ROS,总体来看，ROS是一个很好的通信框架，而不是像名字一样所说的操作系统，这点可能有些误解。不过ROS可以很好的支持机器人的开发。但是ROS也有一些缺点，比如说对硬件的支持不够好，例如基于wifi的ROS
-serial项目，在长时间的通信中会出现断连的情况，这可能是ROS的通信机制导致的。</p>
-<p>ROS2是ROS的下一代版本，由于ROS1的一些缺点，ROS2做了很多的改进，比如说更好的通信机制（使用中间件），更好的硬件支持等（支持嵌入式和win10）。但是根据实际的使用体验，从ROS1到ROS2的迁移并不是很容易，因为ROS2的一些API和功能和ROS1不兼容，所以需要重新学习和开发。虽然ROS2迭代了很久，但是bug还是很多，例如编译的时候会出现一些问题，或者是一些API的使用不够方便等。但是由于Ubuntu
-22已经不支持ROS1了，所以切换到ROS2是一个必然的选择。 不过根据Nvidia
-Issac sim 4.0.0版本的更新来看，转向ROS2或许也近在眼前了。</p>
-<h3 id="仿真">3.2 仿真</h3>
+<p>ROS (Robot Operating System) is a robot operating system that
+provides a series of libraries and tools to simplify the development of
+robot software. In robot design, ROS can be used to build the robot's
+software system, including processing sensor data, motion control,
+etc.</p>
+<p>Most of my projects are based on ROS. Overall, ROS is a good
+communication framework, not an operating system as its name suggests,
+which might be misunderstood. However, ROS supports robot development
+well. But ROS also has some drawbacks, such as insufficient hardware
+support, for example, ROS serial projects based on wifi, which may
+disconnect during long communications, possibly caused by ROS's
+communication mechanism.</p>
+<p>ROS2 is the next generation of ROS. Due to some shortcomings of ROS1,
+ROS2 has made many improvements, such as better communication mechanisms
+(using middleware), better hardware support, etc. (supporting embedded
+and win10). But based on actual usage experience, the migration from
+ROS1 to ROS2 is not easy, as some APIs and features of ROS2 are not
+compatible with ROS1, so it requires relearning and development.
+Although ROS2 has been iterated for a long time, there are still many
+bugs, such as problems during compilation, or some APIs are not
+convenient to use. But since Ubuntu 22 no longer supports ROS1,
+switching to ROS2 is an inevitable choice. However, according to the
+update of Nvidia Issac sim 4.0.0 version, the transition to ROS2 may
+also be imminent.</p>
+<h3 id="simulation">3.2 Simulation</h3>
 <p><strong>Gazebo</strong></p>
-<p>Gazebo是一款开源的机器人仿真软件，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，Gazebo可以用于验证机器人的控制算法、路径规划等。</p>
+<p>Gazebo is an open-source robot simulation software that provides a
+rich model library and simulation environment, which can be used to
+simulate the robot's movement and behavior. In robot design, Gazebo can
+be used to verify the robot's control algorithms, path planning,
+etc.</p>
 <p><strong>pybullet</strong></p>
-<p>pybullet是一款开源的物理引擎，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，pybullet可以用于验证机器人的控制算法、路径规划等。所以在验证机器人控制算法，例如wbc，ik等，pybullet是一个很好的选择。</p>
+<p>pybullet is an open-source physics engine that provides a rich model
+library and simulation environment, which can be used to simulate the
+robot's movement and behavior. In robot design, pybullet can be used to
+verify the robot's control algorithms, path planning, etc. So for
+verifying robot control algorithms, such as wbc, ik, etc., pybullet is a
+good choice.</p>
 <p><strong>mujoco</strong></p>
-<p>mujoco是一款商业的物理引擎，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，mujoco可以用于验证机器人的控制算法、路径规划等。但是mujoco的价格较高，不适合个人用户和小型企业。</p>
+<p>mujoco is a commercial physics engine that provides a rich model
+library and simulation environment, which can be used to simulate the
+robot's movement and behavior. In robot design, mujoco can be used to
+verify the robot's control algorithms, path planning, etc. However,
+mujoco's price is high, making it unsuitable for individual users and
+small businesses.</p>
 <p><strong>unity</strong></p>
-<p>尽管Unity主要是为游戏开发设计，但其在机器人仿真领域的应用也日益增多。Unity强大的图形处理能力和用户友好的界面使得创建逼真的仿真环境成为可能。Unity的缺点在于，与传统的机器人仿真软件相比，它在物理精度和实时性上有所不足。但是主要用于测试自动驾驶，强化学习等，所以在机器人仿真中，Unity是一个很好的选择。</p>
+<p>Although Unity is primarily designed for game development, its
+application in the field of robot simulation is also increasing. Unity's
+powerful graphics processing capability and user-friendly interface make
+creating realistic simulation environments possible. The disadvantage of
+Unity is that, compared to traditional robot simulation software, it
+lacks in physical accuracy and real-time performance. But mainly used
+for testing autonomous driving, reinforcement learning, etc., so in
+robot simulation, Unity is a good choice.</p>
 <p><strong>Nvidia Isaac Sim</strong></p>
-<p>随着Issac Sim 4.0.0版本的推出，Orbit也正式更名为Isaac
-Lab。以下是官网介绍</p>
+<p>With the launch of Issac Sim 4.0.0 version, Orbit has also officially
+been renamed Isaac Lab. Here is the official introduction</p>
 <ul>
-<li>Isaac Lab 是一款基于 Isaac Sim
-平台构建的开源轻量级参考应用程序，在机器人基础模型训练中发挥着重要作用。它支持强化学习、模仿学习和迁移学习。它可以训练各种机器人实例，供开发人员探索设计和功能。</li>
-<li>VSCode 与兼容性检查器的集成易于使用，为强化学习提供多 GPU 支持，通过
-RTX 传感器平铺渲染提高性能，优化缓存和着色器管理。</li>
-<li>易于使用 PIP 安装和用于导入机器人等的向导。</li>
-<li>性能提升，合成数据生成 (SDG) 速度提高 80%</li>
-<li>支持 COCO 格式和用于姿势估计的自定义编写器的新 SDG 格式。</li>
-<li>ROS 2
-推出了支持端到端工作流程和基于图像的发布者的更好性能的版本。</li>
-<li>支持更多内置机器人：包括 1X Neo、Unitree H1、Agility Digit、Fourier
-Intelligence GR1、Sanctuary A1 Phoenix 和 XiaoPeng PX5
-等一系列人形机器人。还有 Universal Robots UR20 和 UR30 以及 Boston
-Dynamics Spot。</li>
+<li>Isaac Lab is an open-source lightweight reference application built
+on the Isaac Sim platform, playing an important role in robot basic
+model training. It supports reinforcement learning, imitation learning,
+and transfer learning. It can train various robot instances for
+developers to explore design and functionality.</li>
+<li>Integration with VSCode and compatibility checker is easy to use,
+providing multi-GPU support for reinforcement learning, improving
+performance through RTX sensor tiling rendering, optimizing cache and
+shader management.</li>
+<li>Easy to use PIP installation and wizard for importing robots,
+etc.</li>
+<li>Performance improvement, synthetic</li>
 </ul>
-<p>Nvidia对机器人方向的布局可见一斑，随着越来越多的大厂（Nivdia, Apple,
-Meta, etc.）加入机器人方向的竞争,
-也能看出来大厂对机器人的重视程度。未来会专门写一篇关于Humaniod
-Robot的文章，探究下机器人的未来发展方向。</p>
-<h3 id="d建模">3.3 3D建模</h3>
+<p>data generation (SDG) speed increased by 80% - Supports COCO format
+and new SDG format for custom writers for pose estimation. - ROS 2
+launched a version with better performance for end-to-end workflows and
+image-based publishers. - Supports more built-in robots: including 1X
+Neo, Unitree H1, Agility Digit, Fourier Intelligence GR1, Sanctuary A1
+Phoenix, and XiaoPeng PX5, a series of humanoid robots. Also, Universal
+Robots UR20 and UR30 and Boston Dynamics Spot.</p>
+<p>Nvidia's layout in the robot direction is evident, and with more and
+more major companies (Nvidia, Apple, Meta, etc.) joining the competition
+in the robot direction, the attention of major companies to robots can
+also be seen. I will specifically write an article about Humanoid Robots
+in the future to explore the future development direction of robots.</p>
+<h3 id="d-modeling">3.3 3D Modeling</h3>
 <p><strong>blender</strong></p>
-<p>blender是一款开源的三维建模软件，提供了丰富的模型库和建模工具，可以用于设计机器人的外观和结构。在机器人设计中，blender可以用于建模、渲染等。</p>
-<p>此外， USD(Universal Scene Description)
-是一种开放的场景描述文件格式，由皮克斯公司开发，用于描述三维场景的几何、材质、动画等信息。USD可以用于构建复杂的三维场景，支持多种软件和引擎，如blender，unity，unreal等。在机器人设计中，USD可以用于构建机器人的三维模型、动画等。USD相对于URDF要更加灵活，可以支持更多的功能，例如动画，材质等。在Sim2Real的研究中，USD是一个很好的选择。</p>
-<h2 id="算法">4. 算法</h2>
-<p>算法是机器人设计中的核心部分，它决定了机器人的感知、决策和控制能力。常用的算法有感知、运动学与动力学、机器人控制、路径规划与运动规划、决策与自主性、多机器人系统等。</p>
-<p>由于算法的种类繁多，这里只列举了一些常用的算法，还有相应的项目链接，可以查看更多的细节。</p>
-<h3 id="感知perception">4.1. 感知（Perception）</h3>
-<p>感知，根据我的理解，是如何处理和使用传感器数据，以获取关于机器人周围环境的信息。感知包括传感器数据处理、计算机视觉、三维感知等。根据不同的传感器类型和应用场景，感知可以采用不同的方法和算法。
-#### 4.1.1 传感器数据处理 - <strong>传感器融合</strong> -
-卡尔曼滤波（Kalman Filter） - 扩展卡尔曼滤波（Extended Kalman Filter,
-EKF） - 粒子滤波（Particle Filter） - <strong>数据预处理</strong> -
-噪声过滤 - 数据校准</p>
-<h4 id="计算机视觉">4.1.2 计算机视觉</h4>
+<p>blender is an open-source 3D modeling software that provides a rich
+model library and modeling tools, which can be used to design the
+appearance and structure of robots. In robot design, blender can be used
+for modeling, rendering, etc.</p>
+<p>Additionally, USD (Universal Scene Description) is an open scene
+description file format developed by Pixar, used to describe the
+geometry, materials, animation, etc., of 3D scenes. USD can be used to
+build complex 3D scenes, supporting multiple software and engines, such
+as blender, unity, unreal, etc. In robot design, USD can be used to
+build the robot's 3D model, animation, etc. USD is more flexible than
+URDF, supporting more functions, such as animation, materials, etc. In
+Sim2Real research, USD is a good choice.</p>
+<h2 id="algorithms">4. Algorithms</h2>
+<p>Algorithms are the core part of robot design, determining the robot's
+perception, decision-making, and control capabilities. Common algorithms
+include perception, kinematics and dynamics, robot control, path
+planning and motion planning, decision-making and autonomy, multi-robot
+systems, etc.</p>
+<p>Due to the wide variety of algorithms, only some common algorithms
+are listed here, along with corresponding project links for more
+details.</p>
+<h3 id="perception">4.1. Perception</h3>
+<p>Perception, as I understand it, is how to process and use sensor data
+to obtain information about the environment around the robot. Perception
+includes sensor data processing, computer vision, 3D perception, etc.
+Depending on the type of sensors and application scenarios, perception
+can use different methods and algorithms.</p>
+<h4 id="sensor-data-processing">4.1.1 Sensor Data Processing</h4>
 <ul>
-<li><strong>图像处理</strong>
+<li><strong>Sensor Fusion</strong>
 <ul>
-<li>边缘检测</li>
-<li>特征提取</li>
+<li>Kalman Filter</li>
+<li>Extended Kalman Filter (EKF)</li>
+<li>Particle Filter</li>
 </ul></li>
-<li><strong>目标识别</strong>
+<li><strong>Data Preprocessing</strong>
 <ul>
-<li>物体检测（如YOLO, SSD）</li>
-<li>物体识别（如VGG, ResNet）</li>
-</ul></li>
-<li><strong>深度学习</strong>
-<ul>
-<li>卷积神经网络（CNN）</li>
-<li>生成对抗网络（GAN）</li>
-</ul></li>
-</ul>
-<h4 id="三维感知">4.1.3 三维感知</h4>
-<ul>
-<li><strong>点云处理</strong>
-<ul>
-<li>点云配准（ICP算法）</li>
-<li>点云分割</li>
-</ul></li>
-<li><strong>深度相机</strong>
-<ul>
-<li>立体视觉</li>
-<li>深度学习方法（如PointNet）</li>
+<li>Noise Filtering</li>
+<li>Data Calibration</li>
 </ul></li>
 </ul>
-<h4 id="相关项目">4.1.4 相关项目</h4>
+<h4 id="computer-vision">4.1.2 Computer Vision</h4>
+<ul>
+<li><strong>Image Processing</strong>
+<ul>
+<li>Edge Detection</li>
+<li>Feature Extraction</li>
+</ul></li>
+<li><strong>Object Recognition</strong>
+<ul>
+<li>Object Detection (such as YOLO, SSD)</li>
+<li>Object Recognition (such as VGG, ResNet)</li>
+</ul></li>
+<li><strong>Deep Learning</strong>
+<ul>
+<li>Convolutional Neural Networks (CNN)</li>
+<li>Generative Adversarial Networks (GAN)</li>
+</ul></li>
+</ul>
+<h4 id="d-perception">4.1.3 3D Perception</h4>
+<ul>
+<li><strong>Point Cloud Processing</strong>
+<ul>
+<li>Point Cloud Registration (ICP Algorithm)</li>
+<li>Point Cloud Segmentation</li>
+</ul></li>
+<li><strong>Depth Camera</strong>
+<ul>
+<li>Stereo Vision</li>
+<li>Deep Learning Methods (such as PointNet)</li>
+</ul></li>
+</ul>
+<h4 id="related-projects">4.1.4 Related Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/robocup_final_project">RoboCup@Home
 Challenge <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<h3 id="运动学与动力学kinematics-and-dynamics">4.2.
-运动学与动力学（Kinematics and Dynamics）</h3>
-<p>在机械臂和移动机器人的设计中，运动学和动力学是非常重要的部分。运动学描述了机器人的运动规律，动力学描述了机器人的力学特性。运动学和动力学的研究可以帮助我们设计机器人的控制系统，实现精准的运动和力控制。
-#### 4.2.1 运动学 - <strong>正运动学</strong> - 关节空间到任务空间的映射
-- <strong>逆运动学</strong> - 任务空间到关节空间的映射 -
-<strong>约束运动学</strong> - 笛卡尔空间约束</p>
-<h4 id="动力学">4.2.2 动力学</h4>
+<h3 id="kinematics-and-dynamics">4.2. Kinematics and Dynamics</h3>
+<p>In the design of robotic arms and mobile robots, kinematics and
+dynamics are very important parts. Kinematics describes the motion rules
+of the robot, while dynamics describes the mechanical characteristics of
+the robot. The study of kinematics and dynamics can help us design the
+robot's control system and achieve precise motion and force control.
+#### 4.2.1 Kinematics - <strong>Forward Kinematics</strong> - Mapping
+from joint space to task space - <strong>Inverse Kinematics</strong> -
+Mapping from task space to joint space - <strong>Constrained
+Kinematics</strong> - Cartesian space constraints</p>
+<h4 id="dynamics">4.2.2 Dynamics</h4>
 <ul>
-<li><strong>动力学建模</strong>
+<li><strong>Dynamics Modeling</strong>
 <ul>
-<li>牛顿-欧拉法</li>
-<li>拉格朗日法</li>
+<li>Newton-Euler Method</li>
+<li>Lagrange Method</li>
 </ul></li>
-<li><strong>动力学控制</strong>
+<li><strong>Dynamics Control</strong>
 <ul>
-<li>力控制</li>
-<li>阻抗控制</li>
+<li>Force Control</li>
+<li>Impedance Control</li>
 </ul></li>
 </ul>
-<h4 id="机器人运动学与动力学项目">4.2.3 机器人运动学与动力学项目</h4>
+<h4 id="robotics-kinematics-and-dynamics-projects">4.2.3 Robotics
+Kinematics and Dynamics Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/MSBRDM-final-project">UR10
 Impedance control and Haptic Force Feedback via Smart Knob <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<h3 id="机器人控制robot-control">4.3. 机器人控制（Robot Control）</h3>
-<p>机器人控制是机器人设计中的核心部分，它决定了机器人的运动和行为。机器人控制可以分为经典控制和先进控制两种类型，根据不同的应用场景和需求，可以选择不同的控制方法。其中MPC（模型预测控制）在人型机器人和自动驾驶领域有着广泛的应用。
-#### 4.3.1 经典控制 - <strong>PID控制</strong> - 比例-积分-微分控制器 -
-<strong>自适应控制</strong> - 自适应PID控制 -
-模型参考自适应控制（MRAC）</p>
-<h4 id="先进控制">4.3.2 先进控制</h4>
+<h3 id="robot-control">4.3. Robot Control</h3>
+<p>Robot control is the core part of robot design, determining the
+robot's movement and behavior. Robot control can be divided into classic
+control and advanced control, and different control methods can be
+chosen according to different application scenarios and needs. Among
+them, MPC (Model Predictive Control</p>
+<p>) is widely used in humanoid robots and autonomous driving fields.
+#### 4.3.1 Classic Control - <strong>PID Control</strong> -
+Proportional-Integral-Derivative Controller - <strong>Adaptive
+Control</strong> - Adaptive PID Control - Model Reference Adaptive
+Control (MRAC)</p>
+<h4 id="advanced-control">4.3.2 Advanced Control</h4>
 <ul>
-<li><strong>最优控制</strong>
+<li><strong>Optimal Control</strong>
 <ul>
-<li>线性二次型调节器（LQR）</li>
-<li>模型预测控制（MPC）</li>
+<li>Linear Quadratic Regulator (LQR)</li>
+<li>Model Predictive Control (MPC)</li>
 </ul></li>
-<li><strong>非线性控制</strong>
+<li><strong>Nonlinear Control</strong>
 <ul>
-<li>滑模控制</li>
-<li>反馈线性化</li>
+<li>Sliding Mode Control</li>
+<li>Feedback Linearization</li>
 </ul></li>
 </ul>
-<h4 id="机器人控制项目">4.3.3 机器人控制项目</h4>
+<h4 id="robot-control-projects">4.3.3 Robot Control Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/legged-robots-final-project">Human-Robot
 Joint Synchronization Teleoperation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<h3 id="路径规划与运动规划path-planning-and-motion-planning">4.4.
-路径规划与运动规划（Path Planning and Motion Planning）</h3>
-<p>路径规划和运动规划决定了机器人的运动轨迹和行为。路径规划描述了机器人如何从起点到终点，运动规划描述了机器人如何在给定的路径上运动。路径规划和运动规划的研究可以帮助我们设计机器人的自主导航和运动控制系统。
-#### 4.4.1 路径规划 - <strong>图搜索算法</strong> - A<em>算法 -
-Dijkstra算法 - <strong>采样基方法</strong> - 快速扩展随机树（RRT） -
-RRT</em></p>
-<h4 id="运动规划">4.4.2 运动规划</h4>
+<h3 id="path-planning-and-motion-planning">4.4. Path Planning and Motion
+Planning</h3>
+<p>Path planning and motion planning determine the robot's motion
+trajectory and behavior. Path planning describes how the robot moves
+from the starting point to the endpoint, and motion planning describes
+how the robot moves along the given path. The study of path planning and
+motion planning can help us design the robot's autonomous navigation and
+motion control systems. #### 4.4.1 Path Planning - <strong>Graph Search
+Algorithms</strong> - A* Algorithm - Dijkstra Algorithm -
+<strong>Sampling-Based Methods</strong> - Rapidly-Exploring Random Tree
+(RRT) - RRT*</p>
+<h4 id="motion-planning">4.4.2 Motion Planning</h4>
 <ul>
-<li><strong>轨迹生成</strong>
+<li><strong>Trajectory Generation</strong>
 <ul>
-<li>三次样条插值</li>
-<li>多项式轨迹</li>
+<li>Cubic Spline Interpolation</li>
+<li>Polynomial Trajectories</li>
 </ul></li>
-<li><strong>约束优化</strong>
+<li><strong>Constrained Optimization</strong>
 <ul>
-<li>动力学约束下的路径优化</li>
-<li>时间最优控制</li>
+<li>Path Optimization under Dynamics Constraints</li>
+<li>Time-Optimal Control</li>
 </ul></li>
 </ul>
-<h4 id="路径规划与运动规划项目">4.4.3 路径规划与运动规划项目</h4>
+<h4 id="path-planning-and-motion-planning-projects">4.4.3 Path Planning
+and Motion Planning Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/slam_bot">SLAM mapping and
 navigation simulation project <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<h3 id="决策与自主性decision-making-and-autonomy">4.5.
-决策与自主性（Decision Making and Autonomy）</h3>
-<p>决策和自主性是机器人设计中的高级部分，它决定了机器人的智能和自主能力。决策和自主性的研究可以帮助我们设计机器人的自主导航和任务执行系统。随着深度学习和强化学习的发展，决策和自主性的研究也在不断进步。</p>
-<p>最近看了很多这个方向的论文，后续可能会专门整理一篇综述来介绍这个方向的发展。</p>
-<h4 id="状态估计">4.5.1 状态估计</h4>
+<h3 id="decision-making-and-autonomy">4.5. Decision Making and
+Autonomy</h3>
+<p>Decision-making and autonomy are advanced parts of robot design,
+determining the robot's intelligence and autonomy. The study of
+decision-making and autonomy can help us design the robot's autonomous
+navigation and task execution systems. With the development of deep
+learning and reinforcement learning, research on decision-making and
+autonomy is also advancing.</p>
+<p>I have recently read many papers in this direction, and I might
+specifically organize a review to introduce the development of this
+direction in the future.</p>
+<h4 id="state-estimation">4.5.1 State Estimation</h4>
 <ul>
-<li><strong>贝叶斯滤波</strong>
+<li><strong>Bayesian Filtering</strong>
 <ul>
-<li>马尔可夫定位</li>
-<li>蒙特卡罗定位</li>
+<li>Markov Localization</li>
+<li>Monte Carlo Localization</li>
 </ul></li>
 </ul>
-<h4 id="强化学习">4.5.2 强化学习</h4>
+<h4 id="reinforcement-learning">4.5.2 Reinforcement Learning</h4>
 <ul>
-<li><strong>值函数方法</strong>
+<li><strong>Value Function Methods</strong>
 <ul>
-<li>Q学习</li>
-<li>深度Q网络（DQN）</li>
+<li>Q-learning</li>
+<li>Deep Q Network (DQN)</li>
 </ul></li>
-<li><strong>策略梯度方法</strong>
+<li><strong>Policy Gradient Methods</strong>
 <ul>
-<li>策略梯度</li>
-<li>近端策略优化（PPO）</li>
+<li>Policy Gradient</li>
+<li>Proximal Policy Optimization (PPO)</li>
 </ul></li>
-<li><strong>Actor-Critic方法</strong>
+<li><strong>Actor-Critic Methods</strong>
 <ul>
-<li>深度确定性策略梯度（DDPG）</li>
-<li>Asynchronous Advantage Actor-Critic（A3C）</li>
-<li>Advantage Actor-Critic（A2C）</li>
+<li>Deep Deterministic Policy Gradient (DDPG)</li>
+<li>Asynchronous Advantage Actor-Critic (A3C)</li>
+<li>Advantage Actor-Critic (A2C)</li>
 </ul></li>
 <li><strong>Multi-Agent Reinforcement Learning</strong>
 <ul>
@@ -1049,16 +1386,382 @@ navigation simulation project <i class="fa-regular fa-arrow-up-right-from-square
 </ul></li>
 <li><strong>Reinforcement Learning from Human Feedback</strong></li>
 </ul>
-<h4 id="模仿学习">4.5.3 模仿学习</h4>
+<h4 id="imitation-learning">4.5.3 Imitation Learning</h4>
 <ul>
-<li><p><strong>行为克隆</strong></p></li>
-<li><p><strong>逆强化学习</strong></p></li>
+<li><strong>Behavior Cloning</strong></li>
+<li><strong>Inverse Reinforcement Learning</strong></li>
 </ul>
-<h4 id="项目">4.5.4 项目</h4>
+<h4 id="projects">4.5.4 Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/RL_review">Reinforcement
 Learning Review <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
+<!-- #  机器人方向技术栈
+近来觉得有必要整理一下自己的技术栈，来看看有什么欠缺。也算是对过去几年的经历进行一个回顾和评论。我一直觉得工科是一个实用性的学科，我们所有人都是站在前人的肩膀上，去创造一个更有趣的世界。如何找到好用的工具，如何利用好好用的工具，是我们工科需要考虑的东西，这样我们才可能自诩为“工程师”。我一直觉得，“工程师”是一个伟大的职业，我们是可以改变世界的人，我们将科学和现实生活紧紧的串联在一起，改变人类的生活。
+
+这篇文章是项目导向的，基于“第一性原理”，我们最终目的是做出一个成果，或者说是产品，亦或是达成一个目标。所以利用“反溯法”，从结果往回倒推我们需要做的事情（这些想法来自于《像火箭科学家一样思考》这本书，在未来有时间的话我想写篇文章讨论一下这本书）。这篇文章也是这样的，将从机器人的各个大类出发，逐渐的接近每一个技术细节。很多技术或许已经过时了，但是有些时候，暗含在每个技术下的“直觉”是永远无法过时的，由此，我们便可以触类旁通，想到很多不同的解决方法。我能想到的例子是，之前在搞一个关于机器人控制的项目，通信频率有些慢，这时候可供优化的方向有很多，比如说嵌入式内部系统调度，或者嵌入式通信协议，亦或者是上位机的接收方式。现在看来，更好的解决方法是优化嵌入式设备的系统调度和通信协议，这样能更好的压榨设备的性能，方便未来做更好的应用。上位机部分倒是也可以优化，不过为了未来更好的做进一步应用，例如实时控制，还是需要找到问题的根源并解决。
+
+## 1. Mechanical Design
+一个完整的项目要从机械部分开始，然后是硬件，软件等，在我看来这是一个完整的机器人项目。一个好的机械设计为后面的各个环节铺平了道路，由于目前接触的都是些小型机器人，所以关于材料力学，流体力学方向的知识没有使用过，如果在未来有需要会补齐相关方向。
+
+### 1.1 CAD 
+在机器人设计中，CAD软件是必不可少的工具，用于机械结构的设计和仿真。推荐的CAD软件有SolidWorks，Fusion 360等。
+
+**SolidWorks**
+
+SolidWorks是一款三维CAD软件，广泛应用于工程设计领域。在机器人设计中，SolidWorks可以用于机械结构的设计，包括零部件的建模、装配、运动仿真等。Solidworks是我平时使用比较多的软件，整个的设计流程比较熟悉，总体感觉还是很好的。
+
+
+**Fusion 360**
+
+Fusion 360是一款云端三维CAD软件，功能强大，适用于机械设计、工业设计等领域。与SolidWorks相比，Fusion 360更适合个人用户，价格更低，且支持更多的云端功能。之前尝试过从Solidworks转到Fusion 360，因为Fusion 360对于个体用户来说比较友好，但是后来发现很难适应设计流程的变化，所以还是放弃了过渡。
+
+### 1.2 3D打印
+目前实验室或者家用的主流的是两种3d打印方式,FDM（Fused Deposition Modeling）和SLA（Stereolithography）。FDM是一种熔融沉积成型技术，通过熔化塑料丝，将材料一层一层地堆积成3D模型。SLA是一种光固化成型技术，通过紫外线固化光敏树脂，将材料一层一层地固化成3D模型。目前FDM打印机比较常见，价格也比较便宜。SLA打印机价格较高，但打印精度更高，通常取决于液晶面板精度。但是SLA打印机的打印速度较慢，且需要特殊的光敏树脂，且打印后需要清洗和固化，因此使用较为麻烦。比较之下，FDM打印机更适合个人用户和小型企业。自从2017年以来，我主要使用过四种FDM打印机，分别是DIY，Ultimaker，Anycubic和Bamboo Lab。
+
+打印材料主要有PLA，ABS，PETG，TPU等，其中PLA是最常用的打印材料，价格便宜，易于打印，适合初学者使用。ABS是一种工程塑料，具有较高的强度和耐热性，适合打印机械结构等零部件。PETG是一种新型的打印材料，具有较高的透明度和耐热性，适合打印外壳等零部件。TPU是一种弹性材料，具有较高的柔韧性和耐磨性，适合打印轮胎等零部件。Ultimaker还提供了一种PVA水溶性支撑材料。
+
+**Ultimaker**
+
+Ultimaker是一家知名的3D打印机厂商，其产品质量高，性能稳定。在机器人领域，Ultimaker的3D打印机可以用于打印机械结构、外壳等零部件。
+
+在实验室中，我们使用的是Ultimaker 2+， Ultimaker 3 extended, Ultimaker S5。其中三代以上使用双喷头，可以使用PVA水溶性支撑材料，但是该材料对温度比较敏感，所以会经常堵塞喷头，或者挤出不均匀，所以体验不是很好。此外，Ultimaker还采用了只有自己使用的2.85mm的材料，且Ultimaker的打印机价格较高，例如Ultimaker S5的价格在7000欧元左右。总体来说，不推荐Ultimaker的打印机，价格高，体验一般。
+
+**DIY**
+
+在2017年的时候，我使用的是DIY的3D打印机，价格便宜，适合初学者使用。但是DIY的3D打印机需要自己组装，且打印精度和稳定性较差，不适合长时间使用。 3d打印机更多是一个工具，所以打印精度和稳定性是很重要的。一个好的打印机可以有更好的配合精度，更好的打印效果。很显然，DIY的打印机不适合长时间使用，所以不推荐。
+
+**Anycubic**
+
+Anycubic mega S3 算是我入门的第一个商用3d打印机，价格便宜，打印效果也不错，在之前几年是一个不错的选择。不过根据我的使用体验，打印精度和稳定性不如Ultimaker，不过也不容易坏，个人使用大概四五年了，也能一直稳定的工作。考虑到价格，在Bambu Lab出现之前Anycubic是一个不错的选择。
+
+**Bambu Lab**
+
+目前Bambu Lab的打印机算得上最热门的打印机，在国内外各个视频网站的热度都很高，例如B和Youtube，之前也在Embedded world和Productranica的展会上看到了它的身影，它的营销做得还是很不错的，不过终究还是得靠技术。我大概在两个月前购入了一台A1 mini，到手测试的感觉确实感觉不错，打印速度很快，精度也很高，所以我想一个好的产品就是需要一个完整的生态环境，从机械设计到软件生态，我能从拓竹的产品上感觉出来，软件能最大的调动硬件，各个环节都能非常好的配合在一起，确实能称得上是一个好的产品。在目前看来，还是很看好Bambu Lab这家公司的发展的。
+
+## 2. 硬件设计
+在机器人项目的硬件设计阶段，我们需要考虑集成多种电子组件和系统，以实现机器人的功能和性能。这一部分主要涉及微控制器的选择、电路板设计（EDA工具的使用）、固件开发以及传感器和通信技术的应用。
+
+### 2.1 MCU
+**Arduino**
+
+Arduino是一款面向初学者的开源硬件平台，特别适合简单的机器人项目。它具有丰富的社区资源和众多的库，可以快速实现传感器集成和执行器控制。但它的处理能力有限，不适合复杂或计算密集的应用。在我的项目中，Arudino是使用很少的，因为它的处理能力有限，主频低，拓展性差，不适合复杂的机器人项目。但是对于初学者来说，Arduino是一个很好的入门平台。而且Arduino的生态系统很完善，有很多的库和教程，可以帮助初学者快速入门。很多的开源项目也是基于Arduino架构的，所以对于初学者来说，Arduino是一个很好的选择。
+
+**Raspberry Pi**
+
+Raspberry Pi作为一款微型计算机，具有强大的处理能力和丰富的接口，非常适合需要高级视频处理和数据处理的机器人项目。然而，它的功耗较高，且在实时控制方面不如专用微控制器稳定。
+
+我主要使用过三个版本的树莓派，分别是树莓派3B，树莓派4B和树莓派Zero。树莓派3B是我最早使用的一款树莓派，主要用于一些小型的项目，比如说家庭服务器，智能家居等。不过由于处理能力有限，所以后来就换成了树莓派4B。
+
+树莓派4B 8Gb是我目前使用的一款树莓派，主要用于一些小型的机器人项目，比如说智能小车，智能家居等。考虑到性能，我尝试使用过Ubuntu 的桌面版，但是发现还是不足以稳定运行，后来更换成Ubuntu server版，性能稳定很多, 可以稳定运行ROS noetic版本。该项目[链接](https://github.com/Xiangyu-Fu/hsa-final-project)
+
+树莓派Zero是之前考虑尺寸限制而使用的一款树莓派，由于当时是Hackathon比赛，所以开发时间有限，并且需要一些定制化需求，所以使用了树莓派Zero， 该项目[链接](https://github.com/TMS-TUMany)。
+
+
+**STM32**
+
+STM32系列微控制器以其高性能、低功耗而受到青睐。适合需要进行精密控制和实时处理的机器人项目。不过，其开发环境相对复杂，初学者可能需要较长的学习曲线。
+
+STM32f103c8t6和STM32f103zet6是我使用过的两款STM32微控制器，也算是我的入门微控制器。之前也有基于STM32的项目，比如说一个基于STM32的四轴飞行器，该项目[链接](https://github.com/Xiangyu-Fu/Drone-Mercury)。 但是在后来的项目中，我发现STM32的处理能力有限，没有很多外设支持，而且价格较贵，在一些小型项目中不是很适用。但是STM32的生态系统很完善，有很多的库和教程，可以帮助初学者快速入门。很多的开源项目也是基于STM32架构的，所以对于初学者来说，STM32是一个很好的选择。
+
+**ESP32**
+
+ESP32提供了Wi-Fi和蓝牙功能，非常适合需要远程控制和数据传输的项目。它的能效比较高，但是在处理能力和资源上不如更专业的微控制器。不过ESP32总体来说还是一个很好的选择，也是我使用最多的一款控制器，基于PlatformIO的开发环境，可以很好的支持ESP32的开发。而且ESP32双核120Mhz的处理器，可以很好的完成嵌入式方向的任务。再加上WiFi和蓝牙的支持，可以很好的和ROS进行通信，所以在机器人项目中，ESP32是非常棒的选择。
+
+**rk3566**
+
+之前在立创发现 rk3566 这款芯片，是一款高性能的芯片，支持Linux系统，可以很好的支持ROS的开发。所以在未来的项目中，我会尝试使用这款芯片，看看它的性能如何。而且由于价格极低，大概为66RMB（在2023年左右芯片荒时，STM32f103c8t6曾卖到过40+RMB），所以在未来的项目中，我会尝试使用这款芯片，看看它的性能如何。
+
+### 2.2 EDA
+
+**Altium Designer**
+
+Altium Designer是一款专业级的电路设计软件，提供强大的设计功能和仿真工具，非常适合复杂的电子项目。但是，由于其高昂的许可费用和复杂的操作界面，可能不适合初学者。
+
+Drone-Mercury项目中使用的是Altium Designer，在使用时发现由于器件库不完善，需要手动添加很多器件，导致设计时间较长。而且Altium Designer的操作界面较为复杂，需要一定的学习曲线。但是Altium Designer提供了强大的仿真工具，可以帮助设计者验证电路的性能和稳定性。总体来说，Altium Designer适合复杂的电子项目，但可能不适合初学者和一些DIY项目。
+
+**立创EDA**
+
+立创EDA是一款易于使用的在线EDA工具，特别适合快速原型开发和小规模生产。其在线特性使得协作变得容易，但可能在功能上不如专业级软件全面。在最近两年的项目中，我主要使用立创EDA，因为它的操作界面简单，易于上手，而且提供了丰富的器件库，可以快速设计电路。立创EDA还提供了在线PCB制造服务，可以帮助用户快速制作PCB板。而且立创EDA的价格较低，适合个人用户和小型企业。总体来说，立创EDA适合快速原型开发和小规模生产，但可能不适合复杂的电子项目。
+
+### 2.3 Frimware
+
+**Arduino IDE**
+
+Arduino IDE是一款用于编写和上传Arduino代码的集成开发环境。在机器人设计中，Arduino IDE可以用于编写控制系统的固件，包括传感器数据的采集、执行器的控制等。但是Arduino IDE的功能较为有限，不适合复杂的项目。
+
+**STM HAL库**
+
+STM HAL库是ST官方提供的一款用于STM32的硬件抽象层库。在机器人设计中，STM HAL库可以用于编写STM32的固件，包括外设的初始化、中断的处理等。STM HAL库提供了丰富的API，可以帮助开发者快速编写STM32的固件。但是STM HAL库的学习曲线较陡，需要一定的学习成本。
+
+**STM32CubeIDE**
+
+STM32CubeIDE是一款用于编写和上传STM32代码的集成开发环境。在机器人设计中，STM32CubeIDE可以用于编写实时控制系统的固件，包括姿态控制、运动控制等。由于可视化和调试功能较为强大，STM32CubeIDE可以提高开发效率。而且可以结合CubeMX生成代码，减少开发时间。
+
+**ESP-IDF**
+
+ESP-IDF是一款用于编写和上传ESP32代码的开发框架。在机器人设计中，ESP-IDF可以用于编写通信系统的固件，包括无线通信、数据传输等。在工作一个项目中，我使用了ESP-IDF，发现该库的Cpp代码写的很好，很好的封装了一些底层的硬件操作，所以在开发过程中，可以很好的调用这些API，减少了很多的开发时间。而且ESP-IDF提供了丰富的API，可以帮助开发者快速编写ESP32的固件。但是ESP-IDF确实入手难度较大，需要一定的c++基础，和一定的嵌入式开发经验。
+
+**PlatformIO**
+
+PlatformIO是一款开源的物联网开发平台，支持多种开发板和开发环境。在机器人设计中，PlatformIO可以用于管理固件的开发、编译和上传，提高开发效率。由于都是小型或者中型的项目，所以我主要使用PlatformIO，它的集成度很高，可以很好的支持ESP32的开发。而且PlatformIO支持多种开发板和开发环境，不需要复杂的配置，可以快速上手。总体来说，PlatformIO适合小型和中型项目，可以提高开发效率。对于个人项目来说，PlatformIO是一个很好的选择。
+
+### 2.4 传感器
+
+传感器是机器人设计中的重要组成部分，用于感知机器人周围的环境和状态。常用的传感器有IMU、激光雷达、摄像头、超声波传感器、力传感器、弯曲传感器、温湿度传感器、拉伸传感器等。
+
+**IMU**
+
+IMU（Inertial Measurement Unit）是一种惯性测量单元，用于测量机器人的姿态和运动。在机器人设计中，IMU可以用于姿态控制、运动控制等。常用的IMU有MPU6050，MPU9250，BNO055等。
+
+**激光雷达**
+
+激光雷达是一种传感器，用于测量机器人周围的环境。在机器人设计中，激光雷达可以用于环境感知、避障等。但是激光雷达价格较高，例如最便宜的激光雷达价格在200EUR左右，不适合小型项目。
+
+**摄像头&RGBD**
+
+摄像头是一种传感器，用于获取机器人周围的图像信息。在机器人设计中，摄像头可以用于图像处理、目标识别等。Intel Realsense D435i是一款常用的摄像头，可以用于SLAM、目标识别等。
+
+**超声波传感器**
+
+超声波传感器是一种传感器，用于测量机器人与障碍物的距离。在机器人设计中，超声波传感器可以用于避障、定位等。但是精度和测距范围有限。
+
+
+**力传感器**
+
+力传感器是一种传感器，用于测量机器人施加的力。在机器人设计中，力传感器可以用于力控制、力反馈等。力传感器主要有压力传感器、应变传感器，更高级的有6轴力传感器，可以测量力和力矩。但是6轴力传感器价格较高，由于原理限制，很难做到小型化，也是一个未来的发展方向。
+
+**弯曲传感器**
+
+弯曲传感器是一种比较少见的传感器，用于测量机器人的弯曲程度。在机器人设计中，弯曲传感器可以用于姿态控制、运动控制等。弯曲传感器主要有弯曲电阻、弯曲电容等，可以测量弯曲程度。
+
+**温湿度传感器**
+
+温湿度传感器是一种传感器，用于测量机器人周围的温度和湿度。在机器人设计中，温湿度传感器可以用于环境感知、控制系统等。常用的温湿度传感器有DHT11，DHT22等。
+
+**拉伸传感器**
+
+拉伸传感器是一种传感器，用于测量机器人的拉伸程度。在机器人设计中，拉伸传感器可以用于力控制、力反馈等。拉伸传感器主要有拉伸电阻、拉伸电容等，可以测量拉伸程度。
+
+### 2.5 通信
+
+在机器人设计中，通信技术是关键组成部分，它允许机器人与外部设备、其他机器人或网络进行数据交换。
+
+**蓝牙**
+蓝牙技术适用于短距离通信，功耗低，成本相对较低。它非常适合用于手持设备与机器人之间的交互或低数据速率的传输。但蓝牙的通信距离和数据传输速率较低，可能不适合需要长距离或高速数据传输的应用。
+
+**WIFI**
+WIFI提供较高的数据传输速度和较好的通信距离，适合需要传输大量数据或进行视频流传输的应用。在机器人控制中，WIFI多用于远程控制、数据传输等。其稳定性和速度都比较好，可以通过TCP/IP协议或者UDP协议进行通信， 可以达到较好的通信效果。
+
+
+**LoRa**
+LoRa是一种低功耗广域网技术，特别适合用于长距离、低功耗的通信需求。它可以支持数公里的通信距离，非常适合于大范围监控和控制应用。LoRa的数据传输速率较低，不适合高速数据传输需求，如视频传输。
+
+**Zigbee**
+Zigbee是一种低功耗的短距离无线通信技术，它的网络配置灵活，支持大量设备连接，适合用于构建复杂的传感器网络和自动化系统。
+与其他通信技术相比，Zigbee的数据传输速率较低，并且通信距离也较短，可能不适合所有类型的机器人应用。
+
+### 2.6 Real-time OS
+
+在硬件设计中，实时操作系统（RTOS）是一种关键技术，用于多任务处理和实时控制。RTOS可以提供任务调度、中断处理、内存管理等功能，以确保机器人的稳定性和可靠性。
+
+常用的RTOS有FreeRTOS，Zephyr，RT-Thread等。在我的项目中，主要使用过FreeRTOS，它是一款开源的RTOS，提供了丰富的API和示例代码，可以帮助开发者快速构建实时控制系统。Arduino IDE和PlatformIO都支持FreeRTOS，可以很方便的集成到项目中。
+
+
+
+## 3. 软件
+### 3.1 ROS/ROS2
+ROS（Robot Operating System）是一款机器人操作系统，提供了一系列的库和工具，用于简化机器人软件的开发。在机器人设计中，ROS可以用于构建机器人的软件系统，包括传感器数据的处理、运动控制等。
+
+我的大部分项目都是基于ROS,总体来看，ROS是一个很好的通信框架，而不是像名字一样所说的操作系统，这点可能有些误解。不过ROS可以很好的支持机器人的开发。但是ROS也有一些缺点，比如说对硬件的支持不够好，例如基于wifi的ROS serial项目，在长时间的通信中会出现断连的情况，这可能是ROS的通信机制导致的。
+
+ROS2是ROS的下一代版本，由于ROS1的一些缺点，ROS2做了很多的改进，比如说更好的通信机制（使用中间件），更好的硬件支持等（支持嵌入式和win10）。但是根据实际的使用体验，从ROS1到ROS2的迁移并不是很容易，因为ROS2的一些API和功能和ROS1不兼容，所以需要重新学习和开发。虽然ROS2迭代了很久，但是bug还是很多，例如编译的时候会出现一些问题，或者是一些API的使用不够方便等。但是由于Ubuntu 22已经不支持ROS1了，所以切换到ROS2是一个必然的选择。 不过根据Nvidia Issac sim 4.0.0版本的更新来看，转向ROS2或许也近在眼前了。
+
+
+
+### 3.2 仿真
+
+**Gazebo**
+
+Gazebo是一款开源的机器人仿真软件，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，Gazebo可以用于验证机器人的控制算法、路径规划等。
+
+**pybullet**
+
+pybullet是一款开源的物理引擎，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，pybullet可以用于验证机器人的控制算法、路径规划等。所以在验证机器人控制算法，例如wbc，ik等，pybullet是一个很好的选择。
+
+**mujoco**
+
+mujoco是一款商业的物理引擎，提供了丰富的模型库和仿真环境，可以用于模拟机器人的运动和行为。在机器人设计中，mujoco可以用于验证机器人的控制算法、路径规划等。但是mujoco的价格较高，不适合个人用户和小型企业。
+
+**unity**
+
+尽管Unity主要是为游戏开发设计，但其在机器人仿真领域的应用也日益增多。Unity强大的图形处理能力和用户友好的界面使得创建逼真的仿真环境成为可能。Unity的缺点在于，与传统的机器人仿真软件相比，它在物理精度和实时性上有所不足。但是主要用于测试自动驾驶，强化学习等，所以在机器人仿真中，Unity是一个很好的选择。
+
+**Nvidia Isaac Sim**
+
+随着Issac Sim 4.0.0版本的推出，Orbit也正式更名为Isaac Lab。以下是官网介绍
+
+- Isaac Lab 是一款基于 Isaac Sim 平台构建的开源轻量级参考应用程序，在机器人基础模型训练中发挥着重要作用。它支持强化学习、模仿学习和迁移学习。它可以训练各种机器人实例，供开发人员探索设计和功能。
+- VSCode 与兼容性检查器的集成易于使用，为强化学习提供多 GPU 支持，通过 RTX 传感器平铺渲染提高性能，优化缓存和着色器管理。
+- 易于使用 PIP 安装和用于导入机器人等的向导。
+- 性能提升，合成数据生成 (SDG) 速度提高 80%
+- 支持 COCO 格式和用于姿势估计的自定义编写器的新 SDG 格式。
+- ROS 2 推出了支持端到端工作流程和基于图像的发布者的更好性能的版本。
+- 支持更多内置机器人：包括 1X Neo、Unitree H1、Agility Digit、Fourier Intelligence GR1、Sanctuary A1 Phoenix 和 XiaoPeng PX5 等一系列人形机器人。还有 Universal Robots UR20 和 UR30 以及 Boston Dynamics Spot。
+
+Nvidia对机器人方向的布局可见一斑，随着越来越多的大厂（Nivdia, Apple, Meta, etc.）加入机器人方向的竞争, 也能看出来大厂对机器人的重视程度。未来会专门写一篇关于Humaniod Robot的文章，探究下机器人的未来发展方向。
+
+### 3.3 3D建模
+
+**blender**
+
+blender是一款开源的三维建模软件，提供了丰富的模型库和建模工具，可以用于设计机器人的外观和结构。在机器人设计中，blender可以用于建模、渲染等。
+
+此外， USD(Universal Scene Description) 是一种开放的场景描述文件格式，由皮克斯公司开发，用于描述三维场景的几何、材质、动画等信息。USD可以用于构建复杂的三维场景，支持多种软件和引擎，如blender，unity，unreal等。在机器人设计中，USD可以用于构建机器人的三维模型、动画等。USD相对于URDF要更加灵活，可以支持更多的功能，例如动画，材质等。在Sim2Real的研究中，USD是一个很好的选择。
+
+
+## 4. 算法
+算法是机器人设计中的核心部分，它决定了机器人的感知、决策和控制能力。常用的算法有感知、运动学与动力学、机器人控制、路径规划与运动规划、决策与自主性、多机器人系统等。
+
+
+由于算法的种类繁多，这里只列举了一些常用的算法，还有相应的项目链接，可以查看更多的细节。
+
+
+### 4.1. 感知（Perception）
+感知，根据我的理解，是如何处理和使用传感器数据，以获取关于机器人周围环境的信息。感知包括传感器数据处理、计算机视觉、三维感知等。根据不同的传感器类型和应用场景，感知可以采用不同的方法和算法。
+
+#### 4.1.1 传感器数据处理
+- **传感器融合**
+  - 卡尔曼滤波（Kalman Filter）
+  - 扩展卡尔曼滤波（Extended Kalman Filter, EKF）
+  - 粒子滤波（Particle Filter）
+- **数据预处理**
+  - 噪声过滤
+  - 数据校准
+
+#### 4.1.2 计算机视觉
+- **图像处理**
+  - 边缘检测
+  - 特征提取
+- **目标识别**
+  - 物体检测（如YOLO, SSD）
+  - 物体识别（如VGG, ResNet）
+- **深度学习**
+  - 卷积神经网络（CNN）
+  - 生成对抗网络（GAN）
+
+#### 4.1.3 三维感知
+- **点云处理**
+  - 点云配准（ICP算法）
+  - 点云分割
+- **深度相机**
+  - 立体视觉
+  - 深度学习方法（如PointNet）
+
+#### 4.1.4 相关项目
+- [RoboCup@Home Challenge](https://github.com/Xiangyu-Fu/robocup_final_project)
+
+
+### 4.2. 运动学与动力学（Kinematics and Dynamics）
+在机械臂和移动机器人的设计中，运动学和动力学是非常重要的部分。运动学描述了机器人的运动规律，动力学描述了机器人的力学特性。运动学和动力学的研究可以帮助我们设计机器人的控制系统，实现精准的运动和力控制。
+#### 4.2.1 运动学
+- **正运动学**
+  - 关节空间到任务空间的映射
+- **逆运动学**
+  - 任务空间到关节空间的映射
+- **约束运动学**
+  - 笛卡尔空间约束
+
+#### 4.2.2 动力学
+- **动力学建模**
+  - 牛顿-欧拉法
+  - 拉格朗日法
+- **动力学控制**
+  - 力控制
+  - 阻抗控制
+
+#### 4.2.3 机器人运动学与动力学项目
+- [UR10 Impedance control and Haptic Force Feedback via Smart Knob](https://github.com/Xiangyu-Fu/MSBRDM-final-project)
+
+
+### 4.3. 机器人控制（Robot Control）
+机器人控制是机器人设计中的核心部分，它决定了机器人的运动和行为。机器人控制可以分为经典控制和先进控制两种类型，根据不同的应用场景和需求，可以选择不同的控制方法。其中MPC（模型预测控制）在人型机器人和自动驾驶领域有着广泛的应用。
+#### 4.3.1 经典控制
+- **PID控制**
+  - 比例-积分-微分控制器
+- **自适应控制**
+  - 自适应PID控制
+  - 模型参考自适应控制（MRAC）
+
+#### 4.3.2 先进控制
+- **最优控制**
+  - 线性二次型调节器（LQR）
+  - 模型预测控制（MPC）
+- **非线性控制**
+  - 滑模控制
+  - 反馈线性化
+
+#### 4.3.3 机器人控制项目
+- [Human-Robot Joint Synchronization Teleoperation](https://github.com/Xiangyu-Fu/legged-robots-final-project)
+
+### 4.4. 路径规划与运动规划（Path Planning and Motion Planning）
+路径规划和运动规划决定了机器人的运动轨迹和行为。路径规划描述了机器人如何从起点到终点，运动规划描述了机器人如何在给定的路径上运动。路径规划和运动规划的研究可以帮助我们设计机器人的自主导航和运动控制系统。
+#### 4.4.1 路径规划
+- **图搜索算法**
+  - A*算法
+  - Dijkstra算法
+- **采样基方法**
+  - 快速扩展随机树（RRT）
+  - RRT*
+
+#### 4.4.2 运动规划
+- **轨迹生成**
+  - 三次样条插值
+  - 多项式轨迹
+- **约束优化**
+  - 动力学约束下的路径优化
+  - 时间最优控制
+
+#### 4.4.3 路径规划与运动规划项目
+- [SLAM mapping and navigation simulation project](https://github.com/Xiangyu-Fu/slam_bot)
+
+### 4.5. 决策与自主性（Decision Making and Autonomy）
+决策和自主性是机器人设计中的高级部分，它决定了机器人的智能和自主能力。决策和自主性的研究可以帮助我们设计机器人的自主导航和任务执行系统。随着深度学习和强化学习的发展，决策和自主性的研究也在不断进步。
+
+
+最近看了很多这个方向的论文，后续可能会专门整理一篇综述来介绍这个方向的发展。
+
+#### 4.5.1 状态估计
+- **贝叶斯滤波**
+  - 马尔可夫定位
+  - 蒙特卡罗定位
+
+#### 4.5.2 强化学习
+- **值函数方法**
+  - Q学习
+  - 深度Q网络（DQN）
+- **策略梯度方法**
+  - 策略梯度
+  - 近端策略优化（PPO）
+- **Actor-Critic方法**
+  - 深度确定性策略梯度（DDPG）
+  - Asynchronous Advantage Actor-Critic（A3C）
+  - Advantage Actor-Critic（A2C）
+- **Multi-Agent Reinforcement Learning**
+  - MADDPG
+  - MARL
+  - AlphaZero
+- **Reinforcement Learning from Human Feedback**
+
+
+#### 4.5.3 模仿学习
+- **行为克隆**
+
+- **逆强化学习**
+
+
+#### 4.5.4 项目
+- [Reinforcement Learning Review](https://github.com/Xiangyu-Fu/RL_review) -->
 
         </div>
 
@@ -1066,14 +1769,14 @@ Learning Review <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 机器人方向技术栈</li>
+        <li><strong>Title:</strong> Robotics Technology Stack</li>
         <li><strong>Author:</strong> xiangyu fu</li>
         <li><strong>Created at
                 :</strong> 2024-06-08 12:36:47</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-06-08 18:20:15
+                    :</strong> 2024-06-08 23:31:58
             </li>
         
         <li>
@@ -1180,11 +1883,10 @@ Learning Review <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">机器人方向技术栈</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%96%B9%E5%90%91%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-text">机器人方向技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mechanical-design"><span class="nav-text">1. Mechanical Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cad"><span class="nav-text">1.1 CAD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d%E6%89%93%E5%8D%B0"><span class="nav-text">1.2 3D打印</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-text">2. 硬件设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mcu"><span class="nav-text">2.1 MCU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eda"><span class="nav-text">2.2 EDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frimware"><span class="nav-text">2.3 Frimware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-text">2.4 传感器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1"><span class="nav-text">2.5 通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#real-time-os"><span class="nav-text">2.6 Real-time OS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-text">3. 软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rosros2"><span class="nav-text">3.1 ROS&#x2F;ROS2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F"><span class="nav-text">3.2 仿真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d%E5%BB%BA%E6%A8%A1"><span class="nav-text">3.3 3D建模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-text">4. 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5perception"><span class="nav-text">4.1. 感知（Perception）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6kinematics-and-dynamics"><span class="nav-text">4.2.
-运动学与动力学（Kinematics and Dynamics）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6robot-control"><span class="nav-text">4.3. 机器人控制（Robot Control）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92%E4%B8%8E%E8%BF%90%E5%8A%A8%E8%A7%84%E5%88%92path-planning-and-motion-planning"><span class="nav-text">4.4.
-路径规划与运动规划（Path Planning and Motion Planning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E4%B8%8E%E8%87%AA%E4%B8%BB%E6%80%A7decision-making-and-autonomy"><span class="nav-text">4.5.
-决策与自主性（Decision Making and Autonomy）</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">Robotics Technology Stack</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#robotics-technology-stack"><span class="nav-text">Robotics Technology Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mechanical-design"><span class="nav-text">1. Mechanical Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cad"><span class="nav-text">1.1 CAD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-printing"><span class="nav-text">1.2 3D Printing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hardware-design"><span class="nav-text">2. Hardware Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mcu"><span class="nav-text">2.1 MCU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eda"><span class="nav-text">2.2 EDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firmware"><span class="nav-text">2.3 Firmware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sensors"><span class="nav-text">2.4 Sensors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#communication"><span class="nav-text">2.5 Communication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#real-time-os"><span class="nav-text">2.6 Real-time OS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software"><span class="nav-text">3. Software</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rosros2"><span class="nav-text">3.1 ROS&#x2F;ROS2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simulation"><span class="nav-text">3.2 Simulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-modeling"><span class="nav-text">3.3 3D Modeling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithms"><span class="nav-text">4. Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#perception"><span class="nav-text">4.1. Perception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kinematics-and-dynamics"><span class="nav-text">4.2. Kinematics and Dynamics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#robot-control"><span class="nav-text">4.3. Robot Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path-planning-and-motion-planning"><span class="nav-text">4.4. Path Planning and Motion
+Planning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decision-making-and-autonomy"><span class="nav-text">4.5. Decision Making and
+Autonomy</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>
