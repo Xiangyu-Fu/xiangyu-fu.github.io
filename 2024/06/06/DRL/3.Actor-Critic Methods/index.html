@@ -18,17 +18,18 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Chap 03 Actor-Critic Methods 在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：  更新过程效率很低，我们运行一次策略，更新一次，然后丢弃该轨迹。 梯度估计是嘈杂的。随机收集的轨迹可能无法代表该策略。 没有明确的可信度赋值。一个轨迹可能包含许多好的或者坏的动作，这些动作是否得到加强仅取决于最终的总产出。  在以下概念">
+        <meta name="description" content="在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：  更新过程效率很低，我们运行一次策略，更新一次，然后丢弃该轨迹。 梯度估计是嘈杂的。随机收集的轨迹可能无法代表该策略。 没有明确的可信度赋值。一个轨迹可能包含许多好的或者坏的动作，这些动作是否得到加强仅取决于最终的总产出。  在以下概念中，我们将探讨改进REINFORCE算法并解决所有3个问题的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DQN 03 - Actor-Critic Methods">
 <meta property="og:url" content="https://xiangyu-fu.github.io/2024/06/06/DRL/3.Actor-Critic%20Methods/index.html">
 <meta property="og:site_name" content="Xiangyu Fu&#39;s Blog">
-<meta property="og:description" content="Chap 03 Actor-Critic Methods 在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：  更新过程效率很低，我们运行一次策略，更新一次，然后丢弃该轨迹。 梯度估计是嘈杂的。随机收集的轨迹可能无法代表该策略。 没有明确的可信度赋值。一个轨迹可能包含许多好的或者坏的动作，这些动作是否得到加强仅取决于最终的总产出。  在以下概念">
+<meta property="og:description" content="在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：  更新过程效率很低，我们运行一次策略，更新一次，然后丢弃该轨迹。 梯度估计是嘈杂的。随机收集的轨迹可能无法代表该策略。 没有明确的可信度赋值。一个轨迹可能包含许多好的或者坏的动作，这些动作是否得到加强仅取决于最终的总产出。  在以下概念中，我们将探讨改进REINFORCE算法并解决所有3个问题的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-06T11:38:47.000Z">
-<meta property="article:modified_time" content="2024-06-07T11:20:20.074Z">
+<meta property="article:modified_time" content="2024-06-08T22:13:34.491Z">
 <meta property="article:author" content="Xiangyu Fu">
 <meta property="article:tag" content="DQN">
+<meta property="article:tag" content="zh-CN">
 <meta name="twitter:card" content="summary">
     
     
@@ -224,12 +225,16 @@
     
     
     
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     
 
 
     <script id="hexo-configurations">
     window.config = {"hostname":"xiangyu-fu.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/cats.jpg","dark":"/images/cats.jpg"},"title":"xiangyu fu's blog","subtitle":{"text":["To Boldly Go Where No Man Has Gone Before","保持热爱，奔赴星海"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":30,"backing_speed":40,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://status.ohevan.com/","icon":"fa-regular fa-chart-bar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Xiangyu-Fu","Blog":"https://xiangyu-fu.github.io/"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/6/6 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"LXGW WenKai Screen R","url":"https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css"},"english":{"enable":true,"family":"","url":"https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/cats.jpg","dark":"/images/cats.jpg"},"title":"xiangyu fu's blog","subtitle":{"text":["To Boldly Go Where No Man Has Gone Before","保持热爱，奔赴星海"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":30,"backing_speed":40,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://status.ohevan.com/","icon":"fa-regular fa-chart-bar"},"tags":{"path":"/tags","icon":"fa-regular fa-tags"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Xiangyu-Fu","Blog":"https://xiangyu-fu.github.io/"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/6/6 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -464,6 +469,23 @@ mjx-container[display="true"] + br {
 
                             <li class="navbar-item">
                                 <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
                                 <a class="has-dropdown"
                                    href="#"
                                         onClick=&#34;return false;&#34;>
@@ -578,6 +600,26 @@ mjx-container[display="true"] + br {
                 
                     
 
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
                     <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
                         
                         <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
@@ -617,11 +659,34 @@ mjx-container[display="true"] + br {
 
             
             
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
         </ul>
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -683,8 +748,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-07 13:20:20</span>
-            <span class="mobile">2024-06-07 13:20:20</span>
+            <span class="desktop">2024-06-09 00:13:34</span>
+            <span class="mobile">2024-06-09 00:13:34</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -699,12 +764,24 @@ mjx-container[display="true"] + br {
                         <a href="/tags/DQN/">DQN</a>&nbsp;
                     </li>
                 
+                    <li>
+                        | <a href="/tags/zh-CN/">zh-CN</a>&nbsp;
+                    </li>
+                
             </ul>
         </span>
     
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
     
     
         <span class="article-pv article-meta-item">
@@ -722,8 +799,7 @@ mjx-container[display="true"] + br {
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="chap-03-actor-critic-methods">Chap 03 Actor-Critic Methods</h1>
-<p>在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：</p>
+            <p>在强化学习（2）中介绍了REINFORCE算法。但REINFORCE算法还是存在三个问题：</p>
 <ol type="1">
 <li>更新过程<strong>效率很低</strong>，我们运行一次策略，更新一次，然后丢弃该轨迹。</li>
 <li>梯度估计<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="1.079ex" height="1.464ex" role="img" focusable="false" viewBox="0 -442 477 647"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g></g></g></svg></mjx-container></span>是<strong>嘈杂的</strong>。随机收集的轨迹可能无法代表该策略。</li>
@@ -769,7 +845,7 @@ Assignment）</h2>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-06-07 13:20:20
+                    :</strong> 2024-06-09 00:13:34
             </li>
         
         <li>
@@ -796,6 +872,10 @@ Assignment）</h2>
                 
                     <li class="tag-item mx-0.5">
                         <a href="/tags/DQN/">#DQN</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/zh-CN/">#zh-CN</a>&nbsp;
                     </li>
                 
             </ul>
@@ -892,8 +972,8 @@ Assignment）</h2>
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">DQN 03 - Actor-Critic Methods</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chap-03-actor-critic-methods"><span class="nav-text">Chap 03 Actor-Critic Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BF%A1%E5%BA%A6%E8%B5%8B%E5%80%BCcredit-assignment"><span class="nav-text">3.2 可信度赋值（Credit
-Assignment）</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BF%A1%E5%BA%A6%E8%B5%8B%E5%80%BCcredit-assignment"><span class="nav-text">3.2 可信度赋值（Credit
+Assignment）</span></a></li></ol>
 
     </div>
 </div>
@@ -928,6 +1008,10 @@ Assignment）</span></a></li></ol></li></ol>
                     <span>
                         15 posts in total
                     </span>
+                    
+                        <span>
+                            36.2k words in total
+                        </span>
                     
                 </p>
             

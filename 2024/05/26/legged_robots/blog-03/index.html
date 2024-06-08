@@ -18,17 +18,18 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="L3 Robot Control 1. Repeat Forward Kinematics 目标：给定机器人的关节角度 ，找到末端执行器在笛卡尔空间中的姿态（位置和姿态）。  我们可以使用齐次变换矩阵来表示末端执行器的姿态。齐次变换矩阵是一个包含旋转矩阵和平移向量的矩阵，它可以表示姿态的旋转和位置信息。  在这里，是一个齐次变换矩阵，表示末端执行器的姿态。  是一个  的旋转矩">
+        <meta name="description" content="1. Repeat Forward Kinematics 目标：给定机器人的关节角度 ，找到末端执行器在笛卡尔空间中的姿态（位置和姿态）。  我们可以使用齐次变换矩阵来表示末端执行器的姿态。齐次变换矩阵是一个包含旋转矩阵和平移向量的矩阵，它可以表示姿态的旋转和位置信息。  在这里，是一个齐次变换矩阵，表示末端执行器的姿态。  是一个  的旋转矩阵，表示末端执行器的姿态旋转部分。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="人形机器人建模与控制（三） - 机器人控制">
 <meta property="og:url" content="https://xiangyu-fu.github.io/2024/05/26/legged_robots/blog-03/index.html">
 <meta property="og:site_name" content="Xiangyu Fu&#39;s Blog">
-<meta property="og:description" content="L3 Robot Control 1. Repeat Forward Kinematics 目标：给定机器人的关节角度 ，找到末端执行器在笛卡尔空间中的姿态（位置和姿态）。  我们可以使用齐次变换矩阵来表示末端执行器的姿态。齐次变换矩阵是一个包含旋转矩阵和平移向量的矩阵，它可以表示姿态的旋转和位置信息。  在这里，是一个齐次变换矩阵，表示末端执行器的姿态。  是一个  的旋转矩">
+<meta property="og:description" content="1. Repeat Forward Kinematics 目标：给定机器人的关节角度 ，找到末端执行器在笛卡尔空间中的姿态（位置和姿态）。  我们可以使用齐次变换矩阵来表示末端执行器的姿态。齐次变换矩阵是一个包含旋转矩阵和平移向量的矩阵，它可以表示姿态的旋转和位置信息。  在这里，是一个齐次变换矩阵，表示末端执行器的姿态。  是一个  的旋转矩阵，表示末端执行器的姿态旋转部分。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-05-26T21:34:47.000Z">
-<meta property="article:modified_time" content="2024-06-07T11:03:29.271Z">
+<meta property="article:modified_time" content="2024-06-08T22:13:53.698Z">
 <meta property="article:author" content="Xiangyu Fu">
-<meta property="article:tag" content="人形机器人建模与控制">
+<meta property="article:tag" content="zh-CN">
+<meta property="article:tag" content="Humanoid robot">
 <meta name="twitter:card" content="summary">
     
     
@@ -224,12 +225,16 @@
     
     
     
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     
 
 
     <script id="hexo-configurations">
     window.config = {"hostname":"xiangyu-fu.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/cats.jpg","dark":"/images/cats.jpg"},"title":"xiangyu fu's blog","subtitle":{"text":["To Boldly Go Where No Man Has Gone Before","保持热爱，奔赴星海"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":30,"backing_speed":40,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://status.ohevan.com/","icon":"fa-regular fa-chart-bar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Xiangyu-Fu","Blog":"https://xiangyu-fu.github.io/"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/6/6 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"LXGW WenKai Screen R","url":"https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css"},"english":{"enable":true,"family":"","url":"https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/cats.jpg","dark":"/images/cats.jpg"},"title":"xiangyu fu's blog","subtitle":{"text":["To Boldly Go Where No Man Has Gone Before","保持热爱，奔赴星海"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":30,"backing_speed":40,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://status.ohevan.com/","icon":"fa-regular fa-chart-bar"},"tags":{"path":"/tags","icon":"fa-regular fa-tags"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Xiangyu-Fu","Blog":"https://xiangyu-fu.github.io/"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/6/6 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -464,6 +469,23 @@ mjx-container[display="true"] + br {
 
                             <li class="navbar-item">
                                 <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
                                 <a class="has-dropdown"
                                    href="#"
                                         onClick=&#34;return false;&#34;>
@@ -578,6 +600,26 @@ mjx-container[display="true"] + br {
                 
                     
 
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
                     <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
                         
                         <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
@@ -617,11 +659,34 @@ mjx-container[display="true"] + br {
 
             
             
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
         </ul>
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -683,8 +748,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-07 13:03:29</span>
-            <span class="mobile">2024-06-07 13:03:29</span>
+            <span class="desktop">2024-06-09 00:13:53</span>
+            <span class="mobile">2024-06-09 00:13:53</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -696,7 +761,11 @@ mjx-container[display="true"] + br {
             <ul>
                 
                     <li>
-                        <a href="/tags/%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%8E%A7%E5%88%B6/">人形机器人建模与控制</a>&nbsp;
+                        <a href="/tags/zh-CN/">zh-CN</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Humanoid-robot/">Humanoid robot</a>&nbsp;
                     </li>
                 
             </ul>
@@ -705,6 +774,14 @@ mjx-container[display="true"] + br {
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
     
     
         <span class="article-pv article-meta-item">
@@ -722,8 +799,7 @@ mjx-container[display="true"] + br {
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="l3-robot-control">L3 Robot Control</h1>
-<h2 id="repeat">1. Repeat</h2>
+            <h2 id="repeat">1. Repeat</h2>
 <h3 id="forward-kinematics">Forward Kinematics</h3>
 <p>目标：给定机器人的关节角度 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="1.373ex" height="1.457ex" role="img" focusable="false" viewBox="0 -450 607 644"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D42A" d="M38 220Q38 273 54 314T95 380T152 421T211 443T264 449Q368 449 429 386L438 377L484 450H540V-132H609V-194H600Q582 -191 475 -191Q360 -191 351 -194H342V-132H411V42Q409 41 399 34T383 25T367 16T347 7T324 1T296 -4T264 -6Q162 -6 100 56T38 220ZM287 46Q368 46 417 127V301L412 312Q398 347 369 371T302 395Q282 395 263 388T225 362T194 308T182 221Q182 126 214 86T287 46Z"></path></g></g></g></g></svg></mjx-container></span>，找到末端执行器在笛卡尔空间中的姿态（位置和姿态）。</p>
 <p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -4.355ex;" xmlns="http://www.w3.org/2000/svg" width="29.013ex" height="9.842ex" role="img" focusable="false" viewBox="0 -2425 12823.7 4350"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"></g><g data-mml-node="TeXAtom" transform="translate(33,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path></g></g></g><g data-mml-node="msub" transform="translate(589.3,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D407" d="M400 0Q376 3 226 3Q75 3 51 0H39V62H147V624H39V686H51Q75 683 226 683Q376 683 400 686H412V624H304V388H595V624H487V686H499Q523 683 673 683Q824 683 848 686H860V624H752V62H860V0H848Q824 3 674 3Q523 3 499 0H487V62H595V326H304V62H412V0H400Z"></path></g></g><g data-mml-node="TeXAtom" transform="translate(933,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(466,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g></g><g data-mml-node="mo" transform="translate(2231.3,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2620.3,0)"><g data-mml-node="mi"><path data-c="1D42A" d="M38 220Q38 273 54 314T95 380T152 421T211 443T264 449Q368 449 429 386L438 377L484 450H540V-132H609V-194H600Q582 -191 475 -191Q360 -191 351 -194H342V-132H411V42Q409 41 399 34T383 25T367 16T347 7T324 1T296 -4T264 -6Q162 -6 100 56T38 220ZM287 46Q368 46 417 127V301L412 312Q398 347 369 371T302 395Q282 395 263 388T225 362T194 308T182 221Q182 126 214 86T287 46Z"></path></g></g><g data-mml-node="mo" transform="translate(3227.3,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(3894.1,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(4672.1,0)"><path data-c="3F" d="M226 668Q190 668 162 656T124 632L114 621Q116 621 119 620T130 616T145 607T157 591T162 567Q162 544 147 529T109 514T71 528T55 566Q55 625 100 661T199 704Q201 704 210 704T224 705H228Q281 705 320 692T378 656T407 612T416 567Q416 503 361 462Q267 395 247 303Q242 279 242 241V224Q242 205 239 202T222 198T205 201T202 218V249Q204 320 220 371T255 445T292 491T315 537Q317 546 317 574V587Q317 604 315 615T304 640T277 661T226 668ZM162 61Q162 89 180 105T224 121Q247 119 264 104T281 61Q281 31 264 16T222 1Q197 1 180 16T162 61Z"></path></g><g data-mml-node="mstyle" transform="translate(5144.1,0)"><g data-mml-node="mspace"></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(6144.1,0)"><g data-mml-node="mi"><path data-c="1D42A" d="M38 220Q38 273 54 314T95 380T152 421T211 443T264 449Q368 449 429 386L438 377L484 450H540V-132H609V-194H600Q582 -191 475 -191Q360 -191 351 -194H342V-132H411V42Q409 41 399 34T383 25T367 16T347 7T324 1T296 -4T264 -6Q162 -6 100 56T38 220ZM287 46Q368 46 417 127V301L412 312Q398 347 369 371T302 395Q282 395 263 388T225 362T194 308T182 221Q182 126 214 86T287 46Z"></path></g></g><g data-mml-node="mo" transform="translate(7028.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mrow" transform="translate(8084.6,0)"><g data-mml-node="mo"><path data-c="23A1" d="M319 -645V1154H666V1070H403V-645H319Z" transform="translate(0,1271)"></path><path data-c="23A3" d="M319 -644V1155H403V-560H666V-644H319Z" transform="translate(0,-1281)"></path><svg width="667" height="952" y="-226" x="0" viewBox="0 238 667 952"><path data-c="23A2" d="M319 0V602H403V0H319Z" transform="scale(1,2.372)"></path></svg></g><g data-mml-node="mtable" transform="translate(667,0)"><g data-mml-node="mtr" transform="translate(0,1675)"><g data-mml-node="mtd" transform="translate(35.4,0)"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="TeXAtom" transform="translate(479,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-275)"><g data-mml-node="mtd" transform="translate(337.6,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="22EE" d="M78 30Q78 54 95 72T138 90Q162 90 180 74T199 31Q199 6 182 -12T139 -30T96 -13T78 30ZM78 440Q78 464 95 482T138 500Q162 500 180 484T199 441Q199 416 182 398T139 380T96 397T78 440ZM78 840Q78 864 95 882T138 900Q162 900 180 884T199 841Q199 816 182 798T139 780T96 797T78 840Z"></path></g></g></g></g><g data-mml-node="mtr" transform="translate(0,-1675)"><g data-mml-node="mtd"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="TeXAtom" transform="translate(479,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></g></g></g><g data-mml-node="mo" transform="translate(1620.3,0)"><path data-c="23A4" d="M0 1070V1154H347V-645H263V1070H0Z" transform="translate(0,1271)"></path><path data-c="23A6" d="M263 -560V1155H347V-644H0V-560H263Z" transform="translate(0,-1281)"></path><svg width="667" height="952" y="-226" x="0" viewBox="0 238 667 952"><path data-c="23A5" d="M263 0V602H347V0H263Z" transform="scale(1,2.372)"></path></svg></g></g><g data-mml-node="mo" transform="translate(10649.7,0)"><path data-c="2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path></g><g data-mml-node="msup" transform="translate(11594.5,0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="211D" d="M17 665Q17 672 28 683H221Q415 681 439 677Q461 673 481 667T516 654T544 639T566 623T584 607T597 592T607 578T614 565T618 554L621 548Q626 530 626 497Q626 447 613 419Q578 348 473 326L455 321Q462 310 473 292T517 226T578 141T637 72T686 35Q705 30 705 16Q705 7 693 -1H510Q503 6 404 159L306 310H268V183Q270 67 271 59Q274 42 291 38Q295 37 319 35Q344 35 353 28Q362 17 353 3L346 -1H28Q16 5 16 16Q16 35 55 35Q96 38 101 52Q106 60 106 341T101 632Q95 645 55 648Q17 648 17 665ZM241 35Q238 42 237 45T235 78T233 163T233 337V621L237 635L244 648H133Q136 641 137 638T139 603T141 517T141 341Q141 131 140 89T134 37Q133 36 133 35H241ZM457 496Q457 540 449 570T425 615T400 634T377 643Q374 643 339 648Q300 648 281 635Q271 628 270 610T268 481V346H284Q327 346 375 352Q421 364 439 392T457 496ZM492 537T492 496T488 427T478 389T469 371T464 361Q464 360 465 360Q469 360 497 370Q593 400 593 495Q593 592 477 630L457 637L461 626Q474 611 488 561Q492 537 492 496ZM464 243Q411 317 410 317Q404 317 401 315Q384 315 370 312H346L526 35H619L606 50Q553 109 464 243Z"></path></g></g><g data-mml-node="TeXAtom" transform="translate(755,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></g></g></svg></mjx-container></span></p>
@@ -982,7 +1058,7 @@ linearization）：因为它使用状态反馈来抵消非线性项。</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-06-07 13:03:29
+                    :</strong> 2024-06-09 00:13:53
             </li>
         
         <li>
@@ -1008,7 +1084,11 @@ linearization）：因为它使用状态反馈来抵消非线性项。</li>
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%8E%A7%E5%88%B6/">#人形机器人建模与控制</a>&nbsp;
+                        <a href="/tags/zh-CN/">#zh-CN</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Humanoid-robot/">#Humanoid robot</a>&nbsp;
                     </li>
                 
             </ul>
@@ -1105,8 +1185,8 @@ linearization）：因为它使用状态反馈来抵消非线性项。</li>
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">人形机器人建模与控制（三） - 机器人控制</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#l3-robot-control"><span class="nav-text">L3 Robot Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat"><span class="nav-text">1. Repeat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-kinematics"><span class="nav-text">Forward Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#differential-kinematics"><span class="nav-text">Differential Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-wrench-force-torque-mapping"><span class="nav-text">External Wrench (Force
-&amp; Torque) Mapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamics"><span class="nav-text">Dynamics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goal-for-today"><span class="nav-text">Goal for Today</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feedback-cancellation"><span class="nav-text">2. Feedback Cancellation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joint-space-control"><span class="nav-text">3. Joint Space Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#simpler-control-laws"><span class="nav-text">Simpler Control Laws</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cartesian-space-control"><span class="nav-text">4. Cartesian Space Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E8%BF%90%E5%8A%A8%E5%AD%A6"><span class="nav-text">逆运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%9C%A8%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%88%B6%E5%AE%9A%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6%E5%BE%8B"><span class="nav-text">直接在笛卡尔空间中制定反馈控制律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E6%80%81%E8%AF%AF%E5%B7%AE%E8%AE%A1%E7%AE%97"><span class="nav-text">姿态误差计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#control-as-optimization"><span class="nav-text">5. Control as Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E9%97%AE%E9%A2%98lsp"><span class="nav-text">最小二乘问题（LSP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E4%B8%80%E8%88%AC%E7%9A%84%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98qp"><span class="nav-text">更一般的二次规划问题（QP）</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat"><span class="nav-text">1. Repeat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-kinematics"><span class="nav-text">Forward Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#differential-kinematics"><span class="nav-text">Differential Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-wrench-force-torque-mapping"><span class="nav-text">External Wrench (Force
+&amp; Torque) Mapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamics"><span class="nav-text">Dynamics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goal-for-today"><span class="nav-text">Goal for Today</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feedback-cancellation"><span class="nav-text">2. Feedback Cancellation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joint-space-control"><span class="nav-text">3. Joint Space Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#simpler-control-laws"><span class="nav-text">Simpler Control Laws</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cartesian-space-control"><span class="nav-text">4. Cartesian Space Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E8%BF%90%E5%8A%A8%E5%AD%A6"><span class="nav-text">逆运动学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%9C%A8%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%88%B6%E5%AE%9A%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6%E5%BE%8B"><span class="nav-text">直接在笛卡尔空间中制定反馈控制律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%BF%E6%80%81%E8%AF%AF%E5%B7%AE%E8%AE%A1%E7%AE%97"><span class="nav-text">姿态误差计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#control-as-optimization"><span class="nav-text">5. Control as Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E9%97%AE%E9%A2%98lsp"><span class="nav-text">最小二乘问题（LSP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E4%B8%80%E8%88%AC%E7%9A%84%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98qp"><span class="nav-text">更一般的二次规划问题（QP）</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -1141,6 +1221,10 @@ linearization）：因为它使用状态反馈来抵消非线性项。</li>
                     <span>
                         15 posts in total
                     </span>
+                    
+                        <span>
+                            36.2k words in total
+                        </span>
                     
                 </p>
             
