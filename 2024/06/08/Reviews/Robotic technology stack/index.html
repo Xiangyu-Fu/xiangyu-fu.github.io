@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://xiangyu-fu.github.io/2024/06/08/Reviews/Robotic%20technology%20stack/image.png">
 <meta property="article:published_time" content="2024-06-08T10:36:47.000Z">
-<meta property="article:modified_time" content="2024-06-08T22:21:04.226Z">
+<meta property="article:modified_time" content="2024-06-12T12:24:58.233Z">
 <meta property="article:author" content="Xiangyu Fu">
 <meta property="article:tag" content="en-US">
 <meta property="article:tag" content="Reviews">
@@ -689,7 +689,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -755,8 +755,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-09 00:21:04</span>
-            <span class="mobile">2024-06-09 00:21:04</span>
+            <span class="desktop">2024-06-12 14:24:58</span>
+            <span class="mobile">2024-06-12 14:24:58</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -786,12 +786,12 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.9k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>6.7k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>30 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>41 Mins</span>
         </span>
     
     
@@ -867,6 +867,13 @@ users, with a lower price and more cloud-based features. I tried
 switching from SolidWorks to Fusion 360 because it is more user-friendly
 for individual users, but later I found it difficult to adapt to the
 change in design flow, so I gave up on the transition.</p>
+<p><strong>NX</strong></p>
+<p>NX is a high-end 3D CAD software developed by Siemens, known for its
+powerful functions and high precision. In robot design, NX can be used
+for designing complex mechanical structures, including part modeling,
+assembly, and motion simulation. NX is a professional software, and I
+have not used it yet, but I have seen it used in some high-end
+projects.</p>
 <h3 id="d-printing">1.2 3D Printing</h3>
 <p>The mainstream 3D printing methods currently used in laboratories or
 at home are FDM (Fused Deposition Modeling) and SLA (Stereolithography).
@@ -1471,16 +1478,206 @@ direction in the future.</p>
 </ul></li>
 <li><strong>Reinforcement Learning from Human Feedback</strong></li>
 </ul>
-<h4 id="imitation-learning">4.5.3 Imitation Learning</h4>
+<h4 id="imitation-learning">4.5.4 Imitation Learning</h4>
 <ul>
 <li><strong>Behavior Cloning</strong></li>
 <li><strong>Inverse Reinforcement Learning</strong></li>
 </ul>
-<h4 id="projects">4.5.4 Projects</h4>
+<h4 id="projects">4.5.5 Projects</h4>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu/RL_review">Reinforcement
 Learning Review <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
+<h2 id="tools">5. Tools</h2>
+<p>In this section, we provide a brief introduction to some commonly
+used tools, including IDEs, simulation software, virtual environments,
+and large language model (LLM) tools.</p>
+<h3 id="ide-integrated-development-environment">5.1 IDE (Integrated
+Development Environment)</h3>
+<p>IDEs are essential tools in software development, significantly
+improving development efficiency by providing an all-in-one environment
+for coding, debugging, and running applications. There are various IDEs
+suitable for different programming languages and development needs.
+Below are introductions to three IDEs I frequently use: Visual Studio
+Code, PyCharm, and CLion.</p>
+<h4 id="visual-studio-code">5.1.1 Visual Studio Code</h4>
+<p>Visual Studio Code (VS Code) is a free, open-source code editor
+developed by Microsoft. It supports multiple programming languages and
+offers a wide range of extensions and plugins. The advantages of VS Code
+include cross-platform support (Windows, macOS, and Linux), fast
+startup, and good performance. It has numerous extensions and plugins to
+meet various development needs and built-in Git support for version
+control. VS Code also supports debugging for multiple languages.
+However, many advanced features rely on plugins, which can complicate
+plugin management, and there might be performance issues with large
+projects. VS Code is suitable for developers of all kinds, especially
+those who need quick setup and flexible configuration.</p>
+<p>Personally, I really like VS Code. It can meet almost all my needs,
+and when combined with various plugins, it becomes a very powerful
+productivity tool. Some highly recommended plugins include Copilot,
+Markdown, PlatformIO, Git, and SSH.</p>
+<h4 id="pycharm">5.1.2 PyCharm</h4>
+<p>PyCharm, developed by JetBrains, is an IDE specifically designed for
+Python development, offering powerful code analysis and debugging
+features. PyCharm's advantages include intelligent code completion and
+analysis, improving development efficiency. It has built-in database
+tools, a debugger, and testing tools for easy project management and
+debugging. It also supports scientific computing and data analysis well,
+integrating tools like Jupyter Notebook, and supports Python web
+frameworks like Django and Flask. However, compared to lightweight
+editors, PyCharm starts slowly and consumes a lot of memory.
+Additionally, the community version has limited features, and the
+professional version requires a paid license. PyCharm is suitable for
+Python developers, especially those dealing with complex projects and
+scientific computing. For general projects, the community version can be
+a good start.</p>
+<h4 id="clion">5.1.3 CLion</h4>
+<p>CLion, also developed by JetBrains, is a cross-platform C/C++ IDE
+offering intelligent code completion, refactoring, and navigation
+features. The advantages of CLion include cross-platform support
+(Windows, macOS, and Linux), powerful code analysis and completion, and
+built-in GDB and LLDB debuggers for easy code debugging. CLion also
+fully supports CMake, simplifying project building and management.
+However, CLion starts slowly, has high memory usage, and requires a paid
+license with a limited free trial. CLion is suitable for professional
+C/C++ developers, especially those dealing with large projects and
+complex debugging tasks. For personal projects, free options like Visual
+Studio Code with C++ plugins can be considered.</p>
+<h3 id="matlab-simulink">5.2 MATLAB &amp; Simulink</h3>
+<p>MATLAB, developed by MathWorks, is a high-level programming language
+and interactive environment widely used in scientific computing,
+engineering design, and simulation. Simulink, an add-on to MATLAB, is
+used for multi-domain simulation and model-based design.</p>
+<p>MATLAB is an excellent tool, holding an irreplaceable position in the
+field of control simulation. However, one must consider the licensing
+issue, as many universities and large companies may not have the
+necessary licenses, which is also a challenge faced by PyCharm and
+CLion.</p>
+<h3 id="git">5.3 Git</h3>
+<p>Git is a distributed version control system used to track source code
+changes, facilitate collaborative development, and manage projects. The
+advantages of Git include its distributed nature, allowing each
+developer to have a complete repository and work offline; efficient
+branch and merge operations, making it suitable for large projects and
+team collaboration; and its widespread use, with extensive community
+resources and tool support. However, Git has a steep learning curve for
+beginners, with complex command-line operations and concepts, and
+managing complex histories may require additional tools and techniques.
+It is highly recommended for all developers to learn and use Git, along
+with platforms like GitHub and GitLab, to greatly improve team
+collaboration efficiency. Beginners can start with GUI tools (e.g.,
+Sourcetree) and gradually familiarize themselves with command-line
+operations.</p>
+<h3 id="virtual-environment">5.4 Virtual Environment</h3>
+<p>Virtual environments are used to isolate project dependencies,
+ensuring compatibility and independence between different projects.</p>
+<h4 id="condaanaconda">5.4.1 Conda/Anaconda</h4>
+<p>Conda is an open-source package and environment management system,
+while Anaconda is a Python/R distribution that includes Conda and is
+preloaded with numerous scientific computing packages. The advantages of
+Conda include simplified package installation and management, resolving
+dependency conflicts, and easy creation and switching of virtual
+environments to isolate project dependencies. Anaconda, with its
+preloaded scientific computing and data analysis packages, further
+enhances this. However, Anaconda comes with many packages, resulting in
+a large installation size, and in some regions, the default source can
+be slow, requiring mirror configuration. For developers dealing with
+multiple Python projects and scientific computing, Conda and Anaconda
+are excellent choices. For lightweight needs, Miniconda can be
+considered.</p>
+<h4 id="docker">5.4.2 Docker</h4>
+<p>Docker is an open-source containerization platform used for
+automating application deployment and management. Its advantages include
+providing isolated environments for each container, ensuring project
+separation, maintaining consistent development and production
+environments across different operating systems, and supporting
+container orchestration tools (e.g., Kubernetes) for large-scale
+deployment. However, Docker requires learning the basics of Dockerfile
+writing and container management, with a certain learning curve, and in
+some cases, containerization may introduce performance overhead. Docker
+is suitable for developers needing cross-platform deployment and
+large-scale applications. Beginners can start with simple Docker
+container management and gradually learn advanced features.</p>
+<h4 id="wslwsl2">5.4.3 WSL/WSL2</h4>
+<p>Windows Subsystem for Linux (WSL) is a compatibility layer for
+running Linux binary executables on Windows, with WSL2 being its
+upgraded version, providing higher performance and a full Linux kernel.
+The advantages of WSL include seamless running of Linux tools and
+scripts on Windows without the overhead of a virtual machine, WSL2
+offering performance close to native Linux, and convenience for Linux
+development on Windows. However, there may be compatibility issues with
+some low-level system functions compared to native Linux, and it
+requires certain system resources, especially WSL2. WSL is suitable for
+users developing on Linux while using Windows, especially those needing
+to switch frequently between the two systems. One can start with WSL1
+and gradually transition to WSL2.</p>
+<h4 id="vmwarevirtualbox">5.4.4 VMware/VirtualBox</h4>
+<p>VMware and VirtualBox are two popular virtual machine software used
+to run multiple operating systems on a single physical computer. Their
+advantages include complete isolation, with each virtual machine having
+its own operating system and resources, high flexibility to run various
+operating systems and test different environments, and snapshot
+functionality to easily revert to previous states. However, they require
+significant memory and storage resources, and performance may decrease
+compared to native operation. VMware and VirtualBox are suitable for
+users needing to test multiple operating systems and simulate complex
+environments. For systems with limited resources, lightweight
+virtualization solutions can be considered.</p>
+<h3 id="llm-large-language-models">5.5 LLM (Large Language Models)</h3>
+<p>Large language model-based robotics control is currently in the
+research stage, making replication and testing difficult. However, some
+large model applications are worth trying, offering interesting and
+practical tools.</p>
+<h4 id="ollama">5.5.1 OLLAMA</h4>
+<p>Ollama is an open-source large language model service tool that
+allows users to easily deploy and use large-scale pre-trained models on
+their own hardware environments. Ollama's main feature is deploying and
+managing large language models (LLMs) within Docker containers, enabling
+users to quickly run these models locally. Ollama's deployment is
+straightforward, requiring only a few simple steps to run large models
+locally.</p>
+<h4 id="continue">5.5.2 Continue</h4>
+<p>Continue enables you to easily create your own coding assistant
+directly inside Visual Studio Code and JetBrains using open-source LLMs.
+All this can run entirely on your own laptop or have Ollama deployed on
+a server to remotely power code completion and chat experiences based on
+your needs. The advantage of Continue lies in its flexibility and ease
+of use, allowing developers to seamlessly integrate coding assistants in
+local or remote environments. However, beginners may need some time to
+get familiar with configuring and using these tools. For developers
+needing intelligent assistants during development, Continue offers a
+robust solution, serving as a localized alternative to GitHub
+Copilot.</p>
+<h4 id="anythingllm">5.5.3 AnythingLLM</h4>
+<p>AnythingLLM can quickly establish a localized knowledge base
+framework. Below is information from the official website:</p>
+<p>AnythingLLM is a full-stack application where you can use commercial
+off-the-shelf LLMs or popular open-source LLMs and vectorDB solutions to
+build a private ChatGPT. You can run it locally or host it remotely,
+enabling intelligent conversations with any documents you provide.
+AnythingLLM organizes your documents into objects called workspaces.
+Workspaces function similarly to threads but with added document
+containerization. Workspaces can share documents but do not communicate
+with each other, keeping each workspace's context clean.</p>
+<p>Some main features of AnythingLLM include: - Multi-user instance
+support and permissioning - Agents inside your workspace (browse the
+web, run code, etc.) - Custom embeddable chat widget for your website -
+Multiple document type support (PDF, TXT, DOCX, etc.) - Manage documents
+in your vector database from a simple UI - Two chat modes: conversation
+and query. Conversation retains previous questions and amendments, while
+query is simple QA against your documents - In-chat citations - 100%
+cloud deployment ready - "Bring your own LLM" model support - Extremely
+efficient cost-saving measures for managing very large documents. You'll
+never pay to embed a massive document or transcript more than once,
+making it 90% more cost-effective than other document chatbot solutions
+- Full developer API for custom integrations</p>
+<p>AnythingLLM's strengths lie in its versatility and flexibility,
+allowing users to customize according to specific needs and run
+efficiently in both local and remote environments. However, due to its
+rich features, beginners may need some time to familiarize themselves
+and configure these features. For developers needing intelligent
+document processing and multi-user support, AnythingLLM is a powerful
+tool.</p>
 <!-- #  机器人方向技术栈
 近来觉得有必要整理一下自己的技术栈，来看看有什么欠缺。也算是对过去几年的经历进行一个回顾和评论。我一直觉得工科是一个实用性的学科，我们所有人都是站在前人的肩膀上，去创造一个更有趣的世界。如何找到好用的工具，如何利用好好用的工具，是我们工科需要考虑的东西，这样我们才可能自诩为“工程师”。我一直觉得，“工程师”是一个伟大的职业，我们是可以改变世界的人，我们将科学和现实生活紧紧的串联在一起，改变人类的生活。
 
@@ -1839,14 +2036,96 @@ blender是一款开源的三维建模软件，提供了丰富的模型库和建�
 - **Reinforcement Learning from Human Feedback**
 
 
-#### 4.5.3 模仿学习
+#### 4.5.4 模仿学习
 - **行为克隆**
 
 - **逆强化学习**
 
 
-#### 4.5.4 项目
-- [Reinforcement Learning Review](https://github.com/Xiangyu-Fu/RL_review) -->
+#### 4.5.5 项目
+- [Reinforcement Learning Review](https://github.com/Xiangyu-Fu/RL_review) 
+
+### 5. Tools
+在这个部分对一些常用的工具进行简单的介绍，包括IDE、仿真软件、虚拟环境等。此外也涉及了大模型的几款相关的工具。
+
+#### 5.1 IDE (Integrated Development Environment)
+IDE（集成开发环境）是软件开发中必不可少的工具，能够提高开发效率，提供代码编写、调试和运行的一站式服务。IDE有很多种，适用于不同的编程语言和开发需求。下面主要介绍下我使用过的三种IDE，分别是Visual Studio Code、PyCharm和CLion。
+
+##### 5.1.1 Visual Studio Code
+Visual Studio Code（VS Code）是一款由微软开发的免费、开源的代码编辑器。它支持多种编程语言，并且有丰富的扩展和插件。VS Code的优点包括跨平台支持（Windows、macOS和Linux），启动快，性能好。它拥有大量的扩展和插件，可以满足各种开发需求，并且内置Git支持，方便进行版本控制。VS Code还支持多种语言的调试功能。然而，许多高级功能依赖于插件，可能导致插件管理复杂。此外，对于大型项目，可能会有性能问题。VS Code适合各类开发者使用，尤其是需要快速上手和灵活配置的开发者。
+
+个人还是非常喜欢VS Code，基本上可以满足所有的需求，配合上各种插件就是非常强大的生产力工具。VS Code提供很多非常好用的插件，比如Copilot, Markdown, PlatformIO, Git, SSH etc. 
+
+##### 5.1.2 PyCharm
+PyCharm是JetBrains公司开发的一款专为Python开发设计的IDE，提供了强大的代码分析和调试功能。PyCharm的优点在于其智能代码补全和分析功能，提高开发效率。它内置数据库工具、调试器和测试工具，方便管理和调试项目。对科学计算和数据分析的支持也很好，集成了如Jupyter Notebook等工具，并且支持Django、Flask等Python Web框架。然而，PyCharm相比轻量级编辑器，启动较慢，内存消耗大。此外，PyCharm的社区版功能有限，专业版需付费。PyCharm适合专注于Python开发的程序员，尤其是需要处理复杂项目和科学计算的开发者。对于一般项目，可以先尝试社区版。
+
+##### 5.1.3 CLion
+CLion是JetBrains公司开发的一款跨平台C/C++ IDE，提供了智能代码补全、重构和导航功能。CLion的优点包括跨平台支持（Windows、macOS和Linux），强大的代码分析和补全功能，以及内置GDB和LLDB调试器，方便调试代码。CLion还全面支持CMake，方便项目构建和管理。然而，CLion启动较慢，内存占用较高，并且需要购买许可证，免费试用期有限。CLion适合专业的C/C++开发者，尤其是需要处理大型项目和复杂调试任务的用户。对于个人项目，可以考虑免费选项如Visual Studio Code配合C++插件。
+
+### 5.2 MATLAB & Simulink
+MATLAB是一款由MathWorks公司开发的高层次编程语言和交互式环境，广泛用于科学计算、工程设计和仿真。Simulink是MATLAB的一个附加工具包，用于多领域仿真和模型驱动设计。
+
+MATLAB是一个非常好的工具，在控制仿真领域的地位是不可撼动的。但是需要考虑的是许可证的问题，很多大学和大厂都没有相关的许可证，这同样也是Pycharm和Clion面临的问题。
+
+### 5.3 Git
+- **简介**：Git是一个分布式版本控制系统，用于跟踪源代码的变更，协同开发和管理项目。
+- **优点**：
+  - **分布式**：每个开发者都有完整的版本库，支持离线工作。
+  - **高效管理**：分支和合并操作高效，适合大型项目和团队协作。
+  - **广泛应用**：被广泛应用于各类软件项目，拥有丰富的社区资源和工具支持。
+- **缺点**：
+  - **学习曲线陡峭**：对初学者来说，命令行操作和概念可能较复杂。
+  - **历史管理复杂**：在处理复杂的历史记录时，可能需要额外工具和技巧。
+- **建议**：强烈推荐所有开发者学习和使用Git，配合GitHub、GitLab等平台，可以极大提高团队协作效率。对于初学者，可以从GUI工具（如Sourcetree）入手，逐步熟悉命令行操作。
+
+### 5.4 Virtual Environment
+虚拟环境用于隔离项目的依赖，确保不同项目之间的兼容性和独立性。
+
+#### 5.4.1 Conda/Anaconda
+Conda是一个开源的包管理和环境管理系统，而Anaconda是包含Conda的Python/R发行版，预装了大量科学计算包。Conda的优点在于简化包安装和管理，解决依赖冲突问题，方便创建和切换虚拟环境，隔离项目依赖。此外，Anaconda内置了大量科学计算和数据分析包。然而，Anaconda自带大量包，占用空间较大，安装包也较大；在某些地区，默认源速度较慢，需要配置镜像源。对于需要处理多个Python项目和科学计算的开发者，Conda和Anaconda是非常适合的选择。对于轻量级需求，可以考虑使用Miniconda。
+
+#### 5.4.2 Docker
+Docker是一个开源的容器化平台，用于自动化应用部署和管理。它的优点包括每个容器都有独立的运行环境，确保项目隔离；在不同操作系统上保持一致的开发和生产环境；支持容器编排工具（如Kubernetes）进行大规模部署。然而，Docker需要学习Dockerfile编写和容器管理的基本概念，具有一定的学习成本；在某些情况下，容器化可能带来一定的性能开销。Docker适合需要跨平台部署和大规模应用的开发者。初学者可以从简单的Docker容器管理开始，逐步学习高级特性。
+
+#### 5.4.3 WSL/WSL2
+WSL（Windows Subsystem for Linux）是微软推出的在Windows上运行Linux二进制可执行文件的兼容层，WSL2是其升级版本，提供更高的性能和完整的Linux内核。WSL的优点包括在Windows上无缝运行Linux工具和脚本，无需虚拟机开销；WSL2提供与原生Linux相近的性能；方便在Windows上进行Linux开发。缺点是某些低级系统功能可能与原生Linux存在差异；需要一定的系统资源，尤其是WSL2。WSL适合在Windows上进行Linux开发的用户，尤其是需要频繁在两个系统间切换的开发者。
+
+
+#### 5.4.4 VMware/VirtualBox
+VMware和VirtualBox是两款流行的虚拟机软件，用于在一台物理计算机上运行多个操作系统。它们的优点在于每个虚拟机都有独立的操作系统和资源，提供完整隔离；可以运行多种操作系统，测试不同环境；支持快照功能，方便恢复到之前的状态。然而，虚拟机软件需要大量的内存和存储资源，资源消耗大；相比原生运行，虚拟机的性能有所下降。VMware和VirtualBox适合需要测试多个操作系统和进行复杂环境模拟的用户。对于资源有限的系统，可以考虑轻量级虚拟化解决方案。
+
+
+### 5.5 LLM (Large Language Models)
+基于大模型的机器人控制目前停留在科研阶段，目前很难复现和测试，这里讲一下几个个大模型的应用，算是可以尝试的几个工具。
+
+#### 5.5.1 OLLAMA
+Ollama是一个开源的大型语言模型服务工具，它允许用户在自己的硬件环境中轻松部署和使用大规模预训练模型。 Ollama 的主要功能是在Docker容器内部署和管理大型语言模型（LLM），使得用户能够快速地在本地运行这些模型。
+
+ollama的部署非常简单，只需要简单地几步就可以轻松的在本地跑大模型。
+
+#### 5.5.2 Continue
+Continue 允许你在 Visual Studio Code 和 JetBrains 中轻松创建自己的编码助手，使用开源的大型语言模型。这一切都可以完全在你的笔记本电脑上运行，或者将 Ollama 部署在服务器上，根据你的需要远程提供代码补全和聊天体验。Continue 的优点在于其灵活性和易用性，使得开发者可以在本地或远程环境中无缝集成编码助手。然而，初学者可能需要一些时间来熟悉如何配置和使用这些工具。对于需要在开发过程中集成智能助手的开发者，Continue 提供了一个强大的解决方案。
+
+这个可以算是GitHub copilot的本地化平替。
+
+#### 5.5.3 AnythingLLM
+AnythingLLM可以快速的建立一个本地化知识库的框架, 以下来自于官网:
+
+AnythingLLM 是一个全栈应用程序，可以使用商用现成的大型语言模型或流行的开源LLM和向量数据库解决方案，构建一个私人ChatGPT。你可以在本地运行，也可以远程托管，并能够智能地与任何你提供的文档进行对话。AnythingLLM 将你的文档分成称为工作区的对象。工作区类似于线程，但增加了文档的容器化。工作区可以共享文档，但彼此不通信，从而保持每个工作区的上下文清晰。
+
+一些 AnythingLLM 的主要功能包括：
+- 多用户实例支持和权限管理
+- 工作区内的代理（浏览网页、运行代码等）
+- 为你的网站定制的嵌入式聊天小部件
+- 支持多种文档类型（PDF、TXT、DOCX等）
+- 从简单的UI管理向量数据库中的文档
+- 两种聊天模式：对话模式和查询模式。对话模式保留先前的问题和修改，查询模式则是简单的文档问答
+- 聊天中的引用功能
+- 完全云部署准备
+- 支持“自带LLM”模式
+- 极其高效的成本节约措施，用于管理非常大的文档。你永远不会因为嵌入一个大型文档或转录而多次付费，比其他文档聊天机器人解决方案节省90%的成本
+- 完整的开发者API，用于自定义集成
+-->
 
         </div>
 
@@ -1861,7 +2140,7 @@ blender是一款开源的三维建模软件，提供了丰富的模型库和建�
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-06-09 00:21:04
+                    :</strong> 2024-06-12 14:24:58
             </li>
         
         <li>
@@ -1979,7 +2258,8 @@ blender是一款开源的三维建模软件，提供了丰富的模型库和建�
         <div class="page-title">Robotics Technology Stack</div>
         <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mechanical-design"><span class="nav-text">1. Mechanical Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cad"><span class="nav-text">1.1 CAD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-printing"><span class="nav-text">1.2 3D Printing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hardware-design"><span class="nav-text">2. Hardware Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mcu"><span class="nav-text">2.1 MCU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eda"><span class="nav-text">2.2 EDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firmware"><span class="nav-text">2.3 Firmware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sensors"><span class="nav-text">2.4 Sensors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#communication"><span class="nav-text">2.5 Communication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#real-time-os"><span class="nav-text">2.6 Real-time OS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#software"><span class="nav-text">3. Software</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rosros2"><span class="nav-text">3.1 ROS&#x2F;ROS2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simulation"><span class="nav-text">3.2 Simulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-modeling"><span class="nav-text">3.3 3D Modeling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithms"><span class="nav-text">4. Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#perception"><span class="nav-text">4.1. Perception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kinematics-and-dynamics"><span class="nav-text">4.2. Kinematics and Dynamics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#robot-control"><span class="nav-text">4.3. Robot Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path-planning-and-motion-planning"><span class="nav-text">4.4. Path Planning and Motion
 Planning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decision-making-and-autonomy"><span class="nav-text">4.5. Decision Making and
-Autonomy</span></a></li></ol></li></ol>
+Autonomy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tools"><span class="nav-text">5. Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ide-integrated-development-environment"><span class="nav-text">5.1 IDE (Integrated
+Development Environment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matlab-simulink"><span class="nav-text">5.2 MATLAB &amp; Simulink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git"><span class="nav-text">5.3 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#virtual-environment"><span class="nav-text">5.4 Virtual Environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#llm-large-language-models"><span class="nav-text">5.5 LLM (Large Language Models)</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -2016,7 +2296,7 @@ Autonomy</span></a></li></ol></li></ol>
                     </span>
                     
                         <span>
-                            36.2k words in total
+                            37.9k words in total
                         </span>
                     
                 </p>
