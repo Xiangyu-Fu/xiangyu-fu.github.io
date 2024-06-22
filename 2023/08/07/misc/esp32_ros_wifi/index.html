@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="xiangyu fu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://xiangyu-fu.github.io/2023/08/07/misc/esp32_ros_wifi/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="This blog post outlines how to connect an ESP32 development board to the Robot Operating System (ROS) using WiFi. Project GitHub: 1https:&#x2F;&#x2F;github.com&#x2F;Xiangyu-Fu&#x2F;ESP32_ROS_wifi Prerequisites Before">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integrating ESP32 with ROS via WiFi">
+<meta property="og:url" content="https://xiangyu-fu.github.io/2023/08/07/misc/esp32_ros_wifi/index.html">
+<meta property="og:site_name" content="Xiangyu Fu&#39;s Blog">
+<meta property="og:description" content="This blog post outlines how to connect an ESP32 development board to the Robot Operating System (ROS) using WiFi. Project GitHub: 1https:&#x2F;&#x2F;github.com&#x2F;Xiangyu-Fu&#x2F;ESP32_ROS_wifi Prerequisites Before">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiangyu-fu.github.io/2023/08/07/misc/esp32_ros_wifi/image.png">
+<meta property="article:published_time" content="2023-08-07T15:51:57.000Z">
+<meta property="article:modified_time" content="2024-06-22T22:59:53.606Z">
+<meta property="article:author" content="Xiangyu Fu">
+<meta property="article:tag" content="en-US">
+<meta property="article:tag" content="ROS">
+<meta property="article:tag" content="Esp32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiangyu-fu.github.io/2023/08/07/misc/esp32_ros_wifi/image.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/giphy.gif" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/giphy.gif">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/giphy.gif">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Integrating ESP32 with ROS via WiFi -
+        
+        xiangyu fu&#39;s blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        xiangyu fu&#39;s blog
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"xiangyu-fu.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":true,"family":"LXGW WenKai Screen R","url":"https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css"},"english":{"enable":true,"family":"","url":"https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"}},"content_max_width":"1080px","sidebar_width":"240px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/cats.jpg","dark":"/images/cats.jpg"},"title":"xiangyu fu's blog","subtitle":{"text":["To Boldly Go Where No Man Has Gone Before","保持热爱，奔赴星海"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":30,"backing_speed":40,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://status.ohevan.com/","icon":"fa-regular fa-chart-bar"},"tags":{"path":"/tags","icon":"fa-regular fa-tags"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Xiangyu-Fu","Blog":"https://xiangyu-fu.github.io/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2021/6/6 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/giphy.gif">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                xiangyu fu&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://status.ohevan.com/"
+                                        >
+                                    <i class="fa-regular fa-chart-bar fa-fw"></i>
+                                    STATUS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://xiangyu-fu.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://status.ohevan.com/"
+                        >
+                            <span>
+                                STATUS
+                            </span>
+                            
+                                <i class="fa-regular fa-chart-bar fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Xiangyu-Fu">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://xiangyu-fu.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">Integrating ESP32 with ROS via WiFi</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/logo_Stan.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">xiangyu fu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-08-07 17:51:57</span>
+        <span class="mobile">2023-08-07 17:51:57</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-06-23 00:59:53</span>
+            <span class="mobile">2024-06-23 00:59:53</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/en-US/">en-US</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ROS/">ROS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Esp32/">Esp32</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>837 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>This blog post outlines how to connect an ESP32 development board to
+the Robot Operating System (ROS) using WiFi.</p>
+<p>Project GitHub: <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Xiangyu-Fu/ESP32_ROS_wifi</span><br></pre></td></tr></table></figure></div></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before we begin, ensure you have the following development
+environment set up:</p>
+<ul>
+<li>Ubuntu 20.04</li>
+<li>ROS Noetic</li>
+<li>PlatformIO espressif32</li>
+<li>ESP32 Arduino Framework</li>
+<li>frankjoshua/Rosserial Arduino Library@^0.9.1</li>
+</ul>
+<p>You can also use a Raspberry Pi instead of a PC.</p>
+<h2 id="environment-setup">Environment Setup</h2>
+<h3 id="on-pc-or-raspberry-pi">On PC or Raspberry Pi</h3>
+<p>Install the necessary ROS packages. Use the following commands in a
+terminal:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ros-<span class="variable">${ROS_DISTRO}</span>-rosserial-arduino</span><br><span class="line">$ sudo apt-get install ros-<span class="variable">${ROS_DISTRO}</span>-rosserial</span><br></pre></td></tr></table></figure></div>
+<p>After installing the required packages, start the ROS master
+node:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ roscore</span><br></pre></td></tr></table></figure></div>
+<p>Then, in a new terminal window, run the rosserial node:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rosrun rosserial_python serial_node.py tcp</span><br></pre></td></tr></table></figure></div>
+<p>This will start a ROS node that will communicate with our ESP32 over
+TCP.</p>
+<h3 id="on-embedded-device-esp32">On Embedded Device (ESP32)</h3>
+<p>Ensure that appropriate example code has been flashed onto the
+development board. This can be done using PlatformIO environment or
+Arduino IDE.</p>
+<h2 id="running-the-example">Running the Example</h2>
+<p>Here is the complete code:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  Code initializes and connects to a WiFi network using given SSID and password, </span></span><br><span class="line"><span class="comment"> *  then publishes a "Hello World!" message to a ROS topic "chatter" at regular intervals. </span></span><br><span class="line"><span class="comment"> *  Make sure to update the SSID, password, IP and server details as per your network.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> *  Create by Stan Fu on 2023/08/07</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"WiFi.h"</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;std_msgs/String.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">IPAddress <span class="title">server</span><span class="params">(<span class="number">192</span>, <span class="number">168</span>, <span class="number">178</span>, <span class="number">48</span>)</span></span>;</span><br><span class="line"><span class="type">uint16_t</span> serverPort = <span class="number">11411</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>*  ssid = <span class="string">"your wifi name"</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>*  password = <span class="string">"your wifi password"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Be polite and say hello</span></span><br><span class="line"><span class="type">char</span> hello[<span class="number">13</span>] = <span class="string">"hello world!"</span>;</span><br><span class="line"><span class="type">uint16_t</span> period = <span class="number">1000</span>;</span><br><span class="line"><span class="type">uint32_t</span> last_time = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">ros::NodeHandle  nh;</span><br><span class="line"><span class="comment">// Make a chatter publisher</span></span><br><span class="line">std_msgs::String str_msg;</span><br><span class="line"><span class="function">ros::Publisher <span class="title">chatter</span><span class="params">(<span class="string">"chatter"</span>, &amp;str_msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setupWiFi</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span>{</span><br><span class="line">    Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">    <span class="built_in">setupWiFi</span>();</span><br><span class="line"></span><br><span class="line">    nh.<span class="built_in">getHardware</span>()-&gt;<span class="built_in">setConnection</span>(server, serverPort);</span><br><span class="line">    nh.<span class="built_in">initNode</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Another way to get IP</span></span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">"ROS IP = "</span>);</span><br><span class="line">    Serial.<span class="built_in">println</span>(nh.<span class="built_in">getHardware</span>()-&gt;<span class="built_in">getLocalIP</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start to be polite</span></span><br><span class="line">    nh.<span class="built_in">advertise</span>(chatter);</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span>{</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">millis</span>() - last_time &gt;= period)</span><br><span class="line">  {</span><br><span class="line">    last_time = <span class="built_in">millis</span>();</span><br><span class="line">    <span class="keyword">if</span> (nh.<span class="built_in">connected</span>())</span><br><span class="line">    {</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">"Connected"</span>);</span><br><span class="line">      <span class="comment">// Say hello</span></span><br><span class="line">      str_msg.data = hello;</span><br><span class="line">      chatter.<span class="built_in">publish</span>( &amp;str_msg );</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">"Not Connected"</span>);</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  nh.<span class="built_in">spinOnce</span>();</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setupWiFi</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{  </span><br><span class="line">   WiFi.<span class="built_in">begin</span>(ssid, password);</span><br><span class="line">   <span class="keyword">while</span> (WiFi.<span class="built_in">status</span>() != WL_CONNECTED) { <span class="built_in">delay</span>(<span class="number">500</span>);Serial.<span class="built_in">print</span>(<span class="string">"."</span>); }</span><br><span class="line">   Serial.<span class="built_in">print</span>(<span class="string">"SSID: "</span>);</span><br><span class="line">   Serial.<span class="built_in">println</span>(WiFi.<span class="built_in">SSID</span>());</span><br><span class="line">   Serial.<span class="built_in">print</span>(<span class="string">"IP:   "</span>);</span><br><span class="line">   Serial.<span class="built_in">println</span>(WiFi.<span class="built_in">localIP</span>());</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>Let's delve into each part in detail.</p>
+<h3 id="dependencies">Dependencies</h3>
+<p>The first step is to include necessary libraries. These include
+Arduino core libraries, WiFi library for network connection, and ROS
+libraries for interaction with the ROS system.</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"WiFi.h"</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;std_msgs/String.h&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+<p>We define several global variables:</p>
+<ul>
+<li>IP address of the Arduino board and ROS server.</li>
+<li>Server port of the ROS server.</li>
+<li>SSID and password of the WiFi network.</li>
+<li>Message ("hello world!") to be sent to the ROS server and the
+frequency of sending it.</li>
+<li>ROS node handle and publisher for sending messages to the ROS
+system.</li>
+</ul>
+<h3 id="connecting-to-wifi">Connecting to WiFi</h3>
+<p>Our <code>setupWiFi()</code> function connects the Arduino board to
+the WiFi network. It repeatedly checks the connection status, printing a
+dot for each attempt until the connection is established. Once
+connected, it prints the SSID of the WiFi connection and the local IP
+address.</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">setupWiFi</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{  </span><br><span class="line">   WiFi.<span class="built_in">begin</span>(ssid, password);</span><br><span class="line">   <span class="keyword">while</span> (WiFi.<span class="built_in">status</span>() != WL_CONNECTED) { <span class="built_in">delay</span>(<span class="number">500</span>);Serial.<span class="built_in">print</span>(<span class="string">"."</span>); }</span><br><span class="line">   Serial.<span class="built_in">print</span>(<span class="string">"SSID: "</span>);</span><br><span class="line">   Serial.<span class="built_in">println</span>(WiFi.<span class="built_in">SSID</span>());</span><br><span class="line">   Serial.<span class="built_in">print</span>(<span class="string">"IP:   "</span>);</span><br><span class="line">   Serial.<span class="built_in">println</span>(WiFi.<span class="built_in">localIP</span>());</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h3 id="main-setup">Main Setup</h3>
+<p>In the <code>setup()</code> function, we initialize serial
+communication for debugging, set up the WiFi connection, establish the
+connection to the ROS server, initialize the ROS node, and advertise the
+publisher.</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span>{</span><br><span class="line">    Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">    <span class="built_in">setupWiFi</span>();</span><br><span class="line"></span><br><span class="line">    nh.<span class="built_in">getHardware</span>()-&gt;<span class="built_in">setConnection</span>(server, serverPort);</span><br><span class="line">    nh.<span class="built_in">initNode</span>();</span><br><span class="line"></span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">"ROS IP = "</span>);</span><br><span class="line">    Serial.<span class="built_in">println</span>(nh.<span class="built_in">getHardware</span>()-&gt;<span class="built_in">getLocalIP</span>());</span><br><span class="line"></span><br><span class="line">    nh.<span class="built_in">advertise</span>(chatter);</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h3 id="main-loop">Main Loop</h3>
+<p>In the main <code>loop()</code>, we check the time, and if enough
+time has passed since the last message, we send a new message. We also
+check the connection status and print a message to the serial monitor
+accordingly. After these checks, we call <code>nh.spinOnce()</code> to
+process any incoming messages and delay for one millisecond.</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span>{</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">millis</span>() - last_time &gt;= period)</span><br><span class="line">  {</span><br><span class="line">    last_time = <span class="built_in">millis</span>();</span><br><span class="line">    <span class="keyword">if</span> (nh.<span class="built_in">connected</span>())</span><br><span class="line">    {</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">"Connected"</span>);</span><br><span class="line">      str_msg.data = hello;</span><br><span class="line">      chatter.<span class="built_in">publish</span>( &amp;str_msg );</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">"Not Connected"</span>);</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  nh.<span class="built_in">spinOnce</span>();</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<p>Now you're ready to interact with ROS using Arduino over WiFi.</p>
+<p>Once all setups are completed, the ESP32 connects to the same network
+as your personal computer or Raspberry Pi, and it should start sending
+"hello world!" messages to the ROS system. You can visualize this output
+using tools like rqt_console or simply monitor it in the terminal.</p>
+<p>If everything is set up correctly, you should see a screen similar to
+the following:</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="image.png"></p>
+<p>The ESP32 is now connected to ROS via WiFi. This basic framework can
+serve as the foundation for more complex projects where ESP32 interacts
+and controls robots or other devices via ROS.</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Integrating ESP32 with ROS via WiFi</li>
+        <li><strong>Author:</strong> xiangyu fu</li>
+        <li><strong>Created at
+                :</strong> 2023-08-07 17:51:57</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-06-23 00:59:53
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2023/08/07/misc/esp32_ros_wifi/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/en-US/">#en-US</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ROS/">#ROS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Esp32/">#Esp32</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/08/22/misc/second-order-system/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">二阶线性动力学系统 (second-order system)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/08/06/misc/install_ubuntu_on_raspberry_pi/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Installing Ubuntu 20.04 + ROS Noetic on Raspberry Pi 4 (without a monitor)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'en-US',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Integrating ESP32 with ROS via WiFi</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#prerequisites"><span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#environment-setup"><span class="nav-text">Environment Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#on-pc-or-raspberry-pi"><span class="nav-text">On PC or Raspberry Pi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#on-embedded-device-esp32"><span class="nav-text">On Embedded Device (ESP32)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#running-the-example"><span class="nav-text">Running the Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dependencies"><span class="nav-text">Dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#connecting-to-wifi"><span class="nav-text">Connecting to WiFi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-setup"><span class="nav-text">Main Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-loop"><span class="nav-text">Main Loop</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">xiangyu fu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        18 posts in total
+                    </span>
+                    
+                        <span>
+                            50.1k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
