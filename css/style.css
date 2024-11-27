@@ -906,7 +906,7 @@ button {
   clear: both;
 }
 .markdown-body {
-  font-family: 'Satoshi-Variable', sans-serif, 'Noto Sans SC', sans-serif, sans-serif;
+  font-family: 'Satoshi-Variable', 'LXGW WenKai Screen R', sans-serif;
   font-size: 16px;
 }
 .markdown-body blockquote {
@@ -1016,7 +1016,7 @@ button {
 .markdown-body .h4,
 .markdown-body .h5,
 .markdown-body .h6 {
-  font-family: 'Satoshi-Variable', sans-serif, 'Noto Sans SC', sans-serif, sans-serif;
+  font-family: 'Satoshi-Variable', 'LXGW WenKai Screen R', sans-serif;
   color: var(--second-text-color);
   line-height: 1.5;
   margin-bottom: 1rem !important;
@@ -2543,7 +2543,7 @@ pre .deletion {
   position: relative;
   box-sizing: border-box;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1080px;
   height: 100%;
   transition-property: color, background, box-shadow, border-color, max-width, width;
   transition-delay: 0s, 0s, 0s, 0s, 0s, 0s;
@@ -2561,7 +2561,7 @@ pre .deletion {
   }
 }
 .page-container .main-content-container .main-content-body .main-content.has-toc {
-  max-width: 1200px !important;
+  max-width: 1296px !important;
 }
 .page-container .main-content-container .main-content-body .main-content-footer {
   width: 100%;
@@ -3018,7 +3018,7 @@ html.is-animating .transition-fade {
   width: 100%;
   font-size: 0.92rem;
   box-sizing: border-box;
-  font-family: 'Satoshi-Variable', sans-serif, 'Noto Sans SC', sans-serif, 'Noto Sans', 'Noto Sans SC', sans-serif;
+  font-family: 'Satoshi-Variable', 'LXGW WenKai Screen R', 'Noto Sans', 'Noto Sans SC', sans-serif;
 }
 .post-toc-wrap .post-toc .toc-title {
   font-size: 0.8rem;
@@ -6942,7 +6942,7 @@ html.is-animating .scroll-progress-bar {
   }
 }
 .article-copyright-info-container {
-  font-family: 'Satoshi-Variable', sans-serif, 'Noto Sans SC', sans-serif;
+  font-family: 'Satoshi-Variable', 'Noto Sans SC', sans-serif;
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -7286,7 +7286,7 @@ html.is-animating .scroll-progress-bar {
   font-size: 1.4rem;
   line-height: 1.5;
   color: var(--second-text-color);
-  font-family: 'Satoshi-Variable', sans-serif, 'Noto Sans SC', sans-serif, 'Noto Sans SC', sans-serif;
+  font-family: 'Satoshi-Variable', 'LXGW WenKai Screen R', 'Noto Sans SC', sans-serif;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -8022,7 +8022,7 @@ html.is-animating .scroll-progress-bar {
   display: block;
   opacity: 1;
   transition: opacity 0.2s ease-in 0.2s;
-  width: 210px;
+  width: 240px;
 }
 .post-page-container.show-toc .toc-content-container:hover::-webkit-scrollbar-thumb {
   border: 3px solid rgba(183,183,183,0.3);
@@ -8941,100 +8941,11 @@ html.is-animating .scroll-progress-bar {
 .tagcloud-container .tagcloud-content {
   text-align: justify;
 }
-.tagcloud-container .tagcloud-content:hover .tag-list a {
-  filter: blur(0px) !important;
-  transition: filter 0.3s ease;
-}
-.tagcloud-container .tagcloud-content .tag-list[data-show-value] a::after {
-  content: attr(data-weight);
-  font-size: 1.5rem;
-  background-color: var(--third-background-color);
-  padding: 4px 8px;
-  min-width: 35px;
-  margin-left: 10px;
-  border-radius: 9px;
-  color: var(--third-text-color);
-  transition: background-color 0.2s ease;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation,
-.tagcloud-container .tagcloud-content .tag-list {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  line-height: 2.5rem;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a,
-.tagcloud-container .tagcloud-content .tag-list li a {
-  font-size: 1.4rem;
-  opacity: var(--opacity);
-  padding: 0.9rem 1.4rem;
-  display: block;
-  position: relative;
-  flex: 1;
-  border-radius: 18px;
-  box-shadow: var(--redefine-box-shadow);
-  margin: 10px;
-  color: var(--default-text-color);
-  filter: blur(var(--blur));
-  transform: scaleX(1) scaleY(1);
-  background-color: var(--default-background-color);
-  transition: transform 0.2s ease, filter 0.3s ease, color 0.2s ease, background-color 0.2s ease;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight] {
-  --blur: 0;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight='1'],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight='1'] {
-  --blur: 3px;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight='2'],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight='2'] {
-  --blur: 1.8px;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight='3'],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight='3'] {
-  --blur: 0.8px;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight='4'],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight='4'] {
-  --blur: 0.4px;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a[data-weight='5'],
-.tagcloud-container .tagcloud-content .tag-list li a[data-weight='5'] {
-  --blur: 0;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a .fa-hashtag,
-.tagcloud-container .tagcloud-content .tag-list li a .fa-hashtag {
-  margin-right: 5px;
-  opacity: 0.3;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a:hover,
-.tagcloud-container .tagcloud-content .tag-list li a:hover {
-  transform: scaleX(1.05) scaleY(1.05);
-  box-shadow: var(--redefine-box-shadow-hover);
-  background-color: var(--primary-color);
-  color: var(--invert-text-color);
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a:hover .fa-hashtag,
-.tagcloud-container .tagcloud-content .tag-list li a:hover .fa-hashtag {
-  margin-right: 5px;
-  color: var(--invert-text-color);
-  opacity: 0.4;
-}
-.tagcloud-container .tagcloud-content .tags-punctuation li a:active,
-.tagcloud-container .tagcloud-content .tag-list li a:active {
-  transform: translateY(2px);
-  transition: transform 0.1s;
-}
-@media (prefers-reduced-motion) {
-  .tagcloud-container .tagcloud-content .tag-list * {
-    transition: none !important;
-  }
+.tagcloud-container .tagcloud-content a {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.7rem 0.5rem;
+  line-height: 0.7;
 }
 .nf-container {
   width: 100%;
